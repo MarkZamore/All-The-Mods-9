@@ -1,0 +1,166 @@
+name: Publish ATM9 pack
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: atm9-pack-latest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # The restored author payload and staged assets are each about 1.3 GB.
+      # Keep room for download caches and temporary archives on the runner.
+      - name: Free runner disk space
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Restore exact author payloads
+        run: python tools/import_upstream.py --pack . --cache artifacts/upstream --restore-locked-files
+
+      - name: Verify original author files
+        run: python tools/verify_upstream.py --pack .
+
+      - name: Generate manifest and stage assets
+        run: python tools/generate_manifest.py --pack . --out dist --revision "$GITHUB_SHA"
+
+      - name: Self-check staged assets
+        run: |
+          python -m unittest discover -s tools -p "test_*.py"
+          python tools/generate_manifest.py --pack . --out dist --verify-all
+
+      - name: Publish pack-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          # The release is updated in place and never deleted. Deleting it first
+          # is what took the pack offline three times in one week: the delete
+          # always works, and the create after it is the call GitHub refuses -
+          # HTTP 500 twice on 2026-08-29, HTTP 403 five times running on
+          # 2026-08-30 - so every launcher asking for pack-latest got a 404 until
+          # somebody started the run again by hand. Nothing here takes anything
+          # away before the thing that replaces it is in place, so a failure
+          # anywhere below leaves the pack that was published last whole and
+          # downloadable.
+
+          retry() {
+            local what="$1"
+            shift
+            local attempt
+            for attempt in 1 2 3 4 5; do
+              if "$@"; then
+                return 0
+              fi
+              echo "$what failed (attempt $attempt/5)" >&2
+              sleep $((attempt * 10))
+            done
+            echo "$what failed after 5 attempts" >&2
+            return 1
+          }
+
+          # The tag follows this commit; the release keeps its name and every
+          # asset already on it. A tag that will not move is not worth failing a
+          # publish over - it is the assets a launcher reads, not the tag.
+          git tag -f pack-latest "$GITHUB_SHA"
+          git push -f origin refs/tags/pack-latest ||
+            echo "pack-latest tag could not be moved; the release still carries this run's assets" >&2
+
+          if gh release view pack-latest >/dev/null 2>&1; then
+            retry "Release edit" gh release edit pack-latest \
+              --title "ATM9 pack" \
+              --notes "Rolling ATM9 pack release. Revision: $GITHUB_SHA"
+          else
+            retry "Release create" gh release create pack-latest \
+              --target "$GITHUB_SHA" \
+              --title "ATM9 pack" \
+              --notes "Rolling ATM9 pack release. Revision: $GITHUB_SHA"
+          fi
+
+          # Reuse requires the complete SHA256 digest and size from GitHub's
+          # asset API. The content-addressed filename alone is not proof.
+          release_id="$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/pack-latest" --jq '.id')"
+          read_inventory() {
+            gh api --paginate "repos/$GITHUB_REPOSITORY/releases/$release_id/assets?per_page=100" \
+              --jq '.[] | select(.state == "uploaded") | "\(.name)|\(.size)|\(.digest // "")"'
+          }
+          retry "Read release inventory" read_inventory > on-release.txt
+
+          upload_batch() {
+            retry "Upload batch" gh release upload pack-latest "$@" --clobber
+          }
+
+          kept=0
+          sent=0
+          batch=()
+          : > wanted.txt
+          : > expected-assets.txt
+          for f in dist/assets/*; do
+            name="$(basename "$f")"
+            size="$(stat -c %s "$f")"
+            digest="sha256:$(sha256sum "$f" | cut -d' ' -f1)"
+            expected="$name|$size|$digest"
+            echo "$name" >> wanted.txt
+            echo "$expected" >> expected-assets.txt
+            if grep -qxF -- "$expected" on-release.txt; then
+              kept=$((kept + 1))
+              continue
+            fi
+            batch+=("$f")
+            sent=$((sent + 1))
+            if [ "${#batch[@]}" -eq 40 ]; then
+              upload_batch "${batch[@]}"
+              batch=()
+            fi
+          done
+          if [ "${#batch[@]}" -gt 0 ]; then
+            upload_batch "${batch[@]}"
+          fi
+
+          # Missing digests cause upload above, then fail this check if GitHub
+          # still cannot confirm the bytes. The old manifest remains live.
+          verify_payloads() {
+            local inventory expected
+            inventory="$(read_inventory)" || return 1
+            while IFS= read -r expected; do
+              if ! grep -qxF -- "$expected" <<< "$inventory"; then
+                echo "Payload size/full SHA256 is not confirmed: ${expected%%|*}" >&2
+                return 1
+              fi
+            done < expected-assets.txt
+          }
+          retry "Verify complete uploaded payloads" verify_payloads
+
+          # The manifest goes up last and always: it is what the launcher reads
+          # to know what the pack is, and until it changes the release still
+          # describes, completely, the pack that was there before.
+          echo "pack-manifest.json" >> wanted.txt
+          upload_batch dist/pack-manifest.json
+
+          # Only now, with the new manifest live and everything it names beside
+          # it, do the files nothing names any more come off.
+          cut -d'|' -f1 on-release.txt | sort > had.txt
+          sort -o wanted.txt wanted.txt
+          gone=0
+          while IFS= read -r name; do
+            [ -n "$name" ] || continue
+            retry "Asset delete" gh release delete-asset pack-latest "$name" --yes
+            gone=$((gone + 1))
+          done < <(comm -23 had.txt wanted.txt)
+          echo "$kept asset(s) already published, $sent uploaded, $gone removed"

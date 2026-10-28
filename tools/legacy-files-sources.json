@@ -1,0 +1,22 @@
+{
+  "snapshots": [
+    {
+      "revision": "759576d172987b9b8489d2179380e084dcf9f68c",
+      "packId": "ATM9",
+      "files": 1791
+    },
+    {
+      "revision": "02b2dc9c633b14545cfed24605cecce259542653",
+      "packId": "ATM9",
+      "files": 1797
+    }
+  ],
+  "unionExactHashRows": 1798,
+  "ownershipSnapshots": [
+    {
+      "revision": "4450beb81609647f2db0fbb3cb11143176940994",
+      "managedFileCount": 1792,
+      "source": "previous launcher sync ownership marker (read-only)"
+    }
+  ]
+}

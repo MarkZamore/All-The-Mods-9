@@ -1,0 +1,12 @@
+# Authoritative pack files; personal options, saves and screenshots are not claimed.
+config/**
+kubejs/**
+scripts/**
+defaultconfigs/**
+data/**
+datapacks/**
+resources/**
+resourcepacks/**
+shaderpacks/**
+configureddefaults/**
+packmenu/**

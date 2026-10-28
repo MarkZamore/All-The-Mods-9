@@ -1,0 +1,9 @@
+dist/
+artifacts/
+__pycache__/
+*.pyc
+/mods/*.jar
+!/mods/cc-tweaked-1.20.1-forge-1.116.1.jar
+!/mods/lionfishapi-2.4-Fix.jar
+/shaderpacks/*.zip
+/minecraft-1.20.1-client.jar
