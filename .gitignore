@@ -1,5 +1,5 @@
 dist/
-artifacts/
+/artifacts/
 __pycache__/
 *.pyc
 /mods/*.jar
