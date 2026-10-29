@@ -9,6 +9,6 @@
 		{ item: "mekanism:advanced_control_circuit", random_bonus: 1, weight: 2.0f }
 		{ count: 4, item: "alltheores:osmium_ingot", random_bonus: 2, weight: 4.0f }
 	]
-	title: "Mekanism: Basic Rewards"
+	title: "{atm9.translation.inline.d71e51a317839b1934b22f40}"
 	use_title: true
 }

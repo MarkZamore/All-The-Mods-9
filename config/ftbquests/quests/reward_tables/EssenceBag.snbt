@@ -76,6 +76,6 @@
 			weight: 5.0f
 		}
 	]
-	title: "&5Essence Bag"
+	title: "{atm9.translation.inline.822be76334055465701bbbe9}"
 	use_title: true
 }

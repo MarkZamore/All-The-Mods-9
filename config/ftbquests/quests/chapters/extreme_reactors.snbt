@@ -8,7 +8,7 @@
 	images: [
 		{
 			height: 0.5d
-			hover: ["Needed For The ATM Star"]
+			hover: ["atm9.translation.inline.54a71c1ed263f3a6a268b464"]
 			image: "allthetweaks:item/atm_star"
 			order: 1
 			rotation: 0.0d

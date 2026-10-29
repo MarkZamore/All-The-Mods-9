@@ -38,7 +38,7 @@
 				entity: "minecraft:zombie"
 				icon: "minecraft:zombie_head"
 				id: "5457CD8C1ABA0B9E"
-				title: "Kill 5 Zombies"
+				title: "{atm9.translation.inline.797f23940823659d96b00018}"
 				type: "kill"
 				value: 5L
 			}]
@@ -67,7 +67,7 @@
 				entity: "minecraft:zombie"
 				icon: "minecraft:zombie_head"
 				id: "3AD10C31CB6BA4C2"
-				title: "Kill 10 Zombies"
+				title: "{atm9.translation.inline.40941a88581a94ffa8181c72}"
 				type: "kill"
 				value: 10L
 			}]
@@ -107,7 +107,7 @@
 				entity: "minecraft:zombie"
 				icon: "minecraft:zombie_head"
 				id: "51471254BFEBDAA7"
-				title: "Kill 50 Zombies"
+				title: "{atm9.translation.inline.3294b581e7735ab63d9ea983}"
 				type: "kill"
 				value: 50L
 			}]
@@ -136,7 +136,7 @@
 				entity: "minecraft:zombie"
 				icon: "minecraft:zombie_head"
 				id: "5056DC37AEF523E5"
-				title: "Kill 100 Zombies"
+				title: "{atm9.translation.inline.4f282f7c74a2481f7daccc82}"
 				type: "kill"
 				value: 100L
 			}]
@@ -163,7 +163,7 @@
 				entity: "minecraft:skeleton"
 				icon: "minecraft:skeleton_skull"
 				id: "5B35720DF93CE2DB"
-				title: "Kill 5 Skeletons"
+				title: "{atm9.translation.inline.ff42d617e03c0e92295c130a}"
 				type: "kill"
 				value: 5L
 			}]
@@ -192,7 +192,7 @@
 				entity: "minecraft:skeleton"
 				icon: "minecraft:skeleton_skull"
 				id: "015CB0D172D0712A"
-				title: "Kill 10 Skeletons"
+				title: "{atm9.translation.inline.fd1413a2fa74f5b183561ea3}"
 				type: "kill"
 				value: 10L
 			}]
@@ -232,7 +232,7 @@
 				entity: "minecraft:skeleton"
 				icon: "minecraft:skeleton_skull"
 				id: "2E17443A1BF2A0DA"
-				title: "Kill 50 Skeletons"
+				title: "{atm9.translation.inline.d35e7fa6cfa2a960916bb6d1}"
 				type: "kill"
 				value: 50L
 			}]
@@ -261,7 +261,7 @@
 				entity: "minecraft:skeleton"
 				icon: "minecraft:skeleton_skull"
 				id: "00655AC734444E54"
-				title: "Kill 100 Skeletons"
+				title: "{atm9.translation.inline.2c8da0d098c052898ae5a793}"
 				type: "kill"
 				value: 100L
 			}]
@@ -288,7 +288,7 @@
 				entity: "minecraft:creeper"
 				icon: "minecraft:creeper_head"
 				id: "423AF6C6647B1626"
-				title: "Kill 5 Creepers"
+				title: "{atm9.translation.inline.5efef6d75b1644aa796f9a09}"
 				type: "kill"
 				value: 5L
 			}]
@@ -317,7 +317,7 @@
 				entity: "minecraft:creeper"
 				icon: "minecraft:creeper_head"
 				id: "1AB92CF7F0246D21"
-				title: "Kill 10 Creepers"
+				title: "{atm9.translation.inline.7329e7dd8ee61a76898ccbe5}"
 				type: "kill"
 				value: 10L
 			}]
@@ -357,7 +357,7 @@
 				entity: "minecraft:creeper"
 				icon: "minecraft:creeper_head"
 				id: "24BA89BD9898759B"
-				title: "Kill 50 Creepers"
+				title: "{atm9.translation.inline.ce71eff702190462c572322e}"
 				type: "kill"
 				value: 50L
 			}]
@@ -386,7 +386,7 @@
 				entity: "minecraft:creeper"
 				icon: "minecraft:creeper_head"
 				id: "045D1087A2692360"
-				title: "Kill 100 Creepers"
+				title: "{atm9.translation.inline.678715a37d8c21c10e74d082}"
 				type: "kill"
 				value: 100L
 			}]
@@ -574,7 +574,7 @@
 					entity: "minecraft:wandering_trader"
 					icon: "minecraft:trader_llama_spawn_egg"
 					id: "596ABB45C0612AAF"
-					title: "Kill the Trader Villager"
+					title: "{atm9.translation.inline.9ee3b1c11c88e70470c5ce15}"
 					type: "kill"
 					value: 1L
 				}
@@ -582,7 +582,7 @@
 					entity: "minecraft:trader_llama"
 					icon: "minecraft:trader_llama_spawn_egg"
 					id: "1D136D138EF82DA9"
-					title: "Kill the Trader Llamas"
+					title: "{atm9.translation.inline.043a0c545d800f0b25628059}"
 					type: "kill"
 					value: 2L
 				}
@@ -612,7 +612,7 @@
 				entity: "minecraft:enderman"
 				icon: "minecraft:ender_pearl"
 				id: "0EA4B08DAAFA4287"
-				title: "&l&9The End Bounty:&r&e Endermen"
+				title: "{atm9.translation.inline.0a78699d8ae8bb77caecab3c}"
 				type: "kill"
 				value: 5L
 			}]
@@ -642,7 +642,7 @@
 				entity: "minecraft:enderman"
 				icon: "minecraft:ender_pearl"
 				id: "58BF5D3267CF02F8"
-				title: "Kill 10 Endermen"
+				title: "{atm9.translation.inline.99ab1396556c04fe378d50d7}"
 				type: "kill"
 				value: 10L
 			}]
@@ -677,7 +677,7 @@
 				entity: "minecraft:enderman"
 				icon: "minecraft:ender_pearl"
 				id: "6BA6847A172C8DD7"
-				title: "Kill 50 Endermen"
+				title: "{atm9.translation.inline.9aa636d243576fccb2a6a56f}"
 				type: "kill"
 				value: 50L
 			}]
@@ -706,7 +706,7 @@
 				entity: "minecraft:enderman"
 				icon: "minecraft:ender_eye"
 				id: "53C23DB8B4D1CEE2"
-				title: "Kill 100 Endermen"
+				title: "{atm9.translation.inline.117737c2fadd10b61ee31cb4}"
 				type: "kill"
 				value: 100L
 			}]
@@ -762,7 +762,7 @@
 				entity: "minecraft:spider"
 				icon: "minecraft:spider_eye"
 				id: "5801AF8000768808"
-				title: "Kill 10 Spiders"
+				title: "{atm9.translation.inline.d0dd080b3cdb3f85caccc4c5}"
 				type: "kill"
 				value: 10L
 			}]
@@ -802,7 +802,7 @@
 				entity: "minecraft:spider"
 				icon: "minecraft:spider_eye"
 				id: "0F94F7427F99DAFE"
-				title: "Kill 50 Spiders"
+				title: "{atm9.translation.inline.d93e0c2d7bc953a8542014a3}"
 				type: "kill"
 				value: 50L
 			}]
@@ -831,7 +831,7 @@
 				entity: "minecraft:spider"
 				icon: "minecraft:spider_eye"
 				id: "0F8ACB07CFA8CB33"
-				title: "Kill 100 Spiders"
+				title: "{atm9.translation.inline.73ba8e60122f323f4d869176}"
 				type: "kill"
 				value: 100L
 			}]
@@ -859,7 +859,7 @@
 				entity: "minecraft:blaze"
 				icon: "minecraft:blaze_powder"
 				id: "1718CA0F8978181C"
-				title: "&l&cThe Nether Bounty:&r&e Blazes"
+				title: "{atm9.translation.inline.8d8dc70ca4a73b6102099a65}"
 				type: "kill"
 				value: 5L
 			}]
@@ -888,7 +888,7 @@
 				entity: "minecraft:blaze"
 				icon: "minecraft:blaze_rod"
 				id: "00445193DEB7EAA0"
-				title: "Kill 10 Blazes"
+				title: "{atm9.translation.inline.842e1089dfe74cb44387f6e6}"
 				type: "kill"
 				value: 10L
 			}]
@@ -929,7 +929,7 @@
 				entity: "minecraft:blaze"
 				icon: "minecraft:blaze_rod"
 				id: "404D3420276BD963"
-				title: "Kill 50 Blazes"
+				title: "{atm9.translation.inline.419ea0ab19cc24ac9197380a}"
 				type: "kill"
 				value: 50L
 			}]
@@ -958,7 +958,7 @@
 				entity: "minecraft:blaze"
 				icon: "minecraft:blaze_rod"
 				id: "2038156A13C07BFC"
-				title: "Kill 100 Blazes"
+				title: "{atm9.translation.inline.68be16785a2dcc57008246e1}"
 				type: "kill"
 				value: 100L
 			}]
@@ -991,7 +991,7 @@
 					}
 				}
 				id: "7BAB5E17D2DE4E3E"
-				title: "&l&9Overworld Bounty:&r&e Witches"
+				title: "{atm9.translation.inline.47713a491bee20e365e8c15b}"
 				type: "kill"
 				value: 5L
 			}]
@@ -1033,7 +1033,7 @@
 					}
 				}
 				id: "7127A76DEB4D1696"
-				title: "Kill 10 Witches"
+				title: "{atm9.translation.inline.b7335fb64de7678249cfd398}"
 				type: "kill"
 				value: 10L
 			}]
@@ -1087,7 +1087,7 @@
 					}
 				}
 				id: "78A782913B7E6353"
-				title: "Kill 50 Witches"
+				title: "{atm9.translation.inline.34bf44e58732c9b85eb56437}"
 				type: "kill"
 				value: 50L
 			}]
@@ -1122,7 +1122,7 @@
 					}
 				}
 				id: "5A3D6416BA0C7A20"
-				title: "Kill 100 Witches"
+				title: "{atm9.translation.inline.9615cd2273e0c06d21eee295}"
 				type: "kill"
 				value: 100L
 			}]
@@ -1154,7 +1154,7 @@
 				entity: "minecraft:wither_skeleton"
 				icon: "minecraft:wither_skeleton_skull"
 				id: "1016033CBB003413"
-				title: "&l&cThe Nether Bounty:&r&e Wither Skeles"
+				title: "{atm9.translation.inline.72c03919bde9f469cefb2223}"
 				type: "kill"
 				value: 5L
 			}]
@@ -1183,7 +1183,7 @@
 				entity: "minecraft:wither_skeleton"
 				icon: "minecraft:wither_skeleton_skull"
 				id: "33107949548BC22D"
-				title: "Kill 10 Wither Skeles"
+				title: "{atm9.translation.inline.5439d9f0556499043210483c}"
 				type: "kill"
 				value: 10L
 			}]
@@ -1222,7 +1222,7 @@
 				entity: "minecraft:wither_skeleton"
 				icon: "minecraft:wither_skeleton_skull"
 				id: "29A605F8B896F3B9"
-				title: "Kill 50 Wither Skeles"
+				title: "{atm9.translation.inline.960bed08d17586469723ffa2}"
 				type: "kill"
 				value: 50L
 			}]
@@ -1252,7 +1252,7 @@
 				entity: "minecraft:wither_skeleton"
 				icon: "minecraft:wither_skeleton_skull"
 				id: "727813FFC599C36D"
-				title: "Kill 100 Wither Skeles"
+				title: "{atm9.translation.inline.377f2b44e8d3a6adbae63c77}"
 				type: "kill"
 				value: 100L
 			}]

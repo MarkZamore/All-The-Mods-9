@@ -12,6 +12,6 @@
 		{ count: 2, item: "botania:mana_glass", random_bonus: 2 }
 		{ item: "botania:black_lotus", weight: 0.1f }
 	]
-	title: "&bCommon Mana Materials Loot Bag&r"
+	title: "{atm9.translation.inline.8fd79618877f0dfbf64ea9fc}"
 	use_title: true
 }

@@ -45,6 +45,6 @@
 		{ item: "alltheores:signalum_ingot", random_bonus: 3, weight: 50.0f }
 		{ item: "alltheores:constantan_ingot", random_bonus: 3, weight: 50.0f }
 	]
-	title: "&9Thermal Loot Bag"
+	title: "{atm9.translation.inline.9a84ef0eb3f5b74a8f07cc0e}"
 	use_title: true
 }

@@ -26,6 +26,6 @@
 		{ item: "mysticalagriculture:emerald_seeds", weight: 5.0f }
 		{ item: "mysticalagriculture:diamond_seeds", weight: 7.0f }
 	]
-	title: "&dTier 6 Seed Bag"
+	title: "{atm9.translation.inline.400dc6b92169e6d8aa982dab}"
 	use_title: true
 }

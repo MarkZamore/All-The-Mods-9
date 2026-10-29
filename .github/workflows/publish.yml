@@ -40,10 +40,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Restore exact author payloads
-        run: python tools/import_upstream.py --pack . --cache artifacts/upstream --restore-locked-files
+      - name: Restore exact author payloads and reviewed display localization
+        run: python tools/prepare_pack.py --pack . --cache artifacts/upstream --restore-locked-files
 
-      - name: Verify original author files
+      - name: Verify effective original author files and fixed support additions
         run: python tools/verify_upstream.py --pack .
 
       - name: Generate manifest and stage assets

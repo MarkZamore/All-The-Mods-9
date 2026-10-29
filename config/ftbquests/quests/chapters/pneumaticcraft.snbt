@@ -2368,7 +2368,7 @@
 			]
 			shape: "hexagon"
 			size: 1.2d
-			subtitle: "Compressed Iron Man"
+			subtitle: "{atm9.translation.inline.121bd659db7cc895e8f9de2a}"
 			tasks: [
 				{
 					id: "0CC30ECC352D1A6E"

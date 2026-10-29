@@ -9,7 +9,7 @@
 	images: [
 		{
 			height: 0.3d
-			hover: ["Needed for the ATM Star"]
+			hover: ["atm9.translation.inline.da2165f091466bbbd75ff4eb"]
 			image: "allthetweaks:item/atm_star"
 			rotation: 0.0d
 			width: 0.3d
@@ -18,7 +18,7 @@
 		}
 		{
 			height: 0.3d
-			hover: ["Needed for the ATM Star"]
+			hover: ["atm9.translation.inline.da2165f091466bbbd75ff4eb"]
 			image: "allthetweaks:item/atm_star"
 			rotation: 0.0d
 			width: 0.3d
@@ -3053,7 +3053,7 @@
 						]
 					}
 				}
-				title: "Inferium Tools and Weapons"
+				title: "{atm9.translation.inline.f46efd86fe363786c57a74c4}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.InfTools}"
@@ -3170,7 +3170,7 @@
 						]
 					}
 				}
-				title: "Prudentium Tools and Weapons"
+				title: "{atm9.translation.inline.8b1456a6a7bad05002c7f4d1}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.PruTools}"
@@ -3287,7 +3287,7 @@
 						]
 					}
 				}
-				title: "Tertium Tools and Weapons"
+				title: "{atm9.translation.inline.605bb693090aed12b2d14b19}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.TerTools}"
@@ -3410,7 +3410,7 @@
 						]
 					}
 				}
-				title: "Imperium Tools and Weapons"
+				title: "{atm9.translation.inline.977696be3b80eaebf6d9cb7e}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.ImpTools}"
@@ -3491,7 +3491,7 @@
 						]
 					}
 				}
-				title: "Supremium Tools and Weapons"
+				title: "{atm9.translation.inline.4a42c572207ad83a76a48a8e}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.SupTool}"
@@ -3572,7 +3572,7 @@
 						]
 					}
 				}
-				title: "Awakened Supremium Tools and Weapons"
+				title: "{atm9.translation.inline.432112470461ca1909e33e1a}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ma.AwaTools}"

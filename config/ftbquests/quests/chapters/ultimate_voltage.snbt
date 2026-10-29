@@ -227,7 +227,7 @@
 				""
 				"{atm9.quest.gregtech.uv.desc.superconductorsAlloy.2}"
 				""
-				"You'll need a Mixer running at least &cZPM&r tier recipes to make this dust"
+				"{atm9.translation.inline.5cdeba100c3f9142d6ecba4d}"
 			]
 			id: "39D7F47A8C44D5AF"
 			rewards: [{
@@ -1982,7 +1982,7 @@
 			}]
 			tasks: [{
 				id: "1393164467061CC0"
-				title: "Other Mk2 Products"
+				title: "{atm9.translation.inline.ecf122502288b9bd4ba1425d}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.gregtech.uv.otherproducts}"

@@ -1341,7 +1341,7 @@
 			description: [
 				"{atm9.quest.gregtech.mv.desc.newOreProcessing.1}"
 				""
-				"[ \"\", { \"text\": \"The \" }, { \"text\": \"Sifter \", \"color\":\"yellow\" }, { \"text\": \"replaces the Thermal Centrifuge and 2nd Macerator in the \" }, { \"text\":\"Ore Processing Setup\", \"color\":\"gold\", \"clickEvent\": { \"action\":\"change_page\", \"value\":\"25DBFE887B041E94\" }, \"underlined\":\"true\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for a reminder\" } } } ]"
+				"[\"\",{\"translate\":\"atm9.translation.inline.103c5169871d49be7a2ebf9e\"},{\"translate\":\"atm9.translation.inline.4f846c379e838ab0dfa9de9e\",\"color\":\"yellow\"},{\"translate\":\"atm9.translation.inline.0dc64591f60ed27e03d063fe\"},{\"translate\":\"atm9.translation.inline.bd770ef1226f1690b54843eb\",\"color\":\"gold\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"25DBFE887B041E94\"},\"underlined\":\"true\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.e26c6d58b4ecdc7456e7f7fd\"}}}]"
 				""
 				"{atm9.quest.gregtech.mv.desc.newOreProcessing.3}"
 			]
@@ -1552,9 +1552,9 @@
 			description: [
 				"{atm9.quest.gregtech.mv.desc.sapphireLens.1}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"4DD7F3508B757EF0\"}, \"text\": \"How to make the gem plate\", \"color\": \"green\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for a reminder\" } }}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"4DD7F3508B757EF0\"},\"translate\":\"atm9.translation.inline.8217a3fe9959698232f14d73\",\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.e26c6d58b4ecdc7456e7f7fd\"}}}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"26004F997C758011\"}, \"text\": \"How to make the gem lens\", \"color\": \"yellow\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for a reminder\" } }}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"26004F997C758011\"},\"translate\":\"atm9.translation.inline.c18162619b1aa906e345979a\",\"color\":\"yellow\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.e26c6d58b4ecdc7456e7f7fd\"}}}"
 			]
 			hide_dependency_lines: true
 			id: "20A0A574F51EEF74"

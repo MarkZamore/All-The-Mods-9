@@ -18,7 +18,7 @@
 		{
 			click: "https://discord.gg/3paFjuRfz9"
 			height: 1.0d
-			hover: ["Join the Discord!"]
+			hover: ["atm9.translation.inline.8bde7dfb48b636114b13d564"]
 			image: "ftbchunks:textures/waypoint_default.png"
 			rotation: 0.0d
 			width: 1.0d
@@ -160,15 +160,15 @@
 		{
 			description: [
 				"{atm9.quest.welcome.desc.translations}"
-				"&lTranslator List&r (as of pack version v0.3.6)"
-				"&9Spanish&r by &2radzratz&r, &2abel102389&r, &2arivio&r, and &2metabodiru&r."
-				"&9Norwegian&r (Bokmål) by &2Permest&r."
-				"&9Portugese&r by &2oruiva&r."
-				"&9Japanese&r by &2fishlife1 (flll)&r."
-				"&9Korean&r by &2J-YonKen&r."
-				"&9German&r by &2Aquamatik&r."
-				"&9Dutch&r by &2NeofastFTL&r."
-				"&9Italian&r by &2Il-mostro-di-gioacchinopoli&r."
+				"{atm9.translation.inline.146dd3ccd4db49a547ea4349}"
+				"{atm9.translation.inline.bc161d691461e54d12d47583}"
+				"{atm9.translation.inline.27604a85756d5af0d98295ef}"
+				"{atm9.translation.inline.19c683695abad89e900d15b7}"
+				"{atm9.translation.inline.2e8dcbcdd53d293bee184fed}"
+				"{atm9.translation.inline.f2a0a37deba0944776f5025d}"
+				"{atm9.translation.inline.11706498f592ce550c35ca0e}"
+				"{atm9.translation.inline.84f0daffa12d12fe19aed3e5}"
+				"{atm9.translation.inline.2cc78f79b36101f0a50f2670}"
 			]
 			icon: {
 				Count: 1

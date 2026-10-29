@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "atm9-original-russian-quests-and-logging",
+  "sourceVersion": "1.1.1",
+  "upstreamLock": {
+    "path": "tools/upstream-lock.json",
+    "sizeBytes": 537459,
+    "sha256": "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18"
+  },
+  "unmodifiedImporter": {
+    "path": "tools/import_upstream.py",
+    "sizeBytes": 22197,
+    "sha256": "5c417dd8eb19cabeb7d4062b18428f5d762fbac48c897ea9e6a4b1e84c11accf"
+  },
+  "localization": {
+    "patchTool": {
+      "path": "tools/atm9_ru_quests.py",
+      "sizeBytes": 8499,
+      "sha256": "8be48f103b2f20aebb53c986ff9c1f2dd458c34f8673e9f25c851e3b00bf2cc7"
+    },
+    "manifest": {
+      "path": "tools/atm9_ru_quests/manifest.json",
+      "sizeBytes": 212869,
+      "sha256": "9ebb5aca30cc15ecdd231e534fc1a77d8af6377943ef9b76b6143e848725fde6"
+    }
+  },
+  "supportFiles": [
+    {
+      "path": "kubejs/assets/kubejs/lang/ru_ru.json",
+      "sizeBytes": 1631189,
+      "sha256": "18fde6566400e636cc82fa3fa111cd76359c9266d828180f318ce892262772e4"
+    },
+    {
+      "path": "config/log4j2.xml",
+      "sizeBytes": 4137,
+      "sha256": "6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d"
+    },
+    {
+      "path": "launcher/jvm-args.txt",
+      "sizeBytes": 44,
+      "sha256": "a1f3a734e672681e16e8db9a35ece57236720f99f95a85bac9eb2caac1e19d3c"
+    },
+    {
+      "path": "kubejs/atm9_ru_quests_license.txt",
+      "sizeBytes": 1066,
+      "sha256": "dac18d09815cd481fde4ff7e0137668683a3a61ebdee36440ca82b333de4684e"
+    },
+    {
+      "path": "kubejs/atm9_ru_quests_provenance.md",
+      "sizeBytes": 2986,
+      "sha256": "01f4fa0ffa934c7c1dd574ab820386eb4622043c1938fa1bd84773b8970cf0a6"
+    }
+  ],
+  "sourceNotices": [
+    {
+      "path": "library/licenses/Scriptora-ATM9-MIT.txt",
+      "sizeBytes": 1066,
+      "sha256": "dac18d09815cd481fde4ff7e0137668683a3a61ebdee36440ca82b333de4684e"
+    },
+    {
+      "path": "library/ru-quests-provenance.md",
+      "sizeBytes": 2986,
+      "sha256": "01f4fa0ffa934c7c1dd574ab820386eb4622043c1938fa1bd84773b8970cf0a6"
+    },
+    {
+      "path": "tools/atm9_ru_quests/native-structural-proof.json",
+      "sizeBytes": 2969,
+      "sha256": "72ad0f8f4d614c0f6349eec448ba54651c134f28e5a8fbeda9def3f41c074328"
+    }
+  ]
+}

@@ -1257,7 +1257,7 @@
 						]
 					}
 				}
-				title: "Any Silent Gear Repair Kit"
+				title: "{atm9.translation.inline.1484a51bff47e8d6f3b4102b}"
 				type: "item"
 			}]
 			title: "{atm9.quest.SG.repairkit}"
@@ -1356,7 +1356,7 @@
 						]
 					}
 				}
-				title: "Any Silent Gear Pickaxe"
+				title: "{atm9.translation.inline.c67ecff8e46729585b62a2b6}"
 				type: "item"
 			}]
 			title: "{atm9.quest.SG.SGTool}"
@@ -1414,7 +1414,7 @@
 							}]
 						}
 					}
-					title: "Any Pickaxe Head Part"
+					title: "{atm9.translation.inline.404f14b43e269ace6c78fe49}"
 					type: "item"
 				}
 			]

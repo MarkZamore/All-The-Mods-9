@@ -8,7 +8,7 @@
 	images: [{
 		click: "https://youtu.be/5kKjlCsmfcc?si=I_jZPW6TzqHpb8OD"
 		height: 1.0d
-		hover: ["Pilpoh's Productive Trees Guide"]
+		hover: ["atm9.translation.inline.582e6b343e26feb772fec396"]
 		image: "supplementaries:textures/gui/book/icon/youtube.png"
 		rotation: 0.0d
 		width: 1.0d

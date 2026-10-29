@@ -697,7 +697,7 @@
 				""
 				"{atm9.quest.gregtech.lv.desc.oreProcessingSetup.5}"
 				""
-				"[ \"\", { \"text\": \"Note: \", \"color\":\"#FFFF55\", \"bold\":\"true\" }, { \"text\": \"The Ore Washer requires \" }, { \"text\": \"water\", \"color\":\"#5555FF\" }, { \"text\": \" and a \" }, { \"text\":\"Programmed Circuit\", \"color\":\"#FFAA00\", \"clickEvent\": { \"action\":\"change_page\", \"value\":\"4875FB6628C1FCDC\" }, \"underlined\":\"true\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for a reminder\" } } }, { \"text\":\" setting to run\" } ]"
+				"[\"\",{\"translate\":\"atm9.translation.inline.4ced86a0426f95e8b6109284\",\"color\":\"#FFFF55\",\"bold\":\"true\"},{\"translate\":\"atm9.translation.inline.24244df7b22889ccf54f4b1d\"},{\"translate\":\"atm9.translation.inline.0f4168490e38b8447e11ba4b\",\"color\":\"#5555FF\"},{\"translate\":\"atm9.translation.inline.2998c8d8f3daf04ee6b42651\"},{\"translate\":\"atm9.translation.inline.abfab68769318fae727cf3ed\",\"color\":\"#FFAA00\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"4875FB6628C1FCDC\"},\"underlined\":\"true\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.e26c6d58b4ecdc7456e7f7fd\"}}},{\"translate\":\"atm9.translation.inline.694b15e3c95fae007616827a\"}]"
 			]
 			id: "25DBFE887B041E94"
 			min_width: 350
@@ -1148,7 +1148,7 @@
 		}
 		{
 			dependencies: ["4835BE1596B65206"]
-			description: ["[ \"You need to \", { \"text\": \"Electrolyze\", \"color\": \"yellow\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"512BD9BCA43AEE83\" } }, \" the Sodium Bisulfate\" ]"]
+			description: ["[\"You need to \",{\"translate\":\"atm9.translation.inline.4a035a67bfab65bc7f2a3a40\",\"color\":\"yellow\",\"underlined\":\"true\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"512BD9BCA43AEE83\"}},\" the Sodium Bisulfate\"]"]
 			id: "7B8ADB4104E7C440"
 			rewards: [{
 				id: "0E2AB9F3A1583996"

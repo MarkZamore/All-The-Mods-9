@@ -1,0 +1,75 @@
+{
+  "allOtherNativeLeafTagsUnchanged": 80167,
+  "englishDisplayPreserved": 326,
+  "exactDisplayStringDifferences": 327,
+  "examples": [
+    {
+      "english": "Moon Info:",
+      "path": "chapters/ad_astra.snbt|[\"quests\",4,\"description\",10]",
+      "russian": "Сведения о Луне:"
+    },
+    {
+      "english": "Gravity: 1.625 m/s",
+      "path": "chapters/ad_astra.snbt|[\"quests\",4,\"description\",11]",
+      "russian": "Гравитация: 1.625 м/с"
+    },
+    {
+      "english": "Oxygen: None",
+      "path": "chapters/ad_astra.snbt|[\"quests\",4,\"description\",12]",
+      "russian": "Кислород: отсутствует"
+    },
+    {
+      "english": "Temperature: -160.0 °C",
+      "path": "chapters/ad_astra.snbt|[\"quests\",4,\"description\",13]",
+      "russian": "Температура: -160.0 °C"
+    },
+    {
+      "english": "Ostrum is used for several new machines, as well as a new Space Suit for us to survive on hotter planets!",
+      "path": "chapters/ad_astra.snbt|[\"quests\",5,\"description\",2]",
+      "russian": "Острум нужен для нескольких новых машин, а также для нового скафандра, который позволит выжить на более горячих планетах!"
+    },
+    {
+      "english": "Mars Info:",
+      "path": "chapters/ad_astra.snbt|[\"quests\",6,\"description\",2]",
+      "russian": "Сведения о Марсе:"
+    },
+    {
+      "english": "Gravity: 3.72076 m/s",
+      "path": "chapters/ad_astra.snbt|[\"quests\",6,\"description\",3]",
+      "russian": "Гравитация: 3.72076 м/с"
+    },
+    {
+      "english": "Oxygen: None",
+      "path": "chapters/ad_astra.snbt|[\"quests\",6,\"description\",4]",
+      "russian": "Кислород: отсутствует"
+    },
+    {
+      "english": "Temperature: -65.0 °C",
+      "path": "chapters/ad_astra.snbt|[\"quests\",6,\"description\",5]",
+      "russian": "Температура: -65.0 °C"
+    },
+    {
+      "english": "Venus Info:",
+      "path": "chapters/ad_astra.snbt|[\"quests\",7,\"description\",6]",
+      "russian": "Сведения о Венере:"
+    },
+    {
+      "english": "Gravity: 8.87 m/s",
+      "path": "chapters/ad_astra.snbt|[\"quests\",7,\"description\",7]",
+      "russian": "Гравитация: 8.87 м/с"
+    },
+    {
+      "english": "Oxygen: none",
+      "path": "chapters/ad_astra.snbt|[\"quests\",7,\"description\",8]",
+      "russian": "Кислород: отсутствует"
+    }
+  ],
+  "explicitExistingDisplayTypoCorrected": 1,
+  "limits": "Exact native AST and display serializers with private public-Language fixture. No Minecraft/Forge launch, GUI, font rendering or gameplay acceptance is claimed.",
+  "nativeEnglishLanguageKeys": 7537,
+  "nativeOverlayFilesParsed": 106,
+  "nativeRussianLanguageKeys": 7538,
+  "nativeSnbtDocumentsCompared": 145,
+  "russianNativeDisplayResolved": 327,
+  "status": "PASS"
+}

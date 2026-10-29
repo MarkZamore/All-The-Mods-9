@@ -11,9 +11,9 @@
 	quests: [
 		{
 			description: [
-				"I know it seems odd that we Finished off the last section and started this section with just the Supercomputer. But there is a reason for that."
+				"{atm9.translation.inline.3a919ac28b86829110ff7e2a}"
 				""
-				"There were components that are needed for the Wetware Processor Mainframe, which will be covered in this section. "
+				"{atm9.translation.inline.14e3e9ddeb901b612589d3c3}"
 			]
 			id: "2EA74A823D55D472"
 			rewards: [{

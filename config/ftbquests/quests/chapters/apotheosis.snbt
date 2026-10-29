@@ -187,7 +187,7 @@
 						value: "forge:bookshelves"
 					}
 				}
-				title: "Any #forge:bookshelves"
+				title: "{atm9.translation.inline.0601114586f2f4affd54c53f}"
 				type: "item"
 			}]
 			title: "{atm9.quest.enchant.book}"
@@ -403,7 +403,7 @@
 			size: 1.5d
 			tasks: [{
 				id: "0EE3A88719BB0221"
-				title: "Infusion"
+				title: "{atm9.translation.inline.8c40b4eb62988a8bd3cc5c6a}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.enchant.infusion}"
@@ -827,7 +827,7 @@
 						value: "curios:charm"
 					}
 				}
-				title: "Any #curios:charm"
+				title: "{atm9.translation.inline.d83fde6905fd94e83eb06ec6}"
 				type: "item"
 			}]
 			title: "{atm9.quest.enchant.charms}"

@@ -8,7 +8,7 @@
 	images: [
 		{
 			height: 4.0d
-			hover: ["What do I do with the ATM Star?"]
+			hover: ["atm9.translation.inline.48accf27a66cbcc5921afe6a"]
 			image: "atm:textures/questpics/creative.png"
 			rotation: 0.0d
 			width: 16.0d
@@ -281,7 +281,7 @@
 						]
 					}
 				}
-				title: "Creative Power Options"
+				title: "{atm9.translation.inline.36219668e97359f573cf96f9}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter3.powah}"
@@ -319,7 +319,7 @@
 						]
 					}
 				}
-				title: "Creative Virtual Storage Power"
+				title: "{atm9.translation.inline.115c05fd09f66bd599c0c2dd}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter3.storage}"
@@ -354,7 +354,7 @@
 						]
 					}
 				}
-				title: "Creative Pressure"
+				title: "{atm9.translation.inline.59752bcdec07384806343dc3}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter3.pressure}"

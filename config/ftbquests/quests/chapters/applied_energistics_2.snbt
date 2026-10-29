@@ -337,7 +337,7 @@
 							value: "ae2:glass_cable"
 						}
 					}
-					title: "Glass Cable"
+					title: "{atm9.translation.inline.c5c3e70ea0c7e717d5cc99a1}"
 					type: "item"
 				}
 				{
@@ -349,7 +349,7 @@
 							value: "ae2:covered_cable"
 						}
 					}
-					title: "Covered Cable"
+					title: "{atm9.translation.inline.31b5bf82716e1c251bb2cca8}"
 					type: "item"
 				}
 				{
@@ -361,7 +361,7 @@
 							value: "ae2:covered_dense_cable"
 						}
 					}
-					title: "Dense Covered Cable"
+					title: "{atm9.translation.inline.f1db6b5d16daa686f8c5174b}"
 					type: "item"
 				}
 			]
@@ -403,7 +403,7 @@
 							value: "ae2:smart_cable"
 						}
 					}
-					title: "Smart Cable"
+					title: "{atm9.translation.inline.1ae8821ad0afd7e52542ee83}"
 					type: "item"
 				}
 				{
@@ -415,7 +415,7 @@
 							value: "ae2:smart_dense_cable"
 						}
 					}
-					title: "Dense Smart Cable"
+					title: "{atm9.translation.inline.be19194beeca9af4c18f0cc0}"
 					type: "item"
 				}
 			]
@@ -431,7 +431,7 @@
 				{
 					id: "6D1EBB1DBB711A5A"
 					table_id: 5871764666515020368L
-					title: "Random Reward"
+					title: "{atm9.translation.inline.29b71ddf3da2316358ca9030}"
 					type: "random"
 				}
 				{
@@ -524,7 +524,7 @@
 						value: "ae2:interface"
 					}
 				}
-				title: "ME Interface"
+				title: "{atm9.translation.inline.508eb01efe51f2afbb4dd0c4}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.IO}"
@@ -561,7 +561,7 @@
 							value: "ae2:pattern_provider"
 						}
 					}
-					title: "ME Pattern Provider"
+					title: "{atm9.translation.inline.2a4430f477be504b2487de92}"
 					type: "item"
 				}
 				{
@@ -622,7 +622,7 @@
 						value: "ae2:quartz_wrench"
 					}
 				}
-				title: "Quartz Wrench"
+				title: "{atm9.translation.inline.9f44761716e85c2d2dfdf0de}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.wrench}"
@@ -973,7 +973,7 @@
 					id: "ae2:item_storage_cell_1k"
 					tag: { }
 				}
-				title: "ME Item Storage Cell"
+				title: "{atm9.translation.inline.d7c16e925aaab6656b6b117a}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.item_storage}"
@@ -1006,7 +1006,7 @@
 						value: ":fluid_storage_cell_"
 					}
 				}
-				title: "ME Fluid Storage Cell"
+				title: "{atm9.translation.inline.74555c4ccc82509eb66f6d77}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.fluid}"
@@ -1252,7 +1252,7 @@
 					id: "ae2:memory_card"
 					tag: { }
 				}
-				title: "Memory Card"
+				title: "{atm9.translation.inline.1c04d885876b048f49018617}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.memory}"
@@ -1337,7 +1337,7 @@
 						value: ":portable_(.*)_cell_"
 					}
 				}
-				title: "ME Portable Cell"
+				title: "{atm9.translation.inline.262c7de9187424a321634930}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.portable}"
@@ -1646,7 +1646,7 @@
 			tasks: [{
 				id: "4E0C5E3A98293C08"
 				item: "ae2:spatial_pylon"
-				title: "Spatial Cell Component"
+				title: "{atm9.translation.inline.38605bbb581daad75bc7c44c}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.pylon}"
@@ -1703,7 +1703,7 @@
 						value: "ae2:spatial_storage_cell_"
 					}
 				}
-				title: "Spatial Storage Cell"
+				title: "{atm9.translation.inline.735db21bb37e1441da1b2875}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.SSC}"
@@ -1737,7 +1737,7 @@
 						value: "(.*)crafting_storage"
 					}
 				}
-				title: "Crafting Storage"
+				title: "{atm9.translation.inline.a5276f9a924b528100cee020}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.crafting_storage}"
@@ -1771,7 +1771,7 @@
 						value: "(.*)crafting_accelerator"
 					}
 				}
-				title: "Crafting Co-Processor"
+				title: "{atm9.translation.inline.1cfc0668f74613b9051a1dd5}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.crafting_coprocessor}"
@@ -1805,7 +1805,7 @@
 						value: "(ae2|mega)(.*)crafting_monitor"
 					}
 				}
-				title: "Crafting Monitor"
+				title: "{atm9.translation.inline.bda3ed3b35afeedc827ace32}"
 				type: "item"
 			}]
 			title: "{atm9.quest.ae2.crafting_monitor}"
@@ -1842,7 +1842,7 @@
 							value: "ae2:knife"
 						}
 					}
-					title: "Quartz Cutting Knife"
+					title: "{atm9.translation.inline.cc9e5777e57958d44e57fcba}"
 					type: "item"
 				}
 				{

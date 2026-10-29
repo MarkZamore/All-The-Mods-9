@@ -20,5 +20,5 @@
 		{ count: 5, item: "botania:gray_mystical_flower" }
 		{ count: 5, item: "botania:black_mystical_flower" }
 	]
-	title: "Botania Flowers"
+	title: "{atm9.translation.inline.6e580446bf72471bf28f811f}"
 }

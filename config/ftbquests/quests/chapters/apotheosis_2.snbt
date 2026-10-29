@@ -427,7 +427,7 @@
 						value: "minecraft:wool"
 					}
 				}
-				title: "Any #minecraft:wool"
+				title: "{atm9.translation.inline.ad3fa8769ccb7efc556bac2d}"
 				type: "item"
 			}]
 			title: "{atm9.quest.spawner.wool}"

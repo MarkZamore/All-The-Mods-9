@@ -41,7 +41,7 @@
 				"{atm9.quest.alchem.desc.dissolver.1}"
 				""
 				"{atm9.quest.alchem.desc.dissolver.2}"
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"26E6ED94168A05C4\"}, \"text\": \"Click here to checkout the Questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"26E6ED94168A05C4\"},\"translate\":\"atm9.translation.inline.80e64235cc2e67c275292446\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			id: "71815B287D0F162A"
 			rewards: [
@@ -67,7 +67,7 @@
 			y: 0.0d
 		}
 		{
-			description: ["Alchemistry is a tech mod inspired by the mod MineChem. This mod allows you to decompose items into the elements that make them up, then recombine them to create new items. Start by making the guidebook."]
+			description: ["{atm9.translation.inline.8ad1c8ee687aca93cf4c289e}"]
 			icon: {
 				Count: 1
 				id: "patchouli:guide_book"
@@ -783,7 +783,7 @@
 				item: "chemlib:potassium_dust"
 				type: "item"
 			}]
-			title: "Potassium Dust"
+			title: "{atm9.translation.inline.f514cec4380bd8552a7bcc27}"
 			x: 5.5d
 			y: 2.5d
 		}
@@ -1793,7 +1793,7 @@
 						]
 					}
 				}
-				title: "ATO Element Dusts"
+				title: "{atm9.translation.inline.d4c483511cd9a9476d7c4af1}"
 				type: "item"
 			}]
 			title: "{atm9.quest.alchem.dust}"
@@ -1873,7 +1873,7 @@
 						]
 					}
 				}
-				title: "ATO Elements"
+				title: "{atm9.translation.inline.054b19552aba07502e17f1c0}"
 				type: "item"
 			}]
 			title: "{atm9.quest.alchem.element}"
@@ -1952,7 +1952,7 @@
 						]
 					}
 				}
-				title: "ATO Element Ingots"
+				title: "{atm9.translation.inline.b7527db093f307b91d6e8201}"
 				type: "item"
 			}]
 			title: "{atm9.quest.alchem.ingot}"

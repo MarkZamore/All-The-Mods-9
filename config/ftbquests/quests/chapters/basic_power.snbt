@@ -111,7 +111,7 @@
 						]
 					}
 				}
-				title: "Renewable Energy Gens"
+				title: "{atm9.translation.inline.5a6b47db5df4400a28a41c12}"
 				type: "item"
 			}]
 			title: "{atm9.quest.power.meka}"
@@ -272,7 +272,7 @@
 						]
 					}
 				}
-				title: "Universal Cables"
+				title: "{atm9.translation.inline.0e85fbfcdc74bef989853867}"
 				type: "item"
 			}]
 			title: "{atm9.quest.power.cables}"
@@ -412,7 +412,7 @@
 						]
 					}
 				}
-				title: "Energy Cubes"
+				title: "{atm9.translation.inline.b114d7d41d4ede334ad20a39}"
 				type: "item"
 			}]
 			title: "{atm9.quest.power.cube}"
@@ -460,7 +460,7 @@
 						]
 					}
 				}
-				title: "Powercells"
+				title: "{atm9.translation.inline.548ff20e847afb5c591c583e}"
 				type: "item"
 			}]
 			title: "{atm9.quest.power.cells}"
@@ -637,7 +637,7 @@
 						]
 					}
 				}
-				title: "Pipe Upgrades"
+				title: "{atm9.translation.inline.91a8007a700b5307710bb5ad}"
 				type: "item"
 			}]
 			title: "{atm9.quest.power.betterpipez}"

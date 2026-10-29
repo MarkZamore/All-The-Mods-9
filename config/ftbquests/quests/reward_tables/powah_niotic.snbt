@@ -14,6 +14,6 @@
 		{ item: "powah:blazing_crystal_block", weight: 2.0f }
 		{ item: "powah:niotic_crystal_block" }
 	]
-	title: "Powah: Niotic Loot Reward"
+	title: "{atm9.translation.inline.b932b32f5f2ca3d0709b4808}"
 	use_title: true
 }

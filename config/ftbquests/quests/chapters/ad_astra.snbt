@@ -227,10 +227,10 @@
 				""
 				"{atm9.quest.adAstra.desc.launch.5}"
 				""
-				"Moon Info:"
-				"Gravity: 1.625 m/s"
-				"Oxygen: None"
-				"Temperature: -160.0 °C"
+				"{atm9.translation.inline.4b3c38f949e1abba353431a5}"
+				"{atm9.translation.inline.184dfb27badd4cc1db8b4d72}"
+				"{atm9.translation.inline.8e4f4213169b36603c759ff0}"
+				"{atm9.translation.inline.b52b5fda184c1b7009b5be05}"
 			]
 			hide_dependency_lines: true
 			icon: "ad_astra:moon_globe"
@@ -265,7 +265,7 @@
 			description: [
 				"{atm9.quest.adAstra.desc.ostrum}"
 				""
-				"Ostrum is used for several new machines, as well as a new Space Suit for us to survive on hotter planets!"
+				"{atm9.translation.inline.d74b871bce53e19beed900d2}"
 			]
 			id: "2A279B011D09A9EE"
 			rewards: [
@@ -304,10 +304,10 @@
 			description: [
 				"{atm9.quest.adAstra.desc.mars.1}"
 				""
-				"Mars Info:"
-				"Gravity: 3.72076 m/s"
-				"Oxygen: None"
-				"Temperature: -65.0 °C"
+				"{atm9.translation.inline.f01d20926e900afcf1759aa1}"
+				"{atm9.translation.inline.6ddcdf5afc67b7725e33e6d0}"
+				"{atm9.translation.inline.8e4f4213169b36603c759ff0}"
+				"{atm9.translation.inline.d56a7350f798d3a5d30bb78d}"
 			]
 			icon: "ad_astra:mars_globe"
 			id: "4E8E49EB9C83188E"
@@ -336,10 +336,10 @@
 				""
 				"{atm9.quest.adAstra.desc.venus.3}"
 				""
-				"Venus Info:"
-				"Gravity: 8.87 m/s"
-				"Oxygen: none"
-				"Temperature: 464.0 °C"
+				"{atm9.translation.inline.e7692d4771003531b52ab033}"
+				"{atm9.translation.inline.4d80712c6b71be63ea05d9e5}"
+				"{atm9.translation.inline.13fd23698a06b8f5a1398567}"
+				"{atm9.translation.inline.62e1961016ac0757ed12eea9}"
 			]
 			icon: "ad_astra:venus_globe"
 			id: "0EE652B280CB5F55"
@@ -379,10 +379,10 @@
 			description: [
 				"{atm9.quest.adAstra.desc.mercury}"
 				""
-				"Mercury Info:"
-				"Gravity: 3.7 m/s"
-				"Oxygen: none"
-				"Temperature: 167.0 °C"
+				"{atm9.translation.inline.9777243293c4b8132713477c}"
+				"{atm9.translation.inline.d1e1b1bc3de56488e81770b1}"
+				"{atm9.translation.inline.13fd23698a06b8f5a1398567}"
+				"{atm9.translation.inline.23b8089fcb67012defcd0161}"
 			]
 			icon: "ad_astra:mercury_globe"
 			id: "32738F324B799879"
@@ -416,10 +416,10 @@
 			description: [
 				"{atm9.quest.adAstra.desc.glacio.1}"
 				""
-				"Glacio Info:"
-				"Gravity: 3.721 m/s"
-				"Oxygen: Yes"
-				"Temperature: -20.0 °C"
+				"{atm9.translation.inline.e9c8ad21af4d708911763dd8}"
+				"{atm9.translation.inline.7c9311ecc6b8e8c014e51750}"
+				"{atm9.translation.inline.98668bee69ea9db8fe61c784}"
+				"{atm9.translation.inline.f18aec5e710ce6261712aadd}"
 			]
 			icon: "ad_astra:glacio_globe"
 			id: "0B407DE1771F3304"

@@ -738,7 +738,7 @@
 				""
 				"{atm9.quest.gregtech.iv.desc.advancedSMDCapacitor.2}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"2EE52FD7129D3D87\"}, \"text\": \"How to: Rarest Metal Mixture\", \"color\": \"yellow\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here to open the quest!\" } }}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"2EE52FD7129D3D87\"},\"translate\":\"atm9.translation.inline.0049c5d9b1304b8410948688\",\"color\":\"yellow\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.4ee0efe01d6124756edf238d\"}}}"
 			]
 			id: "599BABC83E76A711"
 			rewards: [
@@ -799,7 +799,7 @@
 				"64F77D41B2D057B8"
 			]
 			description: [
-				"[ \"You'll need \", { \"text\": \"Laminated Glass\", \"color\": \"green\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0907800ED4793F96\" } }, \" to make this\" ]"
+				"[\"You'll need \",{\"translate\":\"atm9.translation.inline.dae0a8f650aebd84302a0b1d\",\"color\":\"green\",\"underlined\":\"true\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"0907800ED4793F96\"}},\" to make this\"]"
 				""
 				"{atm9.quest.gregtech.iv.desc.makeHSSVariants.1}"
 			]
@@ -1404,7 +1404,7 @@
 		}
 		{
 			dependencies: ["7E407CDBFD85E65F"]
-			description: ["[ \"Some \", { \"text\": \"Acetic Acid\", \"underlined\": \"true\", \"color\": \"aqua\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"7E407CDBFD85E65F\" }, \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for the Acetic Acid quest\" } } }, \" and Calcite Dust in a \", { \"text\": \"Chemical Reactor\", \"color\":\"yellow\" }, \" will get you this\" ]"]
+			description: ["[\"Some \",{\"translate\":\"atm9.translation.inline.087312eb8736257ab54d5333\",\"underlined\":\"true\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"7E407CDBFD85E65F\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.28ed4bf0835a6aefd6e4c3e1\"}}},\" and Calcite Dust in a \",{\"translate\":\"atm9.translation.inline.096badd690f1adc0404c5773\",\"color\":\"yellow\"},\" will get you this\"]"]
 			hide_dependency_lines: true
 			id: "646918F4D700749B"
 			rewards: [{

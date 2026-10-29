@@ -37,6 +37,13 @@ No Modified helper, content or protection mod is part of this metadata source.
 Steam transport and the common identity/LAN Java agent are launcher-managed
 integration components and are not added as authored pack content here.
 
+The original card now includes the reviewed Russian quest display localization.
+It changes no mod JAR or loaded ID, so the existing 452-mod inventory remains
+applicable. `ru-quests-provenance.md` and `licenses/Scriptora-ATM9-MIT.txt` retain
+the translation source and complete notice; exact copies of both documents are
+also shipped inside the pack's native KubeJS root. The 107 author display-file
+replacements are declared separately from the unchanged author lock.
+
 A preparation audit on 2026-10-28 opened all 450 distinct official URLs used
 by the 455 mapping keys (454 displayed components after native selection).
 The primary pages were reachable; plain HTTP tooling returned anti-bot 403s

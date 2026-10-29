@@ -21,6 +21,6 @@
 		{ count: 3, item: "botania:black_petal" }
 		{ count: 2, item: "botania:fertilizer" }
 	]
-	title: "Flower Petal Loot Bag"
+	title: "{atm9.translation.inline.1800d9c11b98e28586854d9a}"
 	use_title: true
 }

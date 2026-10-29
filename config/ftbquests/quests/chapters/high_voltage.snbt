@@ -999,7 +999,7 @@
 		}
 		{
 			description: [
-				"[ \"\", { \"text\": \"If you made the \" }, { \"text\":\"Clay Processing Line\", \"color\":\"aqua\", \"clickEvent\": { \"action\":\"change_page\", \"value\":\"6275C90E5890C1E4\" }, \"underlined\":\"true\", \"hoverEvent\": { \"action\":\"show_text\", \"contents\": { \"text\":\"Click here for a reminder\" } } }, { \"text\":\" earlier, you can simply pause the \" }, { \"text\":\"Electrolyzer\", \"color\":\"yellow\" }, { \"text\":\" briefly to acquire clay dust to mix with your stone dust\" } ]"
+				"[\"\",{\"translate\":\"atm9.translation.inline.13bf8d4c5f63319750eacd8d\"},{\"translate\":\"atm9.translation.inline.8c1c39368bb5da0ddf4e4e0a\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"6275C90E5890C1E4\"},\"underlined\":\"true\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.e26c6d58b4ecdc7456e7f7fd\"}}},{\"translate\":\"atm9.translation.inline.410031e23a3e286923b10739\"},{\"translate\":\"atm9.translation.inline.e9c330d28cc926df33a954a1\",\"color\":\"yellow\"},{\"translate\":\"atm9.translation.inline.529d66a73083df44ab974eba\"}]"
 				""
 				"{atm9.quest.gregtech.hv.desc.clayProcessingLine.2}"
 			]

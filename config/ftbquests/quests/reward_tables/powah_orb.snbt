@@ -12,6 +12,6 @@
 		{ item: "powah:energy_cable_hardened", random_bonus: 2, weight: 5.0f }
 		{ item: "powah:energy_cable_blazing", random_bonus: 2 }
 	]
-	title: "Energizing Orb Loot"
+	title: "{atm9.translation.inline.d8fa237a6b2bc83e153240e7}"
 	use_title: true
 }

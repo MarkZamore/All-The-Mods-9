@@ -6,6 +6,6 @@
 		{ count: 4, item: "botania:livingrock" }
 		{ count: 4, item: "botania:livingwood_log" }
 	]
-	title: "&9Living Loot Chest&r"
+	title: "{atm9.translation.inline.2435960893943eaa8f9cad41}"
 	use_title: true
 }

@@ -937,7 +937,7 @@
 			id: "6BBF35D29E70FDD4"
 			tasks: [{
 				id: "05E1FB6DF026AD11"
-				title: "Minibosses and Enemies"
+				title: "{atm9.translation.inline.298325b601f4b759577230fd}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.cataclysm.minibosses}"

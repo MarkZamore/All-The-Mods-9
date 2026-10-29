@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the complete original ATM9 payload against the committed author lock."""
+"""Verify original ATM9 and only its pinned display/logging additions."""
 from __future__ import annotations
 
 import argparse
@@ -10,6 +10,8 @@ from pathlib import Path, PurePosixPath
 import tomllib
 import zipfile
 
+import portable_profile
+
 
 def sha256(path: Path) -> str:
     with path.open("rb") as stream:
@@ -17,6 +19,8 @@ def sha256(path: Path) -> str:
 
 
 def verify(pack: Path) -> dict:
+    pack = portable_profile.working_root(pack)
+    profile = portable_profile.load(pack)
     lock = json.loads((pack / "tools/upstream-lock.json").read_text(encoding="utf-8-sig"))
     manifest = json.loads((pack / "tools/upstream-manifest.json").read_text(encoding="utf-8-sig"))
     assert lock["pack"]["version"] == manifest["version"] == "1.1.1"
@@ -38,8 +42,11 @@ def verify(pack: Path) -> dict:
         seen.add(rel.casefold())
         path = pack.joinpath(*PurePosixPath(rel).parts)
         assert path.is_file(), "Missing author file: " + rel
-        assert path.stat().st_size == row["sizeBytes"], "Size mismatch: " + rel
-        assert sha256(path) == row["sha256"], "SHA256 mismatch: " + rel
+        overlay = profile["overlays"].get(rel) if profile else None
+        size = overlay["localizedSizeBytes"] if overlay else row["sizeBytes"]
+        expected_sha = overlay["localizedSha256"] if overlay else row["sha256"]
+        assert path.stat().st_size == size, "Size mismatch: " + rel
+        assert sha256(path) == expected_sha, "SHA256 mismatch: " + rel
     expected_jars = {r["path"] for r in records if r["path"].startswith("mods/") and r["path"].endswith(".jar")}
     actual_jars = {f.relative_to(pack).as_posix() for f in (pack / "mods").rglob("*.jar")}
     assert actual_jars == expected_jars, "Unexpected or missing JAR files"
@@ -47,11 +54,16 @@ def verify(pack: Path) -> dict:
                     "resourcepacks", "shaderpacks", "configureddefaults", "packmenu",
                     "datapacks", "resources"}
     expected_author = {row["path"] for row in records if row["path"].split("/", 1)[0] in author_roots}
+    if profile:
+        expected_author.update(p for p in profile["support"] if p.split("/", 1)[0] in author_roots)
     actual_author = {f.relative_to(pack).as_posix() for root in author_roots
                      for f in (pack / root).rglob("*") if f.is_file()}
     assert actual_author == expected_author, "Unexpected or missing author content: " + repr(sorted(actual_author ^ expected_author)[:20])
     launcher_files = {f.relative_to(pack).as_posix() for f in (pack / "launcher").rglob("*") if f.is_file()}
-    assert launcher_files == {"launcher/pack-owned.txt"}, "Unexpected launcher additions: " + repr(launcher_files)
+    expected_launcher = {"launcher/pack-owned.txt"}
+    if profile:
+        expected_launcher.add("launcher/jvm-args.txt")
+    assert launcher_files == expected_launcher, "Unexpected launcher additions: " + repr(launcher_files)
     portable = json.loads((pack / "portable-pack.json").read_text(encoding="utf-8-sig"))
     assert portable["minecraftVersion"] == "1.20.1"
     assert portable["loader"] == {"type": "forge", "version": "47.4.0"}
@@ -72,7 +84,9 @@ def verify(pack: Path) -> dict:
             "sourceManifestFiles": len(manifest["files"]), "activeDownloads": len(active),
             "authorOverrides": len(lock["overrides"]), "historicalDuplicates": len(history),
             "verifiedPayloadFiles": len(records), "jarFiles": len(actual_jars),
-            "topLevelForgeModIds": len(top_ids), "duplicateTopLevelIds": duplicates}
+            "topLevelForgeModIds": len(top_ids), "duplicateTopLevelIds": duplicates,
+            "localizedBaseDisplayResources": len(profile["overlays"]) if profile else 0,
+            "newPayloadSupportFiles": len(profile["support"]) if profile else 0}
 
 
 def main():

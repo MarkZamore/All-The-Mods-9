@@ -171,7 +171,7 @@
 							]
 						}
 					}
-					title: "Hammock"
+					title: "{atm9.translation.inline.de1ef5a9bc93e0142aa67346}"
 					type: "item"
 				}
 				{
@@ -248,7 +248,7 @@
 							]
 						}
 					}
-					title: "Sleeping Bags"
+					title: "{atm9.translation.inline.b95b29eb01e6f61919ce8c59}"
 					type: "item"
 				}
 			]
@@ -330,7 +330,7 @@
 						]
 					}
 				}
-				title: "Construction Wands"
+				title: "{atm9.translation.inline.eb33373e5aea4e7f42d128ca}"
 				type: "item"
 			}]
 			title: "{atm9.quest.tips.wand}"
@@ -377,7 +377,7 @@
 			subtitle: "{atm9.quest.tips.subt.tricks}"
 			tasks: [{
 				id: "3DC008A578A93CCF"
-				title: "Tips and Tricks!"
+				title: "{atm9.translation.inline.06b68e7c635a945f11687412}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.tips.tricks}"
@@ -421,7 +421,7 @@
 						]
 					}
 				}
-				title: "Simple Magnets"
+				title: "{atm9.translation.inline.26d4af9027ceba14c1d530be}"
 				type: "item"
 			}]
 			title: "{atm9.quest.tips.magnet}"
@@ -541,7 +541,7 @@
 			subtitle: "{atm9.quest.tips.subt.powah}"
 			tasks: [{
 				id: "2C621D97D1ED56DE"
-				title: "RF Generation"
+				title: "{atm9.translation.inline.ec1f8e343cd0fc1cf3ede1f4}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.tips.powah}"

@@ -32,6 +32,6 @@
 		{ item: "mysticalagriculture:imperium_ingot", random_bonus: 1, weight: 5.0f }
 		{ item: "mysticalagriculture:imperium_gemstone", weight: 5.0f }
 	]
-	title: "&9Tier 4 Seed Bag"
+	title: "{atm9.translation.inline.b8ec052d88538fc0217f9ec8}"
 	use_title: true
 }

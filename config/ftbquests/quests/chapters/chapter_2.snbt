@@ -869,7 +869,7 @@
 						]
 					}
 				}
-				title: "Large Digital Storage Parts"
+				title: "{atm9.translation.inline.baf0c091394be933e7815531}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter2.LDS}"
@@ -954,7 +954,7 @@
 						]
 					}
 				}
-				title: "Wireless Terminals"
+				title: "{atm9.translation.inline.e4284b7be495bf3fdafb68f6}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter2.wireless}"
@@ -1035,7 +1035,7 @@
 		}
 		{
 			dependencies: ["46B515C90C13A72F"]
-			description: ["You didn't hear it from me, but there are some interesting ways to make &5Inert Nether Stars&r which can be turned into Nether Stars"]
+			description: ["{atm9.translation.inline.eb748c2f91b8d47b72da6517}"]
 			hide_dependency_lines: true
 			id: "0A37761737B01BFD"
 			rewards: [
@@ -1227,7 +1227,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.twilight_forest}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"7732CF7AAA63DB3A\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"7732CF7AAA63DB3A\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -1349,7 +1349,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.meka}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"23983F4DC524B14B\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"23983F4DC524B14B\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "1D7104AE853A3D86"
@@ -1374,7 +1374,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.powah}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"2A6EBEEBAB882679\"}, \"text\": \"Click here to check out the Powah questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"2A6EBEEBAB882679\"},\"translate\":\"atm9.translation.inline.cb02254697648a35271675fa\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "42E5B5C27799DD93"
@@ -1418,7 +1418,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.power}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"5D045EF1AB73DF70\"}, \"text\": \"Click here to check out the AllThePower questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"5D045EF1AB73DF70\"},\"translate\":\"atm9.translation.inline.dca7286d5693da0124ff13db\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			icon: {
 				Count: 1
@@ -1481,7 +1481,7 @@
 						]
 					}
 				}
-				title: "Power Options"
+				title: "{atm9.translation.inline.7f31e1ea2edda90a6e631df0}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter2.power}"
@@ -1514,7 +1514,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.RS}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"15AAF17B6665223D\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"15AAF17B6665223D\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			id: "6AF6A1985C103D9C"
 			optional: true
@@ -1538,7 +1538,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.AE2}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"07210DDF872160BA\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"07210DDF872160BA\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			icon: "ae2:controller"
 			id: "3B13BBC38696D452"
@@ -1577,7 +1577,7 @@
 			size: 1.5d
 			tasks: [{
 				id: "5E69BDE183E08FF3"
-				title: "Resource Gathering"
+				title: "{atm9.translation.inline.269e6f9b65c6243f78d6697d}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.chapter2.resource_generation}"
@@ -1589,7 +1589,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.MA}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"5C764279146E5E66\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"5C764279146E5E66\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependent_lines: true
 			id: "3FEA99DD35D4B7CF"
@@ -1648,7 +1648,7 @@
 						]
 					}
 				}
-				title: "Example Quarries"
+				title: "{atm9.translation.inline.ff8dd540703536cf939fa1aa}"
 				type: "item"
 			}]
 			title: "{atm9.quest.chapter2.quarries}"
@@ -1660,7 +1660,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.drills}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"193F91842D2ED7D9\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"193F91842D2ED7D9\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			id: "254DD23FB7AEB36B"
 			min_width: 300
@@ -1756,7 +1756,7 @@
 							]
 						}
 					}
-					title: "Laser Lenses"
+					title: "{atm9.translation.inline.54bcd083dab8117e7c5a3d97}"
 					type: "item"
 				}
 			]
@@ -1788,7 +1788,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.bees}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"26E6ED94168A05C4\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"26E6ED94168A05C4\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			id: "6C329168001C1FB4"
 			rewards: [{
@@ -1828,7 +1828,7 @@
 			size: 3.0d
 			tasks: [{
 				id: "60705F980E6AA8F3"
-				title: "What Happens Next?"
+				title: "{atm9.translation.inline.0b61b194852c2a3dd379ccd8}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.chapter2.next}"
@@ -1866,7 +1866,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.ars}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"6AEDA2F9BEB57759\"}, \"text\": \"Click here to check out the Ars Nouveau questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"6AEDA2F9BEB57759\"},\"translate\":\"atm9.translation.inline.2ffce6ef66edbe072a4c1edb\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "2543F16043EE2777"
@@ -1891,7 +1891,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.evilcraft}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"3456E0C530C0038E\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"3456E0C530C0038E\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "61D6C9461F10CCF1"
@@ -1965,7 +1965,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.occultism}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"4C507C004144BFEE\"}, \"text\": \"Click here to check out the Occultism questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"4C507C004144BFEE\"},\"translate\":\"atm9.translation.inline.7f065ce34e87fb73550fe153\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "2435B6D970F48DF8"
@@ -2106,7 +2106,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.IF}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"193F91842D2ED7D9\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"193F91842D2ED7D9\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "68F03C08B1AE45FF"
@@ -2165,7 +2165,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.create1}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"100C477F4E63F20A\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"100C477F4E63F20A\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 				""
 				"{atm9.quest.chapter2.desc.create2}"
 			]
@@ -2361,7 +2361,7 @@
 							value: "forge:coal_coke"
 						}
 					}
-					title: "Coal Coke"
+					title: "{atm9.translation.inline.87294779e158cee86f33bc1e}"
 					type: "item"
 				}
 				{
@@ -2386,7 +2386,7 @@
 							]
 						}
 					}
-					title: "Creosote Oil Bucket"
+					title: "{atm9.translation.inline.f08abec274a33679b99aee65}"
 					type: "item"
 				}
 			]
@@ -2456,7 +2456,7 @@
 					advancement: "immersiveengineering:multiblocks/mb_squeezer"
 					criterion: ""
 					id: "26DE65A66FF69193"
-					title: "Squeezer"
+					title: "{atm9.translation.inline.659935e759b67a1adfe56683}"
 					type: "advancement"
 				}
 				{
@@ -2625,7 +2625,7 @@
 					advancement: "immersiveengineering:multiblocks/mb_refinery"
 					criterion: ""
 					id: "3C054656AAF44209"
-					title: "Refinery"
+					title: "{atm9.translation.inline.b4debaf8a83c285a03675aba}"
 					type: "advancement"
 				}
 				{
@@ -2727,7 +2727,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.reactors}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"3C78926E5D301BA0\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"3C78926E5D301BA0\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -2753,7 +2753,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.SG}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"1D42B373285DEF81\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"1D42B373285DEF81\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -2772,7 +2772,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.ad_astra}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"769974FDAD5DBEB1\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"769974FDAD5DBEB1\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -2921,7 +2921,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.FA}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"34E8FF3196478229\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"34E8FF3196478229\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			id: "6126741150866837"
@@ -3028,7 +3028,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.blood}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"004F28C5C85F467B\"}, \"text\": \"Click here to start the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"004F28C5C85F467B\"},\"translate\":\"atm9.translation.inline.b86919926733eafce5ebca2f\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -3062,7 +3062,7 @@
 			description: [
 				"{atm9.quest.chapter2.desc.botania}"
 				""
-				"{\"clickEvent\": {\"action\": \"change_page\", \"value\": \"1883B79BDB2AAE5D\"}, \"text\": \"Click here to check out the questline!\", \"color\": \"#55FF55\", \"underlined\": \"true\"}"
+				"{\"clickEvent\":{\"action\":\"change_page\",\"value\":\"1883B79BDB2AAE5D\"},\"translate\":\"atm9.translation.inline.73712025ada478cd9d7337d2\",\"color\":\"#55FF55\",\"underlined\":\"true\"}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true

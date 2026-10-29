@@ -654,7 +654,7 @@
 				""
 				"{atm9.quest.gregtech.ev.desc.rutileDust.2}"
 				"{atm9.quest.gregtech.ev.desc.rutileDust.3}"
-				"[ \"\", { \"text\": \"EBF \", \"color\": \"green\", \"hoverEvent\": { \"action\": \"show_text\", \"contents\": { \"text\": \"Electric Blast Furnace\" } } }, { \"text\": \"10 Ilmenite and 4 Carbon together\" }]"
+				"[\"\",{\"translate\":\"atm9.translation.inline.61ff2965f72b5900be7f09e5\",\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"contents\":{\"translate\":\"atm9.translation.inline.983f7e9d333e8f2a3c5afb9f\"}}},{\"translate\":\"atm9.translation.inline.b2b6d8fce8f95b48e5954876\"}]"
 				"{atm9.quest.gregtech.ev.desc.rutileDust.5}"
 				"{atm9.quest.gregtech.ev.desc.rutileDust.6}"
 				""

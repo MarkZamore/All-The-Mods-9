@@ -31,6 +31,6 @@
 		{ item: "ars_nouveau:glyph_pull" }
 		{ item: "ars_nouveau:glyph_gust" }
 	]
-	title: "Random Tier 1 Glyph"
+	title: "{atm9.translation.inline.14f183874326ebee2ff10cd6}"
 	use_title: true
 }

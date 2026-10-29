@@ -3,6 +3,39 @@
 Author release: ATM9 1.1.1, Minecraft 1.20.1, Forge 47.4.0.
 Verification date: 28 October 2026.
 
+## Reviewed display and diagnostic update, 30 October 2026
+
+The original author lock and all 431 JARs remain unchanged. The explicit
+localization profile replaces 106 SNBT resources and appends 325 English keys;
+the new Russian language file has 7,538 entries. The source includes the full
+MIT license/provenance, also copied verbatim into the native runtime payload.
+The additional pack-owned logging configuration/JVM argument changes diagnostic
+output and retention, without patching an author JAR.
+
+The actual FTB SNBT parser and native Minecraft display/language serializers
+parsed all 145 quest documents. Deep comparison found exactly 327 display-only
+changes and 80,167 unchanged other native leaf tags. All 327 display strings
+resolve in Russian; 326 English strings are preserved and one existing brace
+typo is explicitly corrected. All 7,538 Russian values passed native formatting
+and FTB macro checks without an error. This is structural/parser evidence,
+not a new game launch, font-rendering or visual translation PASS.
+
+Nine real 107-file CLI checks passed: exact apply/reverse, verify, idempotence,
+mixed known states, missing input and unknown original/localized bytes rejected
+globally before writes. All 28 original source tests passed and additionally cover whole-tree
+preflight, unknown extra JARs, missing overrides, fixed executable/profile pins
+and the exact runtime license. The wrapper leaves the original importer and
+author lock untouched; it checks all 1,794 original rows before reapplying the
+display spans and verifies all effective rows and five new runtime support files.
+The actual localized-to-author-to-localized wrapper cycle passed twice. Full
+release staging verified all 219 payload asset hashes across 1,801 shipped files;
+the native loaded-mod inventory stays at 452 pack IDs. All 455 project-page
+mappings, comprising 450 distinct official URLs, remain unchanged.
+
+The historical full-client, error and connection results below describe the
+28 October source/launcher versions. No new two-client, menu, Steam-connectivity
+or visual-language result is inferred from this data-only publication.
+
 ## Author composition and library
 
 - A fresh official client archive download matches 51,433,990 bytes and the

@@ -2195,7 +2195,7 @@
 			subtitle: "{atm9.quest.gregtech.luv.subt.research}"
 			tasks: [{
 				id: "69B9966C218584A1"
-				title: "Research"
+				title: "{atm9.translation.inline.979d6300fd9884ff8d8e0339}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.gregtech.luv.research}"

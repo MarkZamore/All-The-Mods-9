@@ -397,7 +397,7 @@
 						value: "functionalstorage:drawer"
 					}
 				}
-				title: "Any #storagedrawers:drawers"
+				title: "{atm9.translation.inline.957880c3d75d7c2abe3c26e8}"
 				type: "item"
 			}]
 			title: "{atm9.quest.storage.drawer}"
@@ -1044,7 +1044,7 @@
 		}
 		{
 			dependencies: ["1FE052F643401232"]
-			description: ["Adds a filter that allows you to tell the backpack which items it should keep stocked. Shift-Right Clicking an inventory will refill it."]
+			description: ["{atm9.translation.inline.ac8239d70c56d73812481cd7}"]
 			hide_dependency_lines: true
 			hide_until_deps_visible: true
 			id: "4B62AF0405F68041"
@@ -1085,7 +1085,7 @@
 		}
 		{
 			dependencies: ["1FE052F643401232"]
-			description: ["Shift-Right Click an inventory to empty."]
+			description: ["{atm9.translation.inline.b6bdcfe1c56f3683547be454}"]
 			hide_dependency_lines: true
 			hide_until_deps_visible: true
 			id: "00DB5495C3A44999"
@@ -1148,9 +1148,9 @@
 		{
 			dependencies: ["1FE052F643401232"]
 			description: [
-				"So we got a backpack upgrade to put your backpack in your backpack."
+				"{atm9.translation.inline.044a26e9903b52c1054810ae}"
 				""
-				"So you can have your backpack in your backpack when you need your backpack in your backpack."
+				"{atm9.translation.inline.9d53d6bb91d8d59018178f9a}"
 			]
 			hide_dependency_lines: true
 			hide_until_deps_visible: true
@@ -2221,7 +2221,7 @@
 			size: 1.5d
 			tasks: [{
 				id: "362D501E0D663695"
-				title: "RFTools Storage"
+				title: "{atm9.translation.inline.28dd6a2d9943c195d7f0fed1}"
 				type: "checkmark"
 			}]
 			title: "{atm9.quest.storage.rftools}"

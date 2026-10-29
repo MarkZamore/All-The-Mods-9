@@ -167,7 +167,7 @@
 						value: "deepresonance:resonant_ore"
 					}
 				}
-				title: "Any #deepresonance:resonant_ore"
+				title: "{atm9.translation.inline.954778ab9a5c4317626312c0}"
 				type: "item"
 			}]
 			title: "{atm9.quest.deep.ore}"
