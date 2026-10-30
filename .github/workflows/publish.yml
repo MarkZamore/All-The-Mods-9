@@ -43,6 +43,11 @@ jobs:
       - name: Restore exact author payloads and reviewed display localization
         run: python tools/prepare_pack.py --pack . --cache artifacts/upstream --restore-locked-files
 
+      - name: Verify pinned future locale workflow and opt-in native reader
+        env:
+          PYTHONPATH: tools
+        run: python -B -m unittest test_atm9_ru_future test_update_atm9_quests test_atm9_quest_profile test_atm9_quest_restore test_original_dynamic_profile
+
       - name: Verify effective original author files and fixed support additions
         run: python tools/verify_upstream.py --pack .
 

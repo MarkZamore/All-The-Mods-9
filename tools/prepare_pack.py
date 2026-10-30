@@ -17,27 +17,35 @@ def prepare(pack, cache, workers=8, restore_locked_files=False):
     profile = profile_tools.load(pack)
     if profile is None:
         raise ValueError("The fixed original ATM9 portable profile is missing")
-    before = profile_tools.preflight(pack, profile, require_overrides=restore_locked_files)
+    dynamic = profile.get("dynamic") is not None
+    before = profile_tools.preflight(pack, profile, require_overrides=restore_locked_files or dynamic)
 
     def overlay(mode):
         # Recheck physical pins at each executable boundary, not just on entry.
-        profile_tools.load(pack)
-        subprocess.run([sys.executable, "-B", str(pack / "tools/atm9_ru_quests.py"), mode,
-                        "--root", str(pack), "--manifest",
-                        str(pack / "tools/atm9_ru_quests/manifest.json")], check=True)
+        current = profile_tools.load(pack)
+        descriptor = current["document"]["questLocalization"] if dynamic else None
+        tool = descriptor["patchTool"] if descriptor else "tools/atm9_ru_quests.py"
+        manifest = descriptor["manifestPath"] if descriptor else "tools/atm9_ru_quests/manifest.json"
+        subprocess.run([sys.executable, "-B", str(pack / tool), mode,
+                        "--root", str(pack), "--manifest", str(pack / manifest)], check=True)
 
     overlay("normalize")
-    profile_tools.load(pack)
-    command = [sys.executable, "-B", str(pack / "tools/import_upstream.py"),
-               "--pack", str(pack), "--cache", str(cache), "--workers", str(workers)]
-    if restore_locked_files:
-        command.append("--restore-locked-files")
-    subprocess.run(command, check=True)
+    current = profile_tools.load(pack)
+    if dynamic:
+        import atm9_quest_restore
+        atm9_quest_restore.restore_profiled_author(pack, cache, current["document"]["questLocalization"],
+                                                   current["upstreamBytes"], current["records"])
+    else:
+        command = [sys.executable, "-B", str(pack / "tools/import_upstream.py"),
+                   "--pack", str(pack), "--cache", str(cache), "--workers", str(workers)]
+        if restore_locked_files:
+            command.append("--restore-locked-files")
+        subprocess.run(command, check=True)
     profile_tools.preflight(pack, profile_tools.load(pack), require_all=True, original_only=True)
     overlay("apply")
     final = profile_tools.preflight(pack, profile_tools.load(pack), require_all=True, localized_only=True)
     overlay("verify")
-    return {"status": "PASS", "authorVersion": "1.1.1", "before": before, "effective": final}
+    return {"status": "PASS", "authorVersion": profile["document"]["sourceVersion"] if dynamic else "1.1.1", "before": before, "effective": final}
 
 
 def main():

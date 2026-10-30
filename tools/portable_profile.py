@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 
 import atm9_ru_quests
+import atm9_quest_profile
 
 PROFILE = "tools/portable-profile.json"
 LOCK_SHA = "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18"
@@ -79,6 +80,9 @@ def load(pack: Path):
     if not (pack / PROFILE).is_file():
         return None
     doc = json.loads((pack / PROFILE).read_text(encoding="utf-8-sig"))
+    if doc.get("schemaVersion") == 2:
+        # Opt-in only: the frozen schema1 branch below remains unchanged.
+        return load_dynamic(pack, atm9_quest_profile.parse(resource(pack, PROFILE).read_bytes()))
     if (doc.get("schemaVersion"), doc.get("kind"), doc.get("sourceVersion")) != (
             1, "atm9-original-russian-quests-and-logging", "1.1.1"):
         raise ValueError("Unsupported original ATM9 portable profile")
@@ -118,6 +122,44 @@ def load(pack: Path):
             "overrides": {r["path"] for r in lock["overrides"]}, "support": support}
 
 
+def load_dynamic(pack: Path, doc: dict):
+    fields = {"schemaVersion", "kind", "sourceVersion", "upstreamLock", "unmodifiedImporter",
+              "questLocalization", "baseReplacements", "supportFiles", "sourceNotices"}
+    if (set(doc) != fields or doc.get("kind") != "atm9-original-russian-quests-and-logging" or
+            type(doc.get("schemaVersion")) is not int or doc["schemaVersion"] != 2):
+        raise ValueError("Unsupported explicit original ATM9 profile")
+    verify_pin(pack, doc["upstreamLock"], "tools/upstream-lock.json")
+    verify_pin(pack, doc["unmodifiedImporter"], "tools/import_upstream.py", IMPORTER_SHA)
+    raw = resource(pack, "tools/upstream-lock.json").read_bytes()
+    lock = atm9_quest_profile.parse(raw)
+    if doc["sourceVersion"] != lock["pack"]["version"]:
+        raise ValueError("Original profile differs from native author version")
+    records = [*lock["files"], *lock["overrides"], lock["client"]]
+    import atm9_quest_restore
+    atm9_quest_restore.validate_author_downloads(raw, records)
+    native = atm9_quest_profile.index_rows(records, "original BASE")
+    supports = atm9_quest_profile.index_rows(doc["supportFiles"], "support")
+    required = SUPPORT - {atm9_quest_profile.RU} - set(native)
+    if not required <= set(supports) or set(supports) - (required | {atm9_quest_profile.RU}):
+        raise ValueError("Unexpected dynamic original support allowlist")
+    notices = atm9_quest_profile.index_rows(doc["sourceNotices"], "source notices")
+    if set(notices) != NOTICES:
+        raise ValueError("Unexpected dynamic original notice allowlist")
+    for pin in [*supports.values(), *notices.values()]:
+        verify_pin(pack, pin)
+    for source, shipped in [
+        ("library/licenses/Scriptora-ATM9-MIT.txt", "kubejs/atm9_ru_quests_license.txt"),
+        ("library/ru-quests-provenance.md", "kubejs/atm9_ru_quests_provenance.md"),
+    ]:
+        if shipped in supports and notices[source]["sha256"] != supports[shipped]["sha256"]:
+            raise ValueError("Native payload omits the exact translation notice")
+    reviewed = atm9_quest_profile.validate(pack, doc["questLocalization"], raw, records,
+                                           doc["baseReplacements"], doc["supportFiles"])
+    return {"document": doc, "records": records, "overlays": reviewed["overlays"],
+            "overrides": {r["path"] for r in lock["overrides"]}, "support": supports,
+            "dynamic": reviewed, "upstreamBytes": raw}
+
+
 def preflight(pack: Path, profile: dict, *, require_all=False,
               require_overrides=False, original_only=False, localized_only=False):
     """Check the whole present tree before any normalization, import or download."""
@@ -150,7 +192,10 @@ def preflight(pack: Path, profile: dict, *, require_all=False,
     if unknown:
         raise ValueError("Unexpected original pack content: " + repr(sorted(unknown)[:20]))
     launcher = {p.relative_to(pack).as_posix() for p in (pack / "launcher").rglob("*") if p.is_file()}
-    if launcher != {"launcher/pack-owned.txt"} | {p for p in SUPPORT if p.startswith("launcher/")}:
+    launcher_expected = {"launcher/pack-owned.txt"} | {p for p in profile["support"] if p.startswith("launcher/")}
+    if profile.get("dynamic"):
+        launcher_expected |= {r["path"] for r in profile["records"] if r["path"].startswith("launcher/")}
+    if launcher != launcher_expected:
         raise ValueError("Unexpected original launcher files: " + repr(sorted(launcher)))
     return {"baseResources": len(profile["records"]), "localizedDisplayResources": localized,
             "missingAuthorResources": missing, "newPayloadSupportFiles": len(profile["support"])}

@@ -23,9 +23,17 @@ def verify(pack: Path) -> dict:
     profile = portable_profile.load(pack)
     lock = json.loads((pack / "tools/upstream-lock.json").read_text(encoding="utf-8-sig"))
     manifest = json.loads((pack / "tools/upstream-manifest.json").read_text(encoding="utf-8-sig"))
-    assert lock["pack"]["version"] == manifest["version"] == "1.1.1"
-    assert lock["pack"]["minecraftVersion"] == manifest["minecraft"]["version"] == "1.20.1"
-    assert manifest["minecraft"]["modLoaders"] == [{"id": "forge-47.4.0", "primary": True}]
+    dynamic = profile is not None and profile.get("dynamic") is not None
+    if dynamic:
+        assert lock["pack"]["projectId"] == 715572, "Not an original ATM9 source"
+        assert lock["pack"]["version"] == manifest["version"] == profile["document"]["sourceVersion"]
+        assert lock["pack"]["minecraftVersion"] == manifest["minecraft"]["version"]
+        assert lock["pack"]["loader"]["type"] == "forge", "Unsupported ATM9 loader"
+        assert manifest["minecraft"]["modLoaders"] == [{"id": "forge-" + lock["pack"]["loader"]["version"], "primary": True}]
+    else:
+        assert lock["pack"]["version"] == manifest["version"] == "1.1.1"
+        assert lock["pack"]["minecraftVersion"] == manifest["minecraft"]["version"] == "1.20.1"
+        assert manifest["minecraft"]["modLoaders"] == [{"id": "forge-47.4.0", "primary": True}]
     active = lock["files"]
     history = lock.get("historicalFiles", [])
     assert all(row.get("included", True) for row in active), "Inactive row in active files"
@@ -65,8 +73,8 @@ def verify(pack: Path) -> dict:
         expected_launcher.update(p for p in profile["support"] if p.startswith("launcher/"))
     assert launcher_files == expected_launcher, "Unexpected launcher additions: " + repr(launcher_files)
     portable = json.loads((pack / "portable-pack.json").read_text(encoding="utf-8-sig"))
-    assert portable["minecraftVersion"] == "1.20.1"
-    assert portable["loader"] == {"type": "forge", "version": "47.4.0"}
+    assert portable["minecraftVersion"] == (lock["pack"]["minecraftVersion"] if dynamic else "1.20.1")
+    assert portable["loader"] == (lock["pack"]["loader"] if dynamic else {"type": "forge", "version": "47.4.0"})
     assert portable["clientJar"] == lock["client"]["path"]
     top_ids = defaultdict(list)
     for relative in sorted(actual_jars):
@@ -77,10 +85,13 @@ def verify(pack: Path) -> dict:
                     top_ids[row["modId"]].append(relative)
     duplicates = {key: value for key, value in top_ids.items() if len(value) > 1}
     assert not duplicates, "Duplicate top-level Forge mod IDs: " + repr(duplicates)
-    required_diagnostics = {"spark", "observable", "crashutilities"}
-    assert required_diagnostics <= set(top_ids), "Original diagnostic mods are missing"
-    assert "mods/CrashAssistant-forge-1.19-1.20.1-1.10.10.jar" in actual_jars
-    return {"authorVersion": "1.1.1", "minecraftVersion": "1.20.1", "forgeVersion": "47.4.0",
+    if not dynamic:
+        required_diagnostics = {"spark", "observable", "crashutilities"}
+        assert required_diagnostics <= set(top_ids), "Original diagnostic mods are missing"
+        assert "mods/CrashAssistant-forge-1.19-1.20.1-1.10.10.jar" in actual_jars
+    return {"authorVersion": lock["pack"]["version"] if dynamic else "1.1.1",
+            "minecraftVersion": lock["pack"]["minecraftVersion"] if dynamic else "1.20.1",
+            "forgeVersion": lock["pack"]["loader"]["version"] if dynamic else "47.4.0",
             "sourceManifestFiles": len(manifest["files"]), "activeDownloads": len(active),
             "authorOverrides": len(lock["overrides"]), "historicalDuplicates": len(history),
             "verifiedPayloadFiles": len(records), "jarFiles": len(actual_jars),

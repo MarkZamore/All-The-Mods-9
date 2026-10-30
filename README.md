@@ -4,6 +4,15 @@ Original All the Mods 9 **1.1.1**, Minecraft **1.20.1**, Forge **47.4.0**,
 prepared for the LANMinecraft launcher. The card and launched game window are
 named **All The Mods 9**, without a separate network edition suffix.
 
+The source-only [quest translation owner workflow](tools/atm9_quest_updates/OWNER_WORKFLOW.md)
+prepares reviewed future locale updates from a fresh, separately pinned author
+release. Native author Russian takes priority, then an aligned community source,
+then reviewed fallback text; stale or unsupported translations leave native
+English available. Its opt-in schema2 reader accepts new release identities and
+resource counts as reviewed data, without changing the current 1.1.1 profile or
+runtime payload. Refreshing the external translator is an explicit owner action;
+normal CI uses pinned inputs and never fetches its latest release.
+
 ## Author source and byte identity
 
 The authoritative client export is [ATMTeam's CurseForge file 7097953](https://www.curseforge.com/minecraft/modpacks/all-the-mods-9/files/7097953),
@@ -110,6 +119,11 @@ license and provenance also travel inside the native KubeJS payload, so copying
 the installed pack preserves the notices.
 
 ## Optional keyboard preset
+
+For original ATM9, apply the optional controls preset after the first launch
+reaches the title menu and the game closes normally. Author DefaultSettings
+replaces options during its first initialization; a pre-first-launch preset may
+be overwritten. Full client close/restart retention was not tested.
 
 The launcher can explicitly apply the key-only [keyboard preset](launcher/controls-guide.md).
 It preserves the selected game language, graphics and other personal options;
