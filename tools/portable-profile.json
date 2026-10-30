@@ -49,6 +49,16 @@
       "path": "kubejs/atm9_ru_quests_provenance.md",
       "sizeBytes": 2986,
       "sha256": "01f4fa0ffa934c7c1dd574ab820386eb4622043c1938fa1bd84773b8970cf0a6"
+    },
+    {
+      "path": "launcher/controls-guide.md",
+      "sizeBytes": 9574,
+      "sha256": "e7019cb76b5474a83ad22ca5e5b08335768daba0c4108c3f7c76c929024419af"
+    },
+    {
+      "path": "launcher/controls-preset.txt",
+      "sizeBytes": 27749,
+      "sha256": "180653847d8ff8b70deee595c1b38e51b23c6aacface960abdd10bd62f89be91"
     }
   ],
   "sourceNotices": [

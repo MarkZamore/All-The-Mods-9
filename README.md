@@ -19,7 +19,7 @@ and matched that complete hash. `tools/upstream-manifest.json` preserves its
 download, all 1,360 author overrides and the Mojang client by size and SHA256.
 All 431 author JARs and every author file outside the 107 explicitly pinned
 quest-display resources remain byte-identical to those sources. The display
-localization and five added data/document files are described below. No Modified
+localization and seven added data/document files are described below. No Modified
 content, custom helper or Safety mod is included.
 Original Spark, Observable, Crash Utilities and Crash Assistant are retained.
 
@@ -52,6 +52,7 @@ Python 3.12 or later, standard library only:
 ```sh
 python tools/prepare_pack.py --pack . --cache artifacts/upstream --restore-locked-files
 python tools/verify_upstream.py --pack .
+python tools/keybinds/check_preset.py
 python -m unittest discover -s tools -p "test_*.py"
 python tools/generate_manifest.py --pack . --out dist --revision YOUR_COMMIT
 python tools/generate_manifest.py --pack . --out dist --verify-all
@@ -98,14 +99,32 @@ exact author CRLF bytes outside the approved spans. Unknown source hashes,
 unreviewed patch-tool/manifest identities and unrelated extra content fail
 verification instead of being overwritten or accepted as another profile.
 
-The five new runtime files are the Russian language file, `config/log4j2.xml`,
-`launcher/jvm-args.txt` and two inert `kubejs/atm9_ru_quests_*` notice documents.
+The seven added payload files are the Russian language file, `config/log4j2.xml`,
+`launcher/jvm-args.txt`, two inert `kubejs/atm9_ru_quests_*` notice documents,
+and the optional keyboard preset with its guide under `launcher/`.
 The logging configuration keeps INFO/WARN/ERROR diagnostics and limits archive
 retention while avoiding the full DEBUG file. The launcher reads its single
 pack-owned JVM argument; no logging hook is injected into an author mod.
 The exact support hashes are in `tools/portable-profile.json`. The full MIT
 license and provenance also travel inside the native KubeJS payload, so copying
 the installed pack preserves the notices.
+
+## Optional keyboard preset
+
+The launcher can explicitly apply the key-only [keyboard preset](launcher/controls-guide.md).
+It preserves the selected game language, graphics and other personal options;
+no complete `options.txt` is shipped. It contains 488 expected names, with 159
+bound and 329 unbound. The 83 independent vanilla/world inputs use distinct
+physical keys. Captured native GUI and input companions retain their original
+bindings; this is not a claim that every red pair in Controls disappears.
+
+The namespace is projected from the observed Modified registry by exact BASE
+ownership, with all 431 JAR hashes matched to this Original pack. A standalone
+Original registry, in-game application and persistence after restart have not
+been measured. The native Forge parser and the launcher's parser/Apply/Evaluate
+checks passed; detailed provenance and the full-JAR validator are in `tools/keybinds/`.
+The original DefaultSettings presets remain unchanged. No JAR, world ability or
+permission path changes, so this preset needs no additional Safety profile.
 
 Steam transport and identity integration remain launcher-managed infrastructure,
 outside the 431 author JARs. The shared [native LAN UI profile](https://github.com/MarkZamore/e4steam/releases/tag/native-lan-ui-v1)

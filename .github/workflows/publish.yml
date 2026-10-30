@@ -46,6 +46,9 @@ jobs:
       - name: Verify effective original author files and fixed support additions
         run: python tools/verify_upstream.py --pack .
 
+      - name: Verify reviewed keyboard preset
+        run: python tools/keybinds/check_preset.py
+
       - name: Generate manifest and stage assets
         run: python tools/generate_manifest.py --pack . --out dist --revision "$GITHUB_SHA"
 

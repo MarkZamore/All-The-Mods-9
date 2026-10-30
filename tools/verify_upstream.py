@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify original ATM9 and only its pinned display/logging additions."""
+"""Verify original ATM9 and only its pinned display/logging/preset additions."""
 from __future__ import annotations
 
 import argparse
@@ -62,7 +62,7 @@ def verify(pack: Path) -> dict:
     launcher_files = {f.relative_to(pack).as_posix() for f in (pack / "launcher").rglob("*") if f.is_file()}
     expected_launcher = {"launcher/pack-owned.txt"}
     if profile:
-        expected_launcher.add("launcher/jvm-args.txt")
+        expected_launcher.update(p for p in profile["support"] if p.startswith("launcher/"))
     assert launcher_files == expected_launcher, "Unexpected launcher additions: " + repr(launcher_files)
     portable = json.loads((pack / "portable-pack.json").read_text(encoding="utf-8-sig"))
     assert portable["minecraftVersion"] == "1.20.1"

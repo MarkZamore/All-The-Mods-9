@@ -1,4 +1,4 @@
-"""The single reviewed display/local-logging overlay on original ATM9 1.1.1.
+"""The reviewed display/logging/key-preset profile on original ATM9 1.1.1.
 
 This does not accept general replacement files, added mods or another pack profile.
 The unchanged upstream lock remains the authority for all author payloads.
@@ -22,6 +22,7 @@ SUPPORT = {
     "kubejs/assets/kubejs/lang/ru_ru.json", "config/log4j2.xml",
     "launcher/jvm-args.txt", "kubejs/atm9_ru_quests_license.txt",
     "kubejs/atm9_ru_quests_provenance.md",
+    "launcher/controls-preset.txt", "launcher/controls-guide.md",
 }
 NOTICES = {
     "library/licenses/Scriptora-ATM9-MIT.txt", "library/ru-quests-provenance.md",
@@ -149,7 +150,7 @@ def preflight(pack: Path, profile: dict, *, require_all=False,
     if unknown:
         raise ValueError("Unexpected original pack content: " + repr(sorted(unknown)[:20]))
     launcher = {p.relative_to(pack).as_posix() for p in (pack / "launcher").rglob("*") if p.is_file()}
-    if launcher != {"launcher/pack-owned.txt", "launcher/jvm-args.txt"}:
+    if launcher != {"launcher/pack-owned.txt"} | {p for p in SUPPORT if p.startswith("launcher/")}:
         raise ValueError("Unexpected original launcher files: " + repr(sorted(launcher)))
     return {"baseResources": len(profile["records"]), "localizedDisplayResources": localized,
             "missingAuthorResources": missing, "newPayloadSupportFiles": len(profile["support"])}
