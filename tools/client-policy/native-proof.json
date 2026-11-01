@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_STANDALONE_NATIVE_MEMORY59_API_AND_REVIEWED_LIFECYCLE",
+  "scope": "No new game/menu/LAN acceptance; native runtime test is separate",
+  "runtimeScript": {
+    "path": "kubejs/client_scripts/lanmc_memory_warning_policy.js",
+    "template": "scripts/lanmc_memory_warning_policy.js",
+    "sizeBytes": 421,
+    "sha256": "68b42fde0072ce3f366605a7619931cb6388575230ca7a910c23580b58cbaeab"
+  },
+  "nativeInputs": [
+    {
+      "fileName": "memorysettings-1.20.1-5.9.jar",
+      "sha256": "90c2d5093da73a2dbffcf3981f02303444fbbf8371184ca9103a4d438246f2ee"
+    },
+    {
+      "fileName": "cupboard-1.20.1-2.7.jar",
+      "sha256": "63a1b6e8e9cffd53f283fae04f64b8d63dcaaa99fe0e383bb664f23ec87d395f"
+    },
+    {
+      "fileName": "rhino-forge-2001.2.3-build.10.jar",
+      "sha256": "fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6"
+    },
+    {
+      "fileName": "kubejs-forge-2001.6.5-build.16.jar",
+      "sha256": "3de6b7267d3aab981848ed54d3afe7edf20532fa4060631fd6fffcd99ac5f3d5"
+    }
+  ],
+  "nativeProbeSource": "tools/client-policy/NativeMemory59Probe.java",
+  "nativeProbeSourceSha256": "5eb051466d4958defd739eb1d3859240e1831f8d30b2237911f1845c96df4d93",
+  "onlyChangedNativeField": "disableWarnings",
+  "personalMemoryJSONBytePreserved": true,
+  "unrelatedNativeFieldsPreserved": true,
+  "idempotent": true,
+  "lifecycle": {
+    "kubejs2001": "Constructs CLIENT ScriptManager; PROXY.init calls reloadClientScripts during mod initialization",
+    "memorysettings59": "ClienModLoaderMixin completeModLoading RETURN reads CommonConfiguration.config.getCommonConfig().disableWarnings before MemoryErrorScreen construction"
+  },
+  "safetyReview": "Client-only native boolean policy; no JAR, world, ability, entity, inventory, permissions or terrain path is added. No Safety module change needed.",
+  "limitations": [
+    "Not an early low-heap Swing or constructor log suppression",
+    "No new game or visual proof by this source-only report"
+  ]
+}

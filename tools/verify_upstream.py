@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify original ATM9 and only its pinned display/logging/preset additions."""
+"""Verify author ATM9 plus explicit pinned display/logging/preset/client additions."""
 from __future__ import annotations
 
 import argparse
@@ -56,6 +56,9 @@ def verify(pack: Path) -> dict:
         assert path.stat().st_size == size, "Size mismatch: " + rel
         assert sha256(path) == expected_sha, "SHA256 mismatch: " + rel
     expected_jars = {r["path"] for r in records if r["path"].startswith("mods/") and r["path"].endswith(".jar")}
+    author_jars = set(expected_jars)
+    compatibility_jars = {p for p in profile["support"] if p.startswith("mods/") and p.endswith(".jar")} if profile else set()
+    expected_jars.update(compatibility_jars)
     actual_jars = {f.relative_to(pack).as_posix() for f in (pack / "mods").rglob("*.jar")}
     assert actual_jars == expected_jars, "Unexpected or missing JAR files"
     author_roots = {"mods", "config", "kubejs", "scripts", "defaultconfigs", "data",
@@ -95,6 +98,7 @@ def verify(pack: Path) -> dict:
             "sourceManifestFiles": len(manifest["files"]), "activeDownloads": len(active),
             "authorOverrides": len(lock["overrides"]), "historicalDuplicates": len(history),
             "verifiedPayloadFiles": len(records), "jarFiles": len(actual_jars),
+            "authorJarFiles": len(author_jars), "explicitCompatibilityJarFiles": len(compatibility_jars),
             "topLevelForgeModIds": len(top_ids), "duplicateTopLevelIds": duplicates,
             "localizedBaseDisplayResources": len(profile["overlays"]) if profile else 0,
             "newPayloadSupportFiles": len(profile["support"]) if profile else 0}

@@ -176,6 +176,7 @@
     "thermal_locomotion": "thermal_foundation",
     "twilightdelight": "farmersdelight",
     "universalgrid": "refinedstorage",
-    "xnetgases": "xnet"
+    "xnetgases": "xnet",
+    "derenderpatcher": "draconicevolution"
   }
 }

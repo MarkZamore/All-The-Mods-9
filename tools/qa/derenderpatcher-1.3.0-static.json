@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "status": "EXACT_NATIVE_STATIC_REVIEW_COMPLETE_GAMEPLAY_AND_VISUAL_RUN_WAIVED_NOT_PASS",
+  "authorization": "User explicitly requested Draconic Evolution Render Patcher in ATM9 and ATM9 Modified, allowing no in-game run for this fix.",
+  "thirdPartyAuthor": "Yrley",
+  "officialProjectPage": "https://www.curseforge.com/minecraft/mc-mods/draconic-evolution-render-patcher",
+  "officialFilePage": "https://www.curseforge.com/minecraft/mc-mods/draconic-evolution-render-patcher/files/8408406",
+  "officialSourceRepository": "https://github.com/enzobocalon/draconic-evolution-render-patcher",
+  "officialCfSourceLinkVerified": true,
+  "reviewedSourceBranch": "1.20.1",
+  "reviewedSourceCommit": "96aa68416689782e80acd065a141bd8e03166bd8",
+  "candidate": {
+    "path": "mods/derenderpatcher-1.20.1-1.3.0-forge.jar",
+    "fileName": "derenderpatcher-1.20.1-1.3.0-forge.jar",
+    "sha256": "a59d110b3a0f8ade8c6c4bd9e7c6d6cf265f84391bce89de87ef92de5498d4ef",
+    "sizeBytes": 75598,
+    "sourceUrl": "https://mediafilez.forgecdn.net/files/8408/406/derenderpatcher-1.20.1-1.3.0-forge.jar",
+    "projectId": 1383702,
+    "fileId": 8408406,
+    "version": "1.3.0",
+    "modIds": [
+      "derenderpatcher"
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/draconic-evolution-render-patcher",
+    "name": "Draconic Evolution Render Patcher"
+  },
+  "releaseType": "author beta1.3.0 July10 2026",
+  "metadata": {
+    "modLoader": "javafml",
+    "loaderVersion": "[47,)",
+    "mandatoryDependencies": [
+      {
+        "modId": "forge",
+        "mandatory": true,
+        "versionRange": "[47,)",
+        "ordering": "NONE",
+        "side": "BOTH"
+      },
+      {
+        "modId": "minecraft",
+        "mandatory": true,
+        "versionRange": "[1.20.1,1.21)",
+        "ordering": "NONE",
+        "side": "BOTH"
+      },
+      {
+        "modId": "brandonscore",
+        "mandatory": true,
+        "versionRange": "[3.2.1.302,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      },
+      {
+        "modId": "codechickenlib",
+        "mandatory": true,
+        "versionRange": "[4.4.0.514,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      },
+      {
+        "modId": "draconicevolution",
+        "mandatory": true,
+        "versionRange": "[3.1.2.621,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      },
+      {
+        "modId": "oculus",
+        "mandatory": true,
+        "versionRange": "[1.8.0,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      }
+    ],
+    "optionalDependencies": [
+      {
+        "modId": "ctm",
+        "mandatory": false,
+        "versionRange": "[0,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      },
+      {
+        "modId": "embeddium",
+        "mandatory": false,
+        "versionRange": "[0.3.31-beta.53+mc1.20.1,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      },
+      {
+        "modId": "immediatelyfast",
+        "mandatory": false,
+        "versionRange": "[1.5.0+1.20.1,)",
+        "ordering": "AFTER",
+        "side": "CLIENT"
+      }
+    ],
+    "packMetadata": {
+      "pack": {
+        "description": {
+          "text": "derenderpatcher resources"
+        },
+        "pack_format": 15
+      }
+    },
+    "classMajors": [
+      61
+    ],
+    "classCount": 38,
+    "clientOnly": true,
+    "dedicatedServerConstructorFailsDeliberately": true,
+    "loaderContextConstructor": "Exact native Forge47.4.0 FMLModContainer tries FMLJavaModLoadingContext constructor then no-arg; this authored context constructor is supported.",
+    "forgeLoaderConstructorProofSha256": "b076d168aecaafe229b0d3e3cbfaf9b59f1457f37912824df020500360c55d7d"
+  },
+  "unchangedAuthorBaseJars": [
+    {
+      "path": "mods/BrandonsCore-1.20.1-3.2.1.302-universal.jar",
+      "sizeBytes": 1358270,
+      "sha256": "79eb172fea57b1fa6424fda1c773aefb13c4e11277b810bb4c7577ed8c5f8ca6"
+    },
+    {
+      "path": "mods/Draconic-Evolution-1.20.1-3.1.2.621-universal.jar",
+      "sizeBytes": 5934411,
+      "sha256": "06ae009929799d7f912adcf83498b83328395bd53c90e4e03eb07d710b40441a"
+    },
+    {
+      "path": "mods/CodeChickenLib-1.20.1-4.4.0.516-universal.jar",
+      "sizeBytes": 1472390,
+      "sha256": "9037fc4bc73e4cec717501fc362f660f46c2a1ac34674da2106b4605b3e4d8db"
+    },
+    {
+      "path": "mods/mekalus-mc1.20.1-1.8.0.1.jar",
+      "sizeBytes": 2852787,
+      "sha256": "413fd1cd450cb1b3682651e505db0978fd688cc718a02d306ef5cbc93bc01eec"
+    },
+    {
+      "path": "mods/embeddium-0.3.31+mc1.20.1.jar",
+      "sizeBytes": 1320675,
+      "sha256": "eed3d1325f2acc2fd4e69bb495e5ccb91d962126ac5330f0582ebc2a3daf47fb"
+    }
+  ],
+  "additionalDependenciesNeeded": 0,
+  "baseJarReplacements": 0,
+  "requestedNewIds": [
+    "derenderpatcher"
+  ],
+  "staticMixinReview": {
+    "counts": {
+      "mixinTargets": 21,
+      "accessors": 3,
+      "shadowFields": 18,
+      "shadowMethods": 3,
+      "invokers": 1,
+      "injections": 51,
+      "directFieldOrInvokeSites": 23,
+      "directFieldOrInvokeSitesPresent": 20
+    },
+    "allRequiredSelectorsAndInspectedSitesFound": true,
+    "missingOptionalSites": [
+      {
+        "mixin": "com/derenderpatcher/mixins/MixinRenderTileEnergyTransfuser",
+        "handler": "derenderpatcher$drawTransfuserTextWithPrivateBufferMcp",
+        "require": 0,
+        "selectors": [
+          "render"
+        ],
+        "target": "Lnet/minecraft/client/gui/Font;drawInBatch(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I"
+      },
+      {
+        "mixin": "com/derenderpatcher/mixins/MixinShaderInstance",
+        "handler": "derenderpatcher$allowCodeChickenShaderOutput",
+        "require": 0,
+        "selectors": [
+          "apply",
+          "m_173363_"
+        ],
+        "target": "Lnet/irisshaders/iris/gl/blending/DepthColorStorage;disableDepthColor()V"
+      },
+      {
+        "mixin": "com/derenderpatcher/mixins/MixinVertexBuffer",
+        "handler": "derenderpatcher$bindPipelineWriteTargetBeforeDrawMcp",
+        "require": 0,
+        "selectors": [
+          "_drawWithShader"
+        ],
+        "target": "Lcom/mojang/blaze3d/vertex/VertexBuffer;draw()V"
+      }
+    ],
+    "authoredAliasGroups": "VertexBuffer beforeDraw and EnergyTransfuser text each have author @Group(min=1,max=1), MCP+SRG alternatives; exact native SRG alternative has1matchinginvoke, MCP0. No guards changed.",
+    "optionalPostOculusShaderSite": "DepthColorStorage.disableDepthColor invocation is not in untransformed Minecraft ShaderInstance. The author marks only that hook require0 and retains required RETURN fallback. No applied-Mixin outcome claimed.",
+    "refmap": "Author refmap is empty; custom mod targets use remap=false and Minecraft hooks carry authored MCP/SRG selectors. Empty refmap alone is not failure or runtime proof.",
+    "all69DirectExternalModMemberRefsResolved": true,
+    "fullJvmLinkageOrOtherModsSharedTargetResultClaimed": false,
+    "proofSha256": "d824d7daf833e6af7b64a501b860c8389d096df5f61d4b455e2d3d2fa18532df",
+    "reproductionToolSha256": "238c30e8cc3b7589cefe2ea6f030850cc1b40a67db46de620676e856d632f04e"
+  },
+  "renderScope": {
+    "mainMechanism": "Author render-target and private-buffer routing for Draconic/Brandon/CCL models under Oculus/Mekalus, plus preserving/reapplying original fancy model registrations after baking.",
+    "preserves3dModelsAndAssets": "No replacement PNG/model/shader assets in this JAR; source fancyToolModels setting is read/preserved. Original model, VBO and effect render calls remain in authored helper routes; staff effect matrix is corrected. No 2D fallback pack or own quality/distance cap added.",
+    "actualForge1_3_0Config": "Only general.showBetaWarning=true; beta chat notice is authored default.",
+    "genericProjectDescriptionDoesNotPreciselyDescribeForge1_3_0": "No allowUnknownShaders/hud_batching/experimental_screen_batching tokens or global settings writers exist in actual38classes. ImmediatelyFast status is passive. Scoped ShaderCompat permits CCShader output in active Draconic render passes outside shadows and binds the current pipeline write target. Do not claim this Forge version globally rewrites those configs.",
+    "scannedTokenHits": {
+      "allowUnknownShaders": [],
+      "hud_batching": [],
+      "experimental_screen_batching": [],
+      "KeyMapping": [],
+      "RegisterKeyMappingsEvent": []
+    },
+    "configWrittenByLauncher": false,
+    "effectsOrShaderGuardBypassAddedByUs": false
+  },
+  "safety": {
+    "newWorldOrInventoryMutationModuleRequired": false,
+    "reason": "Client-only mod; all21targets are client rendering/model/shader/buffer classes,38classes contain no server gameplay registration or terrain/inventory mutation handler. Client-only /derender status is diagnostic with permission0. No registry content or destructive gameplay ability added; author BASE JAR bytes unchanged.",
+    "ownSafetyFrameworkAdded": false,
+    "gameplayProtectionClaimed": false
+  },
+  "nativeKeys": {
+    "newKeyMappingReferences": 0,
+    "newKeyNames": [],
+    "nativePostAdditionCaptureClaimed": false
+  },
+  "limits": [
+    "No game/client/world/weather/LAN/visual fix PASS; user waived in-game runs for this fix.",
+    "This is exact untransformed native class/member/instruction evidence, not full Mixin application or shader output proof.",
+    "Author client-only JAR must not be placed in a dedicated-server mods directory; integrated LAN host remains a client game.",
+    "Default authored beta warning remains unless user separately asks to change it."
+  ],
+  "activePackLocksLibraryOrPublicationEditedByThisAudit": false,
+  "nativeInputs": [
+    {
+      "fileName": "forge-1.20.1-47.4.0-client.jar",
+      "sizeBytes": 4826828,
+      "sha256": "010adc332f19b05fb24383954ec7a88694666216e480a6824ff0cbc4740c3c66"
+    },
+    {
+      "fileName": "client-1.20.1-20230612.114412-srg.jar",
+      "sizeBytes": 18842082,
+      "sha256": "e2e940fe7ca0a9fba5a5c11ad2cf3e2f7df91bbf51d12af22cdde7af18adc344"
+    },
+    {
+      "fileName": "BrandonsCore-1.20.1-3.2.1.302-universal.jar",
+      "sizeBytes": 1358270,
+      "sha256": "79eb172fea57b1fa6424fda1c773aefb13c4e11277b810bb4c7577ed8c5f8ca6"
+    },
+    {
+      "fileName": "Draconic-Evolution-1.20.1-3.1.2.621-universal.jar",
+      "sizeBytes": 5934411,
+      "sha256": "06ae009929799d7f912adcf83498b83328395bd53c90e4e03eb07d710b40441a"
+    },
+    {
+      "fileName": "CodeChickenLib-1.20.1-4.4.0.516-universal.jar",
+      "sizeBytes": 1472390,
+      "sha256": "9037fc4bc73e4cec717501fc362f660f46c2a1ac34674da2106b4605b3e4d8db"
+    },
+    {
+      "fileName": "mekalus-mc1.20.1-1.8.0.1.jar",
+      "sizeBytes": 2852787,
+      "sha256": "413fd1cd450cb1b3682651e505db0978fd688cc718a02d306ef5cbc93bc01eec"
+    },
+    {
+      "fileName": "embeddium-0.3.31+mc1.20.1.jar",
+      "sizeBytes": 1320675,
+      "sha256": "eed3d1325f2acc2fd4e69bb495e5ccb91d962126ac5330f0582ebc2a3daf47fb"
+    }
+  ]
+}

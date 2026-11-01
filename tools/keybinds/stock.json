@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Actual Modified682EN/RU namespace; Original is488BASE/game projection, not a standalone native registry observation",
+  "scope": "Actual current Original ATM9 Options488 namespace observed with the approved Render Patcher at native title. Historical EN/RU parent captures retain role provenance; no fresh EN capture or applied-binding/restart acceptance.",
   "englishNativeSha256": "1e2c66275c9b5a3d0a7c7d9e42bd58921520f3356acb4c35b4c0deb9f72d4459",
   "russianNativeSha256": "c45fed5c93946834c8294bbed0a0c3703410c86fa0cbc7da83f4e52cde42fad1",
   "sourceJars": {
@@ -130,6 +130,7 @@
     "deepresonance-1.20-5.0.4.jar": "b50636d0e03d39744af1d081b4a483992e3ff0142a58523717b62c33face4185",
     "DefaultSettings-1.20.x-4.0.7-Forge.jar": "ae6a2d15d4c73805b1bfc5fdb6f44a5592918ab645e1ebd80e0aacfdf22ff8a0",
     "Delightful-1.20.1-3.7.6.jar": "6d56981342f6d3f3ed16f9a65fbda23bf7e68ef65abaf4ebc59f777be74463fe",
+    "derenderpatcher-1.20.1-1.3.0-forge.jar": "a59d110b3a0f8ade8c6c4bd9e7c6d6cf265f84391bce89de87ef92de5498d4ef",
     "DimStorage-1.20.1-8.0.1.jar": "3335ba63290f5a698dde0a6f73e125b1fc732ce39205783ce7ebb2ee88cfa90a",
     "Ding-1.20.1-Forge-1.4.1.jar": "1ccbef92cda4c71f824a4f239ca46459d5476e7712c6c0affdb80cded6c66d96",
     "domum_ornamentum-1.20.1-1.0.291-snapshot-universal.jar": "b8b95c1c2b8a3a871cdef56e4ec9231a57341864f730c9f1bacb5c8be4589bd2",
@@ -8440,5 +8441,20 @@
     }
   ],
   "gameAcceptance": false,
-  "applyCloseRestartVerified": false
+  "applyCloseRestartVerified": false,
+  "historicalProjectionScope": "Actual Modified682EN/RU namespace; Original is488BASE/game projection, not a standalone native registry observation",
+  "currentNativeNamespaceVerified": true,
+  "currentNativeEvidence": {
+    "modListObservationSha256": "67ffffa3b64c52b6d9163ca002fb7fd6ba7dc317a371d4a9ead57c9d98ec3098",
+    "keyInventorySha256": "7e6ffcb2b45837d7d29395c08eab727f50104a23a6edad132d473c62c4f155b3",
+    "nativeOptionsCount": 488,
+    "nativeRegistryCount": 502,
+    "sourcePresetNamesEqualNativeOptions": true,
+    "sourceJars": 432,
+    "nativeAllModIds": 456,
+    "nativePackModIds": 453,
+    "locale": "ru_ru",
+    "gameScope": "title only; no physical controls, preset application or restart proof",
+    "historicalEnglishAndRussianHashesAreParentEvidence": true
+  }
 }

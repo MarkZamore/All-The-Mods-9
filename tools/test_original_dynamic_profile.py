@@ -6,6 +6,8 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -90,8 +92,32 @@ class OriginalDynamicTests(unittest.TestCase):
         self.prepare()
         self.assertEqual(first, {r["path"]: (self.root / r["path"]).read_bytes() for r in f.rows})
         proof = verify_upstream.verify(self.pack)
-        self.assertEqual((proof["authorVersion"], proof["forgeVersion"], proof["jarFiles"]), ("2.0.0", "47.5.0", 1))
+        self.assertEqual((proof["authorVersion"], proof["forgeVersion"], proof["authorJarFiles"], proof["explicitCompatibilityJarFiles"], proof["jarFiles"]), ("2.0.0", "47.5.0", 1, 1, 2))
         self.assertEqual((self.root / "mods/native.jar").read_bytes(), f.old["mods/native.jar"])
+
+    def test_template_stage_precedes_real_outer_support_preflight(self):
+        OriginalFixture(self.root)
+        p.load(self.pack)
+        relative = "kubejs/client_scripts/lanmc_memory_warning_policy.js"
+        expected = (self.root / relative).read_bytes()
+        (self.root / relative).unlink()
+        with self.assertRaises(ValueError) as missing:
+            self.prepare()
+        self.assertIn(relative, str(missing.exception))
+        source = HERE / "client-policy"
+        for name in ("prepare.py", "policy.json", "scripts/lanmc_memory_warning_policy.js"):
+            destination = self.root / "tools/client-policy" / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes((source / name).read_bytes())
+        result = subprocess.run([sys.executable, "-B", str(self.root / "tools/client-policy/prepare.py"),
+            "--pack", str(self.root), "--templates-only", "--apply"], capture_output=True, text=True,
+            encoding="utf-8", check=True)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["status"], "SOURCE_SCRIPTS_READY_NATIVE_API_NOT_CHECKED")
+        self.assertFalse(report["nativeApiValidated"])
+        self.assertEqual((self.root / relative).read_bytes(), expected)
+        self.prepare()
+        verify_upstream.verify(self.pack)
 
     def test_missing_binary_restores_only_exact_pinned_cache(self):
         f = OriginalFixture(self.root)

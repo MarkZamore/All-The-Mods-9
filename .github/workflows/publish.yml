@@ -40,6 +40,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Restore owned client policy source templates
+        run: python tools/client-policy/prepare.py --pack . --templates-only --apply
+
       - name: Restore exact author payloads and reviewed display localization
         run: python tools/prepare_pack.py --pack . --cache artifacts/upstream --restore-locked-files
 
@@ -50,6 +53,9 @@ jobs:
 
       - name: Verify effective original author files and fixed support additions
         run: python tools/verify_upstream.py --pack .
+
+      - name: Verify native client policy APIs
+        run: python tools/client-policy/prepare.py --pack . --apply
 
       - name: Verify reviewed keyboard preset
         run: python tools/keybinds/check_preset.py

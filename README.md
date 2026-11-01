@@ -28,8 +28,9 @@ and matched that complete hash. `tools/upstream-manifest.json` preserves its
 download, all 1,360 author overrides and the Mojang client by size and SHA256.
 All 431 author JARs and every author file outside the 107 explicitly pinned
 quest-display resources remain byte-identical to those sources. The display
-localization and seven added data/document files are described below. No Modified
-content, custom helper or Safety mod is included.
+localization, eight added data/document files and the one explicitly requested
+render-compatibility mod are described below. No previous Modified content, custom
+helper JAR or Safety mod is included.
 Original Spark, Observable, Crash Utilities and Crash Assistant are retained.
 
 The withdrawn Lionfish API file 5922047 remains available inside the author's
@@ -37,6 +38,46 @@ The withdrawn Lionfish API file 5922047 remains available inside the author's
 Only that exact client-manifest JAR is reused from the server export; no extra
 server files are installed. Its original bytes are included in Git so rebuilding
 does not require downloading the entire server export.
+
+## Requested native client compatibility
+
+All **431 original author JARs remain byte-identical**. The user additionally
+requested the official **Draconic Evolution Render Patcher 1.3.0** for Forge
+1.20.1, making **432 shipped JARs**. Its CurseForge project/file IDs are
+`1383702/8408406`; size 75598 bytes and SHA256
+`a59d110b3a0f8ade8c6c4bd9e7c6d6cf265f84391bce89de87ef92de5498d4ef`.
+The [official mod page](https://www.curseforge.com/minecraft/mc-mods/draconic-evolution-render-patcher)
+is linked from the library. It is an author's compatibility addon, not a rewritten
+Draconic Evolution JAR. Its native client mixins change Draconic/shader render
+routing; the old base JAR hashes therefore do not imply unchanged runtime render
+behavior. It adds no new terrain, inventory, ability or world-changing path.
+
+The exact pinned compatibility JAR is an explicit portable-profile support row;
+it is separate from the unchanged upstream author lock and is included in source
+so author restoration retains it. [Static compatibility evidence](tools/qa/derenderpatcher-1.3.0-static.json)
+covers 21 native target classes, the declared injection sites and 69 external
+member references. It is separate from an in-game shader or Draconic visual test.
+The author beta-notice option remains enabled. The [native title report](tools/qa/original-native-title-421.md)
+records three successful title observations, actual453packIDs including this mod,
+432sourceJARs plus the shared Steam component, and normal exit0. No world, LAN,
+Steam-peer or Draconic visual run is claimed. The library inventory uses this real
+ModList observation, rather than adding a guessed ID to older evidence.
+
+`kubejs/client_scripts/lanmc_memory_warning_policy.js` sets only the loaded native
+Memory Settings `disableWarnings=true` before its initial game-menu check. This
+prevents its upper-memory panel for a launcher-selected heap above the author's
+14336 MiB (14 GiB) recommendation. The original author JSON remains byte-identical and
+literally false: neither the script nor the launcher rewrites it or unrelated
+personal options. Earlier native low-heap Swing warnings and constructor logs are
+outside this client-stage policy. No heap, render or simulation limit is added.
+
+[The native client-policy tool](tools/client-policy/README.md) validates its actual
+public config API. Its hash-pinned template stage runs **before** strict source
+support preflight/author restoration; the native API stage runs **after** all
+author JARs are restored. Missing owned scripts are restored; conflicting source
+files are refused. Later author JARs with unchanged public APIs are accepted;
+API changes require review. Keep these source tools/templates and the explicit
+portable-profile support rows when importing a later author version.
 
 ## Duplicate entries in the author export
 
@@ -59,7 +100,9 @@ reported as an observed test. No registry IDs are renamed by this normalization.
 Python 3.12 or later, standard library only:
 
 ```sh
+python tools/client-policy/prepare.py --pack . --templates-only --apply
 python tools/prepare_pack.py --pack . --cache artifacts/upstream --restore-locked-files
+python tools/client-policy/prepare.py --pack . --apply
 python tools/verify_upstream.py --pack .
 python tools/keybinds/check_preset.py
 python -m unittest discover -s tools -p "test_*.py"
@@ -78,7 +121,8 @@ artifacts/upstream --workers 6` with the same reviewed normalization boundary.
 
 Downloaded JARs, shaders and the Mojang client are omitted from Git and restored
 from exact source IDs and committed hashes. The author-embedded CC:Tweaked JAR
-and withdrawn Lionfish API are included. Existing files with different bytes
+and withdrawn Lionfish API are included, together with the explicit requested
+Render Patcher compatibility JAR. Existing files with different bytes
 cause import verification to fail instead of being overwritten.
 
 The publish workflow uploads every payload and the library bundle before
@@ -108,7 +152,7 @@ exact author CRLF bytes outside the approved spans. Unknown source hashes,
 unreviewed patch-tool/manifest identities and unrelated extra content fail
 verification instead of being overwritten or accepted as another profile.
 
-The seven added payload files are the Russian language file, `config/log4j2.xml`,
+The original seven added data/document files are the Russian language file, `config/log4j2.xml`,
 `launcher/jvm-args.txt`, two inert `kubejs/atm9_ru_quests_*` notice documents,
 and the optional keyboard preset with its guide under `launcher/`.
 The logging configuration keeps INFO/WARN/ERROR diagnostics and limits archive

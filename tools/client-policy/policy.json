@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "pack-owned-native-client-policy",
+  "scripts": [
+    {
+      "path": "kubejs/client_scripts/lanmc_memory_warning_policy.js",
+      "template": "scripts/lanmc_memory_warning_policy.js",
+      "sizeBytes": 421,
+      "sha256": "68b42fde0072ce3f366605a7619931cb6388575230ca7a910c23580b58cbaeab"
+    }
+  ],
+  "apiContracts": [
+    {
+      "class": "com/memorysettings/config/CommonConfiguration",
+      "fields": [
+        {
+          "name": "config",
+          "descriptor": "Lcom/cupboard/config/CupboardConfig;",
+          "static": true
+        },
+        {
+          "name": "disableWarnings",
+          "descriptor": "Z",
+          "static": false
+        }
+      ]
+    },
+    {
+      "class": "com/cupboard/config/CupboardConfig",
+      "methods": [
+        {
+          "name": "getCommonConfig",
+          "descriptor": "()Lcom/cupboard/config/ICommonConfig;",
+          "static": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "status": "NATIVE_TITLE_AND_NORMAL_QUIT_PASS",
+  "scope": "Full native client to title only, not world/LAN/Steam/Draconic visual acceptance",
+  "sourceJars": 432,
+  "originalAuthorJars": 431,
+  "explicitOfficialCompatibilityJars": 1,
+  "runtimeJarsIncludingPinnedSharedSteam": 433,
+  "nativeAllModIds": 456,
+  "nativePackModIds": 453,
+  "newNativeCompatibilityMod": {
+    "id": "derenderpatcher",
+    "version": "1.3.0"
+  },
+  "nativeModListObservationSha256": "67ffffa3b64c52b6d9163ca002fb7fd6ba7dc317a371d4a9ead57c9d98ec3098",
+  "nativeModListObservationUtc": "2026-11-01T13:30:27.505081100Z",
+  "nativeTitle": {
+    "utc": "2026-11-01T13:30:27.458636200Z",
+    "consecutiveSamples": 3,
+    "screenClass": "dev.shadowsoffire.packmenu.ExtendedMenuScreen",
+    "activeWorldAbsent": true,
+    "overlayAbsent": true
+  },
+  "normalExit": {
+    "code": 0,
+    "utc": "2026-11-01T13:31:47.2306694+00:00",
+    "forcedKill": false
+  },
+  "all432SourceAnd433RuntimeJarPinsEqualBeforeAndAfter": true,
+  "nativeMemoryPolicy": {
+    "utc": "2026-11-01T13:30:27.612425100Z",
+    "alreadyLoaded": true,
+    "classFullyInitialized": true,
+    "disableWarnings": true,
+    "minimumClient": 8192,
+    "maximumClient": 14336,
+    "warningTolerance": 30,
+    "configurationWritten": false,
+    "classInitializationTriggered": false
+  },
+  "presetNamespace": {
+    "actualNativeOptions": 488,
+    "actualRegistry": 502,
+    "all488SourcePresetNamesEqualActualNativeOptions": true,
+    "presetSha256": "180653847d8ff8b70deee595c1b38e51b23c6aacface960abdd10bd62f89be91",
+    "nativeKeyInventorySha256": "7e6ffcb2b45837d7d29395c08eab727f50104a23a6edad132d473c62c4f155b3",
+    "bindingsAppliedOrPhysicalInputClaimed": false
+  },
+  "launcherCandidate": {
+    "intendedVersion": 421,
+    "isolatedAssemblySha256": "bcb994f7e5b95597b22df4cdd7f1e61d5b255826be9e29d1f8961a7e4241a599",
+    "publicExeByteIdentityClaimed": false,
+    "qaAgentOutsideContentModsSha256": "e1dc3139436c90602db730f156b8993c410fbbecec7efe51e458dcd409f38de9",
+    "qaProtocol": 8,
+    "identityAdapterOutsideContentModsSha256": "0a75e761473a22ace3f94ddf7d1b2a71b95de73fcb55d12bd235aaae5978920f"
+  },
+  "remainingLogs": {
+    "errorHeaders": 41,
+    "fatalHeaders": 0,
+    "errorLoggerCounts": {
+      "net.minecraftforge.coremod.transformer.CoreModBaseTransformer": 2,
+      "net.minecraft.client.Minecraft": 1,
+      "Embeddium-MixinTaintDetector": 1,
+      "structurize": 1,
+      "mezz.jei.common.config.file.ConfigSerializer": 6,
+      "net.minecraft.client.multiplayer.AccountProfileKeyPairManager": 2,
+      "Moonlight": 10,
+      "patchouli": 1,
+      "bloodmagic": 1,
+      "KubeJS Client": 8,
+      "ponderjs": 8
+    },
+    "closedLogSha256": "3a8537a3278060964a37d4a1a4fc5efdbdfc0f40341b8a1a228ad9ee822cd734",
+    "rawLogOrPersonalPathsPublished": false,
+    "allErrorsClaimedHarmless": false,
+    "originalBaselineComparison": {
+      "result": "All 41 current title ERROR headers match already recorded original-baseline signatures; count is not a rate comparison or a universal harmlessness guarantee",
+      "rootReviewedPrivateReceiptSha256": "a93ba2cd230d11d2b99cd4b4f625bf5cb88a3b838498660b12c772be2f053c4b",
+      "rawPrivateReceiptPublished": false
+    }
+  },
+  "limits": [
+    "No world creation or entry, LAN action, peer connection, Steam gameplay, selected-skin or Draconic visual result is claimed",
+    "User waived a separate in-game Draconic rendering test; static patcher proof remains separate",
+    "Read-only native config observation found disableWarnings=true on already initialized native holder; no probe class initialization or getter/setter/save/load call",
+    "Preset names measured; optional preset bindings and physical controls were not applied/retested"
+  ]
+}

@@ -1,6 +1,7 @@
-"""The reviewed display/logging/key-preset profile on original ATM9 1.1.1.
+"""The reviewed display/logging/key-preset/client compatibility profile on ATM9.
 
-This does not accept general replacement files, added mods or another pack profile.
+This accepts only the explicitly pinned user-approved Render Patcher addition,
+not general replacement files, arbitrary added mods or another pack profile.
 The unchanged upstream lock remains the authority for all author payloads.
 """
 from __future__ import annotations
@@ -24,6 +25,8 @@ SUPPORT = {
     "launcher/jvm-args.txt", "kubejs/atm9_ru_quests_license.txt",
     "kubejs/atm9_ru_quests_provenance.md",
     "launcher/controls-preset.txt", "launcher/controls-guide.md",
+    "kubejs/client_scripts/lanmc_memory_warning_policy.js",
+    "mods/derenderpatcher-1.20.1-1.3.0-forge.jar",
 }
 NOTICES = {
     "library/licenses/Scriptora-ATM9-MIT.txt", "library/ru-quests-provenance.md",
