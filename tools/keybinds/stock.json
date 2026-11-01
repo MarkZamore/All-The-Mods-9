@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Actual current Original ATM9 Options488 namespace observed with the approved Render Patcher at native title. Historical EN/RU parent captures retain role provenance; no fresh EN capture or applied-binding/restart acceptance.",
+  "scope": "Actual current Original ATM9 Options488 namespace observed at native title. Persisted post-exit private options are English; no native language getter or current Russian UI observation. Historical EN/RU parent captures retain role provenance; no applied-binding/restart acceptance.",
   "englishNativeSha256": "1e2c66275c9b5a3d0a7c7d9e42bd58921520f3356acb4c35b4c0deb9f72d4459",
   "russianNativeSha256": "c45fed5c93946834c8294bbed0a0c3703410c86fa0cbc7da83f4e52cde42fad1",
   "sourceJars": {
@@ -8453,8 +8453,15 @@
     "sourceJars": 432,
     "nativeAllModIds": 456,
     "nativePackModIds": 453,
-    "locale": "ru_ru",
+    "locale": "en_us",
     "gameScope": "title only; no physical controls, preset application or restart proof",
-    "historicalEnglishAndRussianHashesAreParentEvidence": true
+    "historicalEnglishAndRussianHashesAreParentEvidence": true,
+    "localeEvidence": "Inferred from persisted private options after the title run and normal exit; no native language getter was observed",
+    "nativeLanguageGetterObserved": false,
+    "requestedPrivateLanguageSeed": "ru_ru",
+    "requestedSeedWasActualNativeLocaleProof": false,
+    "requestedSeedOverwrittenDuringDefaultSettingsFirstBoot": true,
+    "postExitOptionsSha256": "4e966640f30e7ff64dbcf2f03c10bc7525f192d1113f04ae75f6d5eff9c85d99",
+    "persistedPostExitPauseOnLostFocus": true
   }
 }

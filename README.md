@@ -198,3 +198,11 @@ notices add no world ability, mod or protection framework. Native parsing and
 deep comparison preserve gameplay data; the translation is not presented as a
 new full-client or visual-language acceptance run. Actual runtime and connection
 results are recorded separately in `TESTING-STATUS.md`.
+
+The requested private `ru_ru` seed did not establish the actual title language:
+Default Settings first boot overwrote it. Persisted post-exit private options show
+`lang:en_us` and `pauseOnLostFocus:true`. This is post-exit evidence, not a direct
+native language getter or a Russian UI pass. Mod IDs, the read-only Memory flag,
+488 measured Options names and normal exit remain valid independently of locale.
+No player language, runtime preset, quest or game file is changed by this evidence
+correction.

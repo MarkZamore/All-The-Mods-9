@@ -22,3 +22,11 @@ JSON. Root reviewed the 41 exact signatures against the existing original
 baseline; that comparison receipt is referenced by SHA256. This is not a rate
 comparison or a claim that all ERROR entries are harmless. No raw logs
 or personal paths are published.
+
+The requested private `ru_ru` seed did not establish the actual title language:
+Default Settings first boot overwrote it. Persisted post-exit private options show
+`lang:en_us` and `pauseOnLostFocus:true`. This is post-exit evidence, not a direct
+native language getter or a Russian UI pass. Mod IDs, the read-only Memory flag,
+488 measured Options names and normal exit remain valid independently of locale.
+No player language, runtime preset, quest or game file is changed by this evidence
+correction.

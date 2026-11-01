@@ -83,6 +83,20 @@
     "No world creation or entry, LAN action, peer connection, Steam gameplay, selected-skin or Draconic visual result is claimed",
     "User waived a separate in-game Draconic rendering test; static patcher proof remains separate",
     "Read-only native config observation found disableWarnings=true on already initialized native holder; no probe class initialization or getter/setter/save/load call",
-    "Preset names measured; optional preset bindings and physical controls were not applied/retested"
-  ]
+    "Preset names measured; optional preset bindings and physical controls were not applied/retested",
+    "The requested prelaunch private ru_ru seed was overwritten during Default Settings first boot. Persisted post-exit options are en_us/pauseOnLostFocus=true; no direct native language getter or current Russian UI pass is claimed."
+  ],
+  "localeEvidence": {
+    "requestedPrivateHarnessLanguageSeed": "ru_ru",
+    "requestedSeedProvesActualNativeLocale": false,
+    "requestedSeedOverwrittenDuringDefaultSettingsFirstBoot": true,
+    "postExitOptions": {
+      "lang": "en_us",
+      "pauseOnLostFocus": true,
+      "sha256": "4e966640f30e7ff64dbcf2f03c10bc7525f192d1113f04ae75f6d5eff9c85d99"
+    },
+    "languageInferredFromPersistedPostTitleOptions": true,
+    "nativeLanguageGetterObserved": false,
+    "currentRussianUiOrLanguageAcceptanceClaimed": false
+  }
 }
