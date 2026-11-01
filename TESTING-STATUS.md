@@ -3,6 +3,21 @@
 Author release: ATM9 1.1.1, Minecraft 1.20.1, Forge 47.4.0.
 Verification date: 28 October 2026.
 
+## Bounded Connection diagnostics, 1 November 2026
+
+Only the owned `config/log4j2.xml` runtime file changes from parent465fcd2.
+The native Connection logger writes DEBUG exception stacks to `latest.log`;
+root/unrelated loggers and Console/ServerGui thresholds remain unchanged.
+The before/after [native routing proof](tools/qa/connection-logging/native-routing-proof.json)
+uses95 pinned Minecraft1.20.1/Forge47.4.0/Log4j2.19.0 libraries on Java17 and
+the production relative JVM config argument. It proves a labelled synthetic
+throwable reaches the file only after this change, while unrelated DEBUG/TRACE
+remain absent and ERROR is preserved. It is not a real guest exception or a
+network-fix test. No game run was performed for this data-only diagnostic update.
+The earlier title report remains historical; no new full-runtime byte identity
+or native title/world/LAN acceptance is inferred from it. All author JARs,
+quest resources and controls retain their previous bytes.
+
 ## Reviewed display and diagnostic update, 30 October 2026
 
 The original author lock and all 431 JARs remain unchanged. The explicit

@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "privateSyntheticFixture": true,
+  "gameStarted": false,
+  "nativeVersions": [
+    "Minecraft1.20.1",
+    "Forge47.4.0",
+    "Log4j2.19.0",
+    "Java17"
+  ],
+  "sameProductionJvmSelection": "-Dlog4j.configurationFile=config/log4j2.xml",
+  "runs": [
+    {
+      "mode": "before",
+      "exitCode": 0,
+      "consoleDebugSentinelAbsent": true,
+      "nativeLayoutConverterOutputVerified": true,
+      "fileBytes": 90,
+      "stdoutLastLine": "PASS private-native-Log4j-routing expectedConnectionDebug=false unrelatedDebug=false trace=false errorPreserved=true syntheticFixtureOnly=true gameStarted=false"
+    },
+    {
+      "mode": "candidate",
+      "exitCode": 0,
+      "consoleDebugSentinelAbsent": true,
+      "nativeLayoutConverterOutputVerified": true,
+      "fileBytes": 371,
+      "stdoutLastLine": "PASS private-native-Log4j-routing expectedConnectionDebug=true unrelatedDebug=false trace=false errorPreserved=true syntheticFixtureOnly=true gameStarted=false"
+    }
+  ],
+  "configurationCandidate": {
+    "bytes": 4310,
+    "sha256": "0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5"
+  },
+  "priorMinimalClasspathRunNotNativeFormattingAcceptance": true,
+  "priorFullClasspathRun02FailedBecausePrivateAbsoluteForwardSlashUriNotProductionArgument": true,
+  "schemaVersion": 1,
+  "kind": "native-synthetic-log-routing-proof-not-network-fix",
+  "sourceParentRevision": "465fcd2a71c027f629e43055f9450cdbbb340ea2",
+  "actualNativeLibraries": 95,
+  "nativeLibrariesPinFile": "tools/qa/connection-logging/native-libraries.json",
+  "nativeLibrariesPinSha256": "05b5b80d3f14eb2cf8e1a4639ec498ce910c483bdab99f7ad6a6129433b47399",
+  "privateNativeRoutingResultSha256": "488bb5076b037b2954c61a21eed01408f2d51e7ca9dd8831ed4143539bc0cd11",
+  "beforeConfiguration": {
+    "sizeBytes": 4137,
+    "sha256": "6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d"
+  },
+  "onlySemanticXmlDifference": "Add logger net.minecraft.network.Connection at DEBUG. Root and other logger levels, appenders, formatters and retention are unchanged.",
+  "currentGuestExceptionCauseEstablished": false,
+  "networkConnectionFixedOrActualGuestAttemptPassed": false,
+  "newGameOrNativeTitlePassClaimed": false,
+  "historicalTitleEvidence": {
+    "path": "tools/qa/original-native-title-421.json",
+    "sha256": "c59822b2bfd263e3e04fefaeca1baf0f1806ca89b009b94166d5b12d5ff59f2f",
+    "scope": "Historical parent title proof; all JARs unchanged, but its full runtime-file snapshot predates this logging config."
+  },
+  "reproducedFromCommittedFixture": {
+    "path": "tools/qa/connection-logging/reproduced-native-routing.json",
+    "sha256": "c80ad163954271181ad15065b1a78db6b73338a782b9e9466185afebe820a8e6",
+    "status": "PASS",
+    "gameStarted": false
+  }
+}

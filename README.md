@@ -156,8 +156,20 @@ The original seven added data/document files are the Russian language file, `con
 `launcher/jvm-args.txt`, two inert `kubejs/atm9_ru_quests_*` notice documents,
 and the optional keyboard preset with its guide under `launcher/`.
 The logging configuration keeps INFO/WARN/ERROR diagnostics and limits archive
-retention while avoiding the full DEBUG file. The launcher reads its single
-pack-owned JVM argument; no logging hook is injected into an author mod.
+retention while avoiding the full DEBUG file. The native
+`net.minecraft.network.Connection` logger additionally writes DEBUG and its
+exception stacks to `latest.log`; root and unrelated loggers remain INFO, and
+Console/ServerGui still filter DEBUG. The launcher reads its single pack-owned
+JVM argument; no logging hook is injected into an author mod.
+
+This bounded diagnostic change preserves a native disconnect stack that the
+previous INFO policy filtered. It does not fix a connection or establish the
+cause of a guest failure. [The native95-library routing fixture](tools/qa/connection-logging/README.md)
+proves file/console boundaries using a labelled synthetic exception, without
+starting the game. The earlier native title report is historical evidence of
+its recorded parent runtime; it is not a fresh title/world/network test of this
+logging revision. All431 author JARs, the requested compatibility JAR, quests,
+control preset and other runtime files remain unchanged.
 The exact support hashes are in `tools/portable-profile.json`. The full MIT
 license and provenance also travel inside the native KubeJS payload, so copying
 the installed pack preserves the notices.
