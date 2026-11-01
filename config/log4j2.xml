@@ -70,8 +70,6 @@
         -->
         <Logger level="INFO" name="me.myogoo.myotus"/>
         <Logger level="INFO" name="net.minecraft.server.MinecraftServer"/>
-        <!-- Preserve native disconnect exception stacks in File without enabling general DEBUG. -->
-        <Logger level="DEBUG" name="net.minecraft.network.Connection"/>
         <Root level="INFO">
             <AppenderRef ref="SysOut" level="INFO"/>
             <AppenderRef ref="File"/>

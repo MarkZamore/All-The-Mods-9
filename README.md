@@ -155,21 +155,31 @@ verification instead of being overwritten or accepted as another profile.
 The original seven added data/document files are the Russian language file, `config/log4j2.xml`,
 `launcher/jvm-args.txt`, two inert `kubejs/atm9_ru_quests_*` notice documents,
 and the optional keyboard preset with its guide under `launcher/`.
-The logging configuration keeps INFO/WARN/ERROR diagnostics and limits archive
-retention while avoiding the full DEBUG file. The native
-`net.minecraft.network.Connection` logger additionally writes DEBUG and its
-exception stacks to `latest.log`; root and unrelated loggers remain INFO, and
-Console/ServerGui still filter DEBUG. The launcher reads its single pack-owned
-JVM argument; no logging hook is injected into an author mod.
+The current pack-owned logging policy keeps INFO/WARN/ERROR diagnostics and
+limits archive retention without a full DEBUG file. The native Connection logger
+inherits the normal INFO threshold. The temporary bounded Connection DEBUG
+capture from 1 November has been removed at the user's request; the runtime file
+is byte-identical to the preceding normal policy, SHA256
+`6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d`.
+The launcher still reads the pack's single declarative logging JVM argument;
+no logging hook is injected into an author mod. Working games are not changed;
+the normal pack update applies on the next startup.
 
-This bounded diagnostic change preserves a native disconnect stack that the
-previous INFO policy filtered. It does not fix a connection or establish the
-cause of a guest failure. [The native95-library routing fixture](tools/qa/connection-logging/README.md)
-proves file/console boundaries using a labelled synthetic exception, without
-starting the game. The earlier native title report is historical evidence of
-its recorded parent runtime; it is not a fresh title/world/network test of this
-logging revision. All431 author JARs, the requested compatibility JAR, quests,
-control preset and other runtime files remain unchanged.
+[The native95-library routing fixture](tools/qa/connection-logging/README.md)
+verifies the restored current INFO policy and preserves the temporary DEBUG
+configuration and its earlier proof as historical QA data only. ERROR remains
+recorded; unrelated DEBUG/TRACE and console DEBUG remain absent. This cleanup
+does not change any JAR, quest, control, memory policy or other runtime file.
+
+[The recorded Original on launcher 422 Steam session](tools/qa/original-steam-422.json)
+matched the real Steam game bridge on both sides, opened the guest world and
+remained connected for more than five minutes after world opening. The user
+also confirmed a repeated join from the in-game Multiplayer screen. The saved
+session used the temporary diagnostic policy; it is not a new game run of this
+INFO-only cleanup, a proof of the earlier intermittent failure's cause, or a
+claim that a CME or timeout fix was applied. Modified's shared-platform analogy
+does not represent a separate two-client Modified runtime test.
+
 The exact support hashes are in `tools/portable-profile.json`. The full MIT
 license and provenance also travel inside the native KubeJS payload, so copying
 the installed pack preserves the notices.

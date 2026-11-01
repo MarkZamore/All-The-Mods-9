@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "gameStarted": false,
+  "syntheticRoutingOnly": true,
+  "actualNativeLibraries": 95,
+  "sameProductionRelativeJvmArgument": true,
+  "defaultInfoRestored": true,
+  "forcedConnectionDebugActive": false,
+  "historicalDebugFixtureSeparateFromCurrentPolicy": true,
+  "rootAndUnrelatedLevelsUnchanged": true,
+  "currentConfigurationSha256": "6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d",
+  "historicalTemporaryConfigurationSha256": "0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5",
+  "runs": [
+    {
+      "mode": "reference-default-info",
+      "exitCode": 0,
+      "consoleDebugAbsent": true,
+      "nativeLayoutResolved": true,
+      "fileBytes": 90,
+      "fileSha256": "35a5e117cee7a0b3bd62ec6fe6f01c26b44fecbf1edca135c4babed36896e10c"
+    },
+    {
+      "mode": "historical-temporary-debug",
+      "exitCode": 0,
+      "consoleDebugAbsent": true,
+      "nativeLayoutResolved": true,
+      "fileBytes": 371,
+      "fileSha256": "7193cafd96aeb348460e0b7fef745c9a823a3b6a7af2d0046a8efe38ddc0253c"
+    },
+    {
+      "mode": "current-default-info",
+      "exitCode": 0,
+      "consoleDebugAbsent": true,
+      "nativeLayoutResolved": true,
+      "fileBytes": 90,
+      "fileSha256": "b8cc4e5bd7e3d0dbac3e7709113836b3a3796e0820815a86eb0353e3d741bd20"
+    }
+  ]
+}

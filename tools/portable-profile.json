@@ -32,8 +32,8 @@
     },
     {
       "path": "config/log4j2.xml",
-      "sizeBytes": 4310,
-      "sha256": "0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5"
+      "sizeBytes": 4137,
+      "sha256": "6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d"
     },
     {
       "path": "launcher/jvm-args.txt",

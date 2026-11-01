@@ -1,4 +1,4 @@
-"""Reproduce bounded file/console routing with exact native libraries, no game."""
+"""Verify restored default INFO and historical bounded DEBUG with native libraries, no game."""
 from pathlib import Path, PurePosixPath
 import argparse
 import hashlib
@@ -29,16 +29,19 @@ def main():
     args = parser.parse_args()
     pack = HERE.parents[2]
     before = HERE / 'before-log4j2.xml'
+    historical = HERE / 'temporary-debug-log4j2.xml'
     candidate = pack / 'config/log4j2.xml'
     assert sha(before) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
-    assert sha(candidate) == '0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5'
+    assert sha(candidate) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
+    assert sha(historical) == '0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5'
     old = ET.parse(before).getroot()
-    new = ET.parse(candidate).getroot()
+    new = ET.parse(historical).getroot()
     loggers = new.find('Loggers')
     added = [c for c in loggers if c.tag == 'Logger' and c.get('name') == 'net.minecraft.network.Connection']
     assert len(added) == 1 and added[0].attrib == {'level': 'DEBUG', 'name': 'net.minecraft.network.Connection'}
     loggers.remove(added[0])
     assert xml(old) == xml(new), 'Unrelated semantic logging policy changed'
+    assert xml(old) == xml(ET.parse(candidate).getroot()), 'Current policy is not the restored default INFO policy'
     jars = []
     document = json.loads((HERE / 'native-libraries.json').read_text(encoding='utf-8'))
     assert len(document['libraries']) == 95
@@ -57,7 +60,9 @@ def main():
     compile_result = subprocess.run([str(args.javac.resolve()), '--release', '17', '-cp', os.pathsep.join(jars), '-d', str(classes), str(HERE / 'ConnectionLogRoutingProbe.java')], capture_output=True, text=True)
     assert compile_result.returncode == 0, compile_result.stderr
     runs = []
-    for mode, config, expected in [('before', before, False), ('candidate', candidate, True)]:
+    for mode, config, expected in [('reference-default-info', before, False),
+                                   ('historical-temporary-debug', historical, True),
+                                   ('current-default-info', candidate, False)]:
         folder = work / mode
         (folder / 'config').mkdir(parents=True)
         shutil.copyfile(config, folder / 'config/log4j2.xml')
@@ -70,8 +75,10 @@ def main():
         file = folder / 'logs/latest.log'
         runs.append({'mode': mode, 'exitCode': result.returncode, 'consoleDebugAbsent': True, 'nativeLayoutResolved': True, 'fileBytes': file.stat().st_size, 'fileSha256': sha(file)})
     report = {'status': 'PASS', 'gameStarted': False, 'syntheticRoutingOnly': True, 'actualNativeLibraries': 95,
-              'sameProductionRelativeJvmArgument': True, 'onlyConnectionDebugAdded': True, 'rootAndUnrelatedLevelsUnchanged': True,
-              'candidateConfigurationSha256': sha(candidate), 'runs': runs}
+              'sameProductionRelativeJvmArgument': True, 'defaultInfoRestored': True,
+              'forcedConnectionDebugActive': False, 'historicalDebugFixtureSeparateFromCurrentPolicy': True,
+              'rootAndUnrelatedLevelsUnchanged': True,
+              'currentConfigurationSha256': sha(candidate), 'historicalTemporaryConfigurationSha256': sha(historical), 'runs': runs}
     (work / 'result.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report))
 

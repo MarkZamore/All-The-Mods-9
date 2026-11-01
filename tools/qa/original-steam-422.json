@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "kind": "original-atm9-real-user-steam-join-observation",
+  "status": "PASS_SINGLE_ORIGINAL_STEAM_SESSION_OBSERVED",
+  "observedDate": "2026-11-01",
+  "localUtcOffset": "+05:00",
+  "launcher": {
+    "releaseNumber": 422,
+    "sourceRevision": "78a6eb55e2c895d8b301713b85efdc5084651ae3",
+    "hostFileVersion": "1.0.422.0",
+    "hostExecutableSha256": "9a041a4a0c612db9bbaa195a7b938b3d5d1f61a2b86a9d5c5780df60e8fbc624",
+    "hostProductVersion": "1.0.422+78a6eb55e2c895d8b301713b85efdc5084651ae3.78a6eb55e2c895d8b301713b85efdc5084651ae3",
+    "guestReleaseNumber": 422,
+    "guestProductVersion": "1.0.422+78a6eb55e2c895d8b301713b85efdc5084651ae3.78a6eb55e2c895d8b301713b85efdc5084651ae3"
+  },
+  "platform": {
+    "minecraftVersion": "1.20.1",
+    "loaderKind": "forge",
+    "loaderVersion": "47.4.0",
+    "managedTransportVersion": "0.3.4-lanmc-native-ui.1",
+    "managedTransportSha256": "68ba6bdce76868e2cb43359a13416dfa1b011c628c13b6c4266b653c765b5c40"
+  },
+  "observation": {
+    "actualSteamGameBridgeMatchedOnBothSides": true,
+    "ordinaryNativeLanTargetUsed": false,
+    "hostGuestAdmissionLocalTime": "21:53:26",
+    "guestWorldOpenedLocalTime": "21:55:20",
+    "lastPreservedHostEvidenceLocalTime": "22:00:52",
+    "bothPlayersPlayingConfirmedByUser": true,
+    "hostLoginToLastEvidenceSeconds": 446,
+    "guestWorldOpenToLastHostEvidenceSeconds": 332,
+    "guestLoginToRecipesEventIntervalSeconds": 43,
+    "guestJeiInitializationSeconds": 69,
+    "guestSteamConnectToWorldOpenSeconds": 140,
+    "guestWorldOpenToPeerLastLogSeconds": 24,
+    "additionalGuestChunkDeliveryObservedAfterWorldOpen": true,
+    "bothConnectionDebugEnabledInActualLogs": true,
+    "hostConnectionDebugFaultHeaders": 0,
+    "guestConnectionDebugFaultHeaders": 0,
+    "actualCmeThrowableLinesInObservedSession": 0,
+    "actualArrayIndexThrowableLinesInObservedSession": 0,
+    "disconnectsInObservedSession": 0
+  },
+  "modifiedAnalogy": {
+    "validation": "SOURCE_AND_SHARED_PLATFORM_ONLY",
+    "sameMinecraftAndForgeDescriptor": true,
+    "platformDescriptorSha256": "7553d4d51300f459daa9af2783d1cdb4864235ba8d65b1eb7c33a3b600b4a0e3",
+    "sameLoaderVersionAndManagedTransportSelection": true,
+    "selectionInputs": "loader kind and Minecraft version",
+    "actualModifiedTwoClientSteamRuntimePass": false,
+    "additionalContentCompatibilityNotEstablishedByOriginalSession": true
+  },
+  "limits": {
+    "singleSuccessfulAttempt": true,
+    "historicalFailureOriginProven": false,
+    "handshakeCmeFixApplied": false,
+    "timeoutRelaxationApplied": false,
+    "allForgeVersionsFixedClaimed": false,
+    "internetRelayOrSeparateNetworkVerified": false,
+    "allLogErrorsAbsentClaimed": false,
+    "skinOrInventoryVisualPassClaimed": false,
+    "rawLogsOrPeerIdentityPublished": false
+  },
+  "conclusion": "Original ATM9 joined through the actual Steam game bridge and opened the world on launcher422. The observed session remained connected beyond five minutes after guest world opening. This does not identify or permanently fix the earlier intermittent failure, and does not claim a two-client Modified runtime test."
+}

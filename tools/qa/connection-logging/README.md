@@ -1,33 +1,38 @@
-# Bounded native Connection logging
+# Normal logging restored after temporary Connection diagnostics
 
-The owned `config/log4j2.xml` adds only the native
-`net.minecraft.network.Connection` logger at DEBUG. Its disconnect handler logs
-the exception at DEBUG, so the previous INFO policy could retain only the brief
-disconnect message. Root/other logger levels, appenders, formatting and retention
-remain unchanged; Console and ServerGui still filter DEBUG. The JVM argument is
-still the pack's declarative `-Dlog4j.configurationFile=config/log4j2.xml`.
+The active `config/log4j2.xml` is byte-identical to the preceding normal INFO
+policy, SHA256 `6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d`.
+The user accepted real Steam joins and requested removal of unnecessary changes.
+There is no explicit Connection DEBUG logger in the active policy. Root/other
+levels, appenders, formatting, retention and Console/ServerGui filters retain
+their previous values. The JVM argument remains the pack-owned declarative
+`-Dlog4j.configurationFile=config/log4j2.xml`.
 
-This captures diagnostics. It does not fix Steam transport or identify a current
-guest failure. No JAR, network method, recipe, quest, control or personal option
-is changed. A new real guest attempt is needed to observe its exception.
+`temporary-debug-log4j2.xml` retains the removed 4310-byte diagnostic file only
+under `tools`, outside the runtime payload. `native-routing-proof.json` and
+`reproduced-native-routing.json` remain unchanged historical evidence of that
+temporary capture. They are not the current pack policy.
 
-`native-routing-proof.json` records the before/after synthetic fixture on Java17
-with 95 exact Minecraft1.20.1/Forge47.4.0/Log4j2.19.0 libraries and native layout
-plugins. Only the candidate writes the labelled Connection DEBUG throwable into
-`latest.log`. Unrelated DEBUG, Connection TRACE and Console DEBUG stay absent;
-ERROR remains preserved. This is not a real player exception or a game launch.
-The older native title report is historical parent-runtime evidence, not a test
-of this new logging file or a fresh world/network PASS.
+`native-default-info-proof.json` checks the reference INFO policy, historical
+bounded DEBUG capture and restored current INFO policy in three standalone
+Java 17 JVMs with 95 exact Minecraft 1.20.1/Forge 47.4.0/Log4j 2.19.0 libraries and
+native layout plugins. The labelled synthetic Connection throwable reaches the
+file only in the historical DEBUG fixture; current INFO retains ERROR while
+unrelated DEBUG, Connection TRACE and Console DEBUG remain absent.
 
-Reproduce with Python3.12+, Java17, a JDK17+ compiler and the exact native Maven
+Reproduce with Python 3.12+, Java 17, a JDK 17+ compiler and the exact native Maven
 libraries named by `native-libraries.json`:
 
 ```text
 python tools/qa/connection-logging/verify_native.py --libraries MAVEN_LIBRARY_ROOT --java JAVA17_EXE --javac JAVAC_EXE --work NEW_PRIVATE_QA_DIRECTORY
 ```
 
-The tool checks all library hashes and the only semantic XML difference, compiles
-the source-only labelled fixture with `--release17`, then starts two standalone
-JVMs in the private output directory using the production relative config path.
-It creates no game/mod/agent JAR and does not touch an installed pack or world.
-Raw user logs, account identifiers and local paths are not published.
+The tool verifies every library hash and the exact current/historical XML,
+compiles the source-only labelled fixture with `--release 17`, and uses the
+production relative config path. It creates no game/mod/agent JAR, starts no
+game, and changes no installed pack, running process or personal world.
+
+The real Steam session with Original ATM9 on launcher 422 is recorded in
+`../original-steam-422.json`. Neither its success nor this logging cleanup proves
+the origin or permanent resolution of an earlier intermittent exception. No CME,
+timeout or content patch was applied. Raw user logs and identities stay private.

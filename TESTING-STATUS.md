@@ -3,20 +3,36 @@
 Author release: ATM9 1.1.1, Minecraft 1.20.1, Forge 47.4.0.
 Verification date: 28 October 2026.
 
-## Bounded Connection diagnostics, 1 November 2026
+## Current normal logging and accepted Original Steam session, 1 November 2026
 
-Only the owned `config/log4j2.xml` runtime file changes from parent465fcd2.
-The native Connection logger writes DEBUG exception stacks to `latest.log`;
-root/unrelated loggers and Console/ServerGui thresholds remain unchanged.
-The before/after [native routing proof](tools/qa/connection-logging/native-routing-proof.json)
-uses95 pinned Minecraft1.20.1/Forge47.4.0/Log4j2.19.0 libraries on Java17 and
-the production relative JVM config argument. It proves a labelled synthetic
-throwable reaches the file only after this change, while unrelated DEBUG/TRACE
-remain absent and ERROR is preserved. It is not a real guest exception or a
-network-fix test. No game run was performed for this data-only diagnostic update.
-The earlier title report remains historical; no new full-runtime byte identity
-or native title/world/LAN acceptance is inferred from it. All author JARs,
-quest resources and controls retain their previous bytes.
+The user accepted the real Original on launcher 422 Steam session and a repeated join from
+the in-game Multiplayer screen. [The public-safe session proof](tools/qa/original-steam-422.json)
+records matching Steam game bridges, actual host/guest 422 versions and a
+446-second observed window after guest admission, including 332 seconds after
+the guest world opened. Both sides emitted Connection DEBUG and no network
+fault/disconnect occurred in that recorded window. A single successful session
+does not establish the earlier intermittent exception's origin or permanent
+resolution; no CME, timeout or content patch was applied.
+
+The now-unnecessary temporary Connection DEBUG logger is removed from the
+pack's active configuration. `config/log4j2.xml` is restored byte-for-byte to
+parent 465fcd2's normal INFO policy, SHA256
+`6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d`.
+The support profile pins this exact file. It is the only runtime-file change
+from the diagnostic source; all other 1804 files, including every JAR, quest,
+control preset and memory policy, keep their exact bytes.
+
+The updated [native routing proof](tools/qa/connection-logging/native-default-info-proof.json)
+uses 95 pinned Minecraft 1.20.1/Forge 47.4.0/Log4j 2.19.0 libraries on Java 17 and
+the production relative JVM argument. It checks normal INFO, historical bounded
+DEBUG and restored current INFO separately, preserving ERROR and console
+boundaries. No new game is launched and no running game/configuration is
+changed for this logging cleanup. The ordinary pack update applies on the next
+startup. Historical diagnostic proofs and the older title/world evidence remain
+unchanged and are not relabelled as tests of the current runtime.
+
+Modified is covered here only by the explicitly recorded shared platform/code
+analogy; no actual two-client Modified Steam PASS is claimed.
 
 ## Reviewed display and diagnostic update, 30 October 2026
 
@@ -174,13 +190,17 @@ Launcher verification separately passed 99 Steam/authentication cases,
 166 Java adapter cases and 93 native preflight targets. These are integration
 and mapping evidence, not substitutes for an actual remote client joining.
 
-## Acceptance boundaries and publication
+## Historical acceptance boundaries and publication (28 October 2026)
+
+These historical limitations describe that older run. The separately recorded
+Original on launcher 422 session and user acceptance above supersede the unavailable-peer
+limitation; they do not add a two-client Modified claim.
 
 - The native Minecraft Multiplayer screen was **not tested separately**.
 - Real overlay invite/join and in-game Multiplayer discovery/join between two
-  players were **not tested**: the user confirmed that a second PC/account is
-  currently unavailable.
-- The skin check is **SKIPPED by the latest explicit user decision**; no visual
+  players were **not tested in that older run**: the second PC/account was
+  unavailable then.
+- The skin check was **SKIPPED in that older run**; no visual
   skin PASS is claimed.
 - Computer input stopped when the user requested it. Subsequent save/exit facts
   came from read-only evidence; no further app input was performed.
@@ -189,4 +209,5 @@ and mapping evidence, not substitutes for an actual remote client joining.
 
 No raw account logs, local paths, user identifiers or personal worlds are
 published. Static checks, one-host success and overlay controls do not represent
-two-client connection PASS.
+two-client connection PASS for that older run. The current Original on launcher 422 result is
+recorded separately above.
