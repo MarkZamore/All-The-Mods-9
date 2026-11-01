@@ -3,7 +3,22 @@
 Author release: ATM9 1.1.1, Minecraft 1.20.1, Forge 47.4.0.
 Verification date: 28 October 2026.
 
-## Current normal logging and accepted Original Steam session, 1 November 2026
+## Current bounded network exception logging, 2 November 2026
+
+The current XML is 9e7b9918/4617 bytes and retains only four exact native
+Connection exception DEBUG labels in rolling latest.log. General packet DEBUG
+is rejected and normal INFO/WARN/ERROR remain. [The current native proof](tools/qa/connection-throwables/README.md)
+records exact caller/JAR identities and real filter-library checks; it is not a
+new client/world/network test. All other 1804 runtime files, including 432 JARs,
+quests, controls, JVM arguments and memory policies, remain byte-identical.
+
+The new source-only policy receipt and read-only generator guard prevent silent
+loss during an author-source refresh. The source prepare operation is manual,
+preserves unrelated authored data and fails on unreviewed collisions. It is not
+called by the launcher or publisher. Existing ownership/backups apply at normal
+instance update. No live canonical/instance/process/world was changed.
+
+## Historical normal logging and accepted Original Steam session, 1 November 2026
 
 The user accepted the real Original on launcher 422 Steam session and a repeated join from
 the in-game Multiplayer screen. [The public-safe session proof](tools/qa/original-steam-422.json)

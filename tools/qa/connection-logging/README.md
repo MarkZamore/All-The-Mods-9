@@ -1,9 +1,17 @@
-# Normal logging restored after temporary Connection diagnostics
+# Historical INFO and temporary Connection DEBUG fixtures
 
-The active `config/log4j2.xml` is byte-identical to the preceding normal INFO
+This directory records earlier source revisions. It is not the active logging
+policy. Current bounded exception-only data and native proof are in
+`../connection-throwables/README.md`. The old `verify_native.py` now reads only
+these archived configuration fixtures and does not claim to test the current
+pack XML. Historical proof JSON files remain unchanged.
+
+## Earlier normal logging restoration
+
+At that earlier revision, `config/log4j2.xml` was byte-identical to the normal INFO
 policy, SHA256 `6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d`.
 The user accepted real Steam joins and requested removal of unnecessary changes.
-There is no explicit Connection DEBUG logger in the active policy. Root/other
+That revision had no explicit Connection DEBUG logger. Root/other
 levels, appenders, formatting, retention and Console/ServerGui filters retain
 their previous values. The JVM argument remains the pack-owned declarative
 `-Dlog4j.configurationFile=config/log4j2.xml`.
@@ -14,7 +22,7 @@ under `tools`, outside the runtime payload. `native-routing-proof.json` and
 temporary capture. They are not the current pack policy.
 
 `native-default-info-proof.json` checks the reference INFO policy, historical
-bounded DEBUG capture and restored current INFO policy in three standalone
+bounded DEBUG capture and then-restored INFO policy in three standalone
 Java 17 JVMs with 95 exact Minecraft 1.20.1/Forge 47.4.0/Log4j 2.19.0 libraries and
 native layout plugins. The labelled synthetic Connection throwable reaches the
 file only in the historical DEBUG fixture; current INFO retains ERROR while

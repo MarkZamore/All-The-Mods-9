@@ -1,4 +1,4 @@
-"""Verify restored default INFO and historical bounded DEBUG with native libraries, no game."""
+"""Reproduce historical normal INFO and temporary unfiltered Connection DEBUG, no game."""
 from pathlib import Path, PurePosixPath
 import argparse
 import hashlib
@@ -30,7 +30,7 @@ def main():
     pack = HERE.parents[2]
     before = HERE / 'before-log4j2.xml'
     historical = HERE / 'temporary-debug-log4j2.xml'
-    candidate = pack / 'config/log4j2.xml'
+    candidate = HERE / 'before-log4j2.xml'
     assert sha(before) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
     assert sha(candidate) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
     assert sha(historical) == '0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5'
@@ -62,7 +62,7 @@ def main():
     runs = []
     for mode, config, expected in [('reference-default-info', before, False),
                                    ('historical-temporary-debug', historical, True),
-                                   ('current-default-info', candidate, False)]:
+                                   ('historical-restored-info', candidate, False)]:
         folder = work / mode
         (folder / 'config').mkdir(parents=True)
         shutil.copyfile(config, folder / 'config/log4j2.xml')
@@ -75,10 +75,10 @@ def main():
         file = folder / 'logs/latest.log'
         runs.append({'mode': mode, 'exitCode': result.returncode, 'consoleDebugAbsent': True, 'nativeLayoutResolved': True, 'fileBytes': file.stat().st_size, 'fileSha256': sha(file)})
     report = {'status': 'PASS', 'gameStarted': False, 'syntheticRoutingOnly': True, 'actualNativeLibraries': 95,
-              'sameProductionRelativeJvmArgument': True, 'defaultInfoRestored': True,
-              'forcedConnectionDebugActive': False, 'historicalDebugFixtureSeparateFromCurrentPolicy': True,
+              'sameProductionRelativeJvmArgument': True, 'historicalNormalInfoFixture': True,
+              'currentPackPolicyTested': False, 'historicalDebugFixtureSeparateFromCurrentPolicy': True,
               'rootAndUnrelatedLevelsUnchanged': True,
-              'currentConfigurationSha256': sha(candidate), 'historicalTemporaryConfigurationSha256': sha(historical), 'runs': runs}
+              'historicalInfoConfigurationSha256': sha(candidate), 'historicalTemporaryConfigurationSha256': sha(historical), 'runs': runs}
     (work / 'result.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report))
 

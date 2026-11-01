@@ -29,6 +29,7 @@ Python 3.12, standard library only.
 from __future__ import annotations
 
 from pack_library import stage_library, verify_library
+import network_logging_policy
 
 import argparse
 import fnmatch
@@ -372,6 +373,11 @@ def main() -> None:
     out = Path(args.out).resolve()
     if not pack.is_dir():
         fail(f"pack root does not exist: {pack}")
+
+    try:
+        network_logging_policy.verify(pack)
+    except (ValueError, OSError) as error:
+        fail("pack-owned network logging policy invalid: " + str(error))
 
     if args.verify_only or args.verify_all:
         verify_only(out, args.verify_all)
