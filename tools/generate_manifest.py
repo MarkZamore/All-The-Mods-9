@@ -30,6 +30,7 @@ from __future__ import annotations
 
 from pack_library import stage_library, verify_library
 import network_logging_policy
+import carpets_recipe_policy
 
 import argparse
 import fnmatch
@@ -378,6 +379,10 @@ def main() -> None:
         network_logging_policy.verify(pack)
     except (ValueError, OSError) as error:
         fail("pack-owned network logging policy invalid: " + str(error))
+    try:
+        carpets_recipe_policy.verify(pack)
+    except (ValueError, OSError, KeyError, zipfile.BadZipFile) as error:
+        fail("pack-owned carpets recipe policy invalid: " + str(error))
 
     if args.verify_only or args.verify_all:
         verify_only(out, args.verify_all)

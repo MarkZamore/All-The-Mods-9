@@ -7,6 +7,8 @@ import sys
 import tempfile
 import unittest
 import network_logging_policy
+import carpets_recipe_policy
+import shutil
 
 
 class ReleaseVerificationTests(unittest.TestCase):
@@ -21,6 +23,12 @@ class ReleaseVerificationTests(unittest.TestCase):
             version = json.loads((source / 'portable-pack.json').read_text(encoding='utf-8-sig'))['minecraftVersion']
             (pack / 'portable-pack.json').write_text(json.dumps({'minecraftVersion': version}), encoding='utf-8')
             network_logging_policy.prepare(pack)
+            # The publication CLI also requires the source-owned recipe policy.
+            jar = 'mods/alchemistry-1.20.1-2.3.4.jar'
+            (pack / 'mods').mkdir()
+            shutil.copyfile(source / jar, pack / jar)
+            shutil.copyfile(source / 'launcher/pack-owned.txt', pack / 'launcher/pack-owned.txt')
+            carpets_recipe_policy.prepare(pack)
             dist = root / 'dist'
             assets = dist / 'assets'
             assets.mkdir(parents=True)
@@ -48,6 +56,14 @@ class ReleaseVerificationTests(unittest.TestCase):
             self.assertIn('network logging policy invalid', no_policy.stderr)
             self.assertEqual(original_manifest, manifest.read_bytes())
             receipt.write_bytes(pinned)
+            recipe_receipt = pack / carpets_recipe_policy.RECEIPT
+            recipe_pinned = recipe_receipt.read_bytes()
+            recipe_receipt.unlink()
+            no_recipe_policy = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            self.assertNotEqual(0, no_recipe_policy.returncode)
+            self.assertIn('carpets recipe policy invalid', no_recipe_policy.stderr)
+            self.assertEqual(original_manifest, manifest.read_bytes())
+            recipe_receipt.write_bytes(recipe_pinned)
             for row in rows:
                 asset = assets / row['name']
                 original = asset.read_bytes()

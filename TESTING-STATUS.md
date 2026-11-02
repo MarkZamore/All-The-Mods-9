@@ -3,6 +3,32 @@
 Author release: ATM9 1.1.1, Minecraft 1.20.1, Forge 47.4.0.
 Verification date: 28 October 2026.
 
+## Same-ID carpet recipe source candidate, 2 November 2026
+
+This candidate adds only the 644-byte
+`kubejs/data/alchemistry/recipes/dissolver/carpets.json` data resource. Deep JSON
+comparison and literal-byte comparison show one change from Alchemistry 2.3.4's
+639-byte recipe: `/input/ingredient/tag` changes from `minecraft:carpets` to
+`minecraft:wool_carpets`. Type, group, input count, outputs, probabilities and
+rolls are preserved. The source and fixed full hashes are pinned in
+`tools/carpets-recipe-policy.json`; the profile pins that receipt.
+
+All 1,805 previously published runtime files remain exact, including all 432
+JARs, ModernFix 5.24.4, logging 9e7b9918, Russian quests, controls and RAM/JVM
+policies. The existing actual loader/key inventory therefore keeps its original
+JAR binding and provenance. No historical native receipt is changed into a new
+data-patch acceptance claim. Effective source composition and controls are
+checked without launching a game. Full-client/network acceptance of the new
+recipe is pending the user's next actual join, not reported as PASS.
+
+The shared source policy rejects changed/fixed author recipes, changed outputs,
+unknown override bytes and missing/stale receipts. Cold source preparation binds
+the receipt to the immutable author lock before normalization, then verifies the
+real JAR recipe after restoration. Manifest generation and both verification
+modes verify without writing the policy. The exact new owned file is already in
+legacy history for later retirement when author data supersedes it. Personal
+instances, running clients and worlds are not modified by this source work.
+
 ## Current bounded network exception logging, 2 November 2026
 
 The current XML is 9e7b9918/4617 bytes and retains only four exact native

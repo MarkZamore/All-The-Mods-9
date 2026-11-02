@@ -41,6 +41,41 @@ does not require downloading the entire server export.
 
 ## Requested native client compatibility
 
+### Same-ID carpet recipe correction
+
+`kubejs/data/alchemistry/recipes/dissolver/carpets.json` supplies the same
+`alchemistry:dissolver/carpets` recipe with one corrected JSON field:
+`input.ingredient.tag` is `minecraft:wool_carpets`. The author recipe still uses
+the removed `minecraft:carpets` tag, as reported in
+[Alchemistry issue 365](https://github.com/SmashingMods/Alchemistry/issues/365).
+The 639-byte author JSON becomes 644 bytes by that single literal substitution;
+type, group, input count, all outputs, probabilities and rolls retain their bytes.
+Minecraft's wool-carpet tag and normal provider additions supply the input items.
+
+This is a resource override of author recipe behavior even though the Alchemistry
+JAR remains unchanged. All 432 JARs retain the published source hashes, including
+ModernFix 5.24.4. The unpublished ModernFix 5.25.0 candidate is not used. Quest
+localization, controls, logging, RAM/JVM settings and all other 1,805 runtime files
+remain unchanged. Actual multiplayer acceptance of this data correction is
+pending a new user/peer attempt; historical native receipts are not relabelled.
+
+The source-only `tools/carpets_recipe_policy.py` helper checks the exact author
+recipe, the one-field edit and `tools/carpets-recipe-policy.json`. Explicit source
+authoring may run `prepare`; the normal producer and manifest publisher only
+verify. Source restoration keeps the data file and rechecks it after restoring
+the exact author payload. All manifest CLI modes require the policy. A changed
+or already corrected author recipe fails before publication, requiring owner
+review and retirement or rebasing of this known override. A new author-owned
+override at the same resource path also requires review.
+
+When refreshing author sources, retain the helper, receipt, the profile's
+`recipeDataFixPolicy` pin and the recipe support row until that review. Keep the
+policy separate from quest-only schema2 `baseReplacements`. If the author fixes
+the recipe, remove this owned override after verifying the author result; retain
+its exact legacy ownership row so old installations without sync state also
+retire it. The existing `kubejs/**` ownership keeps normal personal-conflict backups.
+No launcher launch-time rule, new helper mod or rewritten author JAR is used.
+
 All **431 original author JARs remain byte-identical**. The user additionally
 requested the official **Draconic Evolution Render Patcher 1.3.0** for Forge
 1.20.1, making **432 shipped JARs**. Its CurseForge project/file IDs are

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "same-id-alchemistry-carpet-tag-correction",
+  "recipeId": "alchemistry:dissolver/carpets",
+  "sourceJar": {
+    "path": "mods/alchemistry-1.20.1-2.3.4.jar",
+    "sizeBytes": 3654585,
+    "sha256": "fe993f8e0586a9c65209c230de21225991d9e91c5482a262ce80b3eab2eb02e1"
+  },
+  "authorRecipe": {
+    "entry": "data/alchemistry/recipes/dissolver/carpets.json",
+    "sizeBytes": 639,
+    "sha256": "8b46cb2a3fe70fd29c418281ab29ab79de4211eb39289c79edd758f4505bb71c"
+  },
+  "override": {
+    "path": "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
+    "sizeBytes": 644,
+    "sha256": "05a82fcfb14da81ad397e342192b4f7dec0528156b0f4116cfc1f4aa68f009d4"
+  },
+  "onlyChangedJsonPointer": "/input/ingredient/tag",
+  "oldTag": "minecraft:carpets",
+  "newTag": "minecraft:wool_carpets",
+  "authorChangedOrFixedPolicy": "Fail before publication; review and retire/rebase only this known owned override, preserving newer author data."
+}

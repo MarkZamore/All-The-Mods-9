@@ -11,12 +11,21 @@
       "files": 1797
     }
   ],
-  "unionExactHashRows": 1798,
+  "unionExactHashRows": 1799,
   "ownershipSnapshots": [
     {
       "revision": "4450beb81609647f2db0fbb3cb11143176940994",
       "managedFileCount": 1792,
       "source": "previous launcher sync ownership marker (read-only)"
+    }
+  ],
+  "ownedDataFixes": [
+    {
+      "path": "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
+      "sizeBytes": 644,
+      "sha256": "05a82fcfb14da81ad397e342192b4f7dec0528156b0f4116cfc1f4aa68f009d4",
+      "reason": "Known exact owned recipe override; retain for future no-state retirement when the upstream recipe is fixed or otherwise reviewed.",
+      "officialIssue": "https://github.com/SmashingMods/Alchemistry/issues/365"
     }
   ]
 }

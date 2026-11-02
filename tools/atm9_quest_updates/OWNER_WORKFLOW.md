@@ -6,6 +6,17 @@
 
 Сначала выполните штатную подготовку и проверку исходной карточки. Для Original это `tools/prepare_pack.py` и `tools/verify_upstream.py`; для Modified — `tools/restore_modified.py` и `tools/verify_modified.py`. Обычная CI-сборка продолжает использовать закреплённые cache/profile/lock и не обращается за новым переводом.
 
+При переносе Original сохраняйте отдельные `tools/carpets_recipe_policy.py`,
+`tools/carpets-recipe-policy.json`, `recipeDataFixPolicy` профиля и support-файл
+`kubejs/data/alchemistry/recipes/dissolver/carpets.json`. Это проверенная замена
+одного поля рецепта, не квестовая строка `baseReplacements`. Новый или исправленный
+авторский рецепт, включая авторский ресурс по тому же пути, требует пересмотра и
+удаления/перебазирования нашего override. Обычная подготовка и публикация выполняют
+только verify; prepare этой политики — отдельное действие владельца исходников.
+При снятии override оставьте его точный legacy hash для старых установок без
+sync-state. Не переносите старое исправление поверх более нового авторского
+рецепта без проверки.
+
 ```powershell
 python tools/update_atm9_quests.py snapshot-published `
   --kind original --published <published-source> `

@@ -14,6 +14,7 @@ from pathlib import Path
 
 import atm9_ru_quests
 import atm9_quest_profile
+import carpets_recipe_policy
 
 PROFILE = "tools/portable-profile.json"
 LOCK_SHA = "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18"
@@ -27,6 +28,7 @@ SUPPORT = {
     "launcher/controls-preset.txt", "launcher/controls-guide.md",
     "kubejs/client_scripts/lanmc_memory_warning_policy.js",
     "mods/derenderpatcher-1.20.1-1.3.0-forge.jar",
+    "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
 }
 NOTICES = {
     "library/licenses/Scriptora-ATM9-MIT.txt", "library/ru-quests-provenance.md",
@@ -79,6 +81,34 @@ def verify_pin(pack: Path, pin: dict, expected_path=None, expected_sha=None):
         raise ValueError("Profile resource size/SHA256 mismatch: " + relative)
 
 
+def verify_recipe_policy(pack: Path, document: dict, records: list, support: dict):
+    """Bind the one owned recipe to original author data, also in a cold checkout."""
+    descriptor = document.get("recipeDataFixPolicy")
+    if descriptor is None:
+        return
+    verify_pin(pack, descriptor, carpets_recipe_policy.RECEIPT)
+    receipt = json.loads(resource(pack, descriptor["path"]).read_text(encoding="utf-8-sig"))
+    indexed = {row["path"]: row for row in records}
+    origin = receipt.get("sourceJar", {})
+    original = indexed.get(origin.get("path"))
+    override = receipt.get("override", {})
+    alchemistry = [row for row in records if row["path"].startswith("mods/alchemistry-") and row["path"].endswith(".jar")]
+    if (receipt.get("kind") != "same-id-alchemistry-carpet-tag-correction"
+            or receipt.get("recipeId") != "alchemistry:dissolver/carpets"
+            or len(alchemistry) != 1 or original != alchemistry[0]
+            or original is None or any(original.get(k) != origin.get(k) for k in ("path", "sizeBytes", "sha256"))
+            or receipt.get("authorRecipe") != {"entry": carpets_recipe_policy.AUTHOR_ENTRY, "sizeBytes": 639, "sha256": carpets_recipe_policy.AUTHOR_SHA}
+            or override != {"path": carpets_recipe_policy.OVERRIDE, "sizeBytes": 644, "sha256": carpets_recipe_policy.OVERRIDE_SHA}
+            or support.get(override["path"]) != override):
+        raise ValueError("Recipe policy differs from the exact author/support rows")
+    if override["path"] in indexed:
+        raise ValueError("Author now supplies the same recipe override; review/retire this owned policy")
+    # The pinned author importer may restore an omitted binary later. Its
+    # immutable author row already binds the receipt before any normalization.
+    if resource(pack, origin["path"]).is_file():
+        carpets_recipe_policy.verify(pack)
+
+
 def load(pack: Path):
     if not (pack / PROFILE).is_file():
         return None
@@ -121,6 +151,7 @@ def load(pack: Path):
         if row["path"] == atm9_ru_quests.ENGLISH and any(
                 base64.b64decode(edit["originalBase64"], validate=True) for edit in row["edits"]):
             raise ValueError("Original English fallback changes must be insert-only")
+    verify_recipe_policy(pack, doc, records, support)
     return {"document": doc, "records": records, "overlays": {r["path"]: r for r in overlays},
             "overrides": {r["path"] for r in lock["overrides"]}, "support": support}
 
@@ -128,7 +159,7 @@ def load(pack: Path):
 def load_dynamic(pack: Path, doc: dict):
     fields = {"schemaVersion", "kind", "sourceVersion", "upstreamLock", "unmodifiedImporter",
               "questLocalization", "baseReplacements", "supportFiles", "sourceNotices"}
-    if (set(doc) != fields or doc.get("kind") != "atm9-original-russian-quests-and-logging" or
+    if (set(doc) - {"recipeDataFixPolicy"} != fields or doc.get("kind") != "atm9-original-russian-quests-and-logging" or
             type(doc.get("schemaVersion")) is not int or doc["schemaVersion"] != 2):
         raise ValueError("Unsupported explicit original ATM9 profile")
     verify_pin(pack, doc["upstreamLock"], "tools/upstream-lock.json")
@@ -158,6 +189,7 @@ def load_dynamic(pack: Path, doc: dict):
             raise ValueError("Native payload omits the exact translation notice")
     reviewed = atm9_quest_profile.validate(pack, doc["questLocalization"], raw, records,
                                            doc["baseReplacements"], doc["supportFiles"])
+    verify_recipe_policy(pack, doc, records, supports)
     return {"document": doc, "records": records, "overlays": reviewed["overlays"],
             "overrides": {r["path"] for r in lock["overrides"]}, "support": supports,
             "dynamic": reviewed, "upstreamBytes": raw}

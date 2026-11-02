@@ -2220,6 +2220,11 @@
     "sha256": "02e330b939cd68ee9fe9415ddb4aedf93d17416a2c8fedf30909331b654fa33d"
   },
   {
+    "path": "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
+    "sizeBytes": 644,
+    "sha256": "05a82fcfb14da81ad397e342192b4f7dec0528156b0f4116cfc1f4aa68f009d4"
+  },
+  {
     "path": "kubejs/data/allthemodium/worldgen/structure_set/ancient_pyramid.json",
     "sizeBytes": 241,
     "sha256": "c8cf387fa9038d36fe333536ffe0c2c84d36b1078bcc2b2646d526c1d0457978"

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "kind": "same-id-carpet-recipe-source-verification",
+  "status": "SOURCE_STATIC_AND_PRODUCER_PASS_ACTUAL_REJOIN_PENDING",
+  "baselineSourceRevision": "c20244e57d25dd83ba2a288d6d722050e822b7be",
+  "officialIssue": "https://github.com/SmashingMods/Alchemistry/issues/365",
+  "recipeId": "alchemistry:dissolver/carpets",
+  "sourceJar": {
+    "path": "mods/alchemistry-1.20.1-2.3.4.jar",
+    "sizeBytes": 3654585,
+    "sha256": "fe993f8e0586a9c65209c230de21225991d9e91c5482a262ce80b3eab2eb02e1"
+  },
+  "authorRecipe": {
+    "entry": "data/alchemistry/recipes/dissolver/carpets.json",
+    "sizeBytes": 639,
+    "sha256": "8b46cb2a3fe70fd29c418281ab29ab79de4211eb39289c79edd758f4505bb71c"
+  },
+  "override": {
+    "path": "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
+    "sizeBytes": 644,
+    "sha256": "05a82fcfb14da81ad397e342192b4f7dec0528156b0f4116cfc1f4aa68f009d4"
+  },
+  "semanticChange": {
+    "jsonPointer": "/input/ingredient/tag",
+    "before": "minecraft:carpets",
+    "after": "minecraft:wool_carpets",
+    "allOtherLiteralBytesPreserved": true,
+    "inputCountTypeGroupOutputsProbabilitiesAndRollsPreserved": true,
+    "globalTagAliasAdded": false
+  },
+  "sourceChecks": {
+    "unitTestsPassed": 152,
+    "sharedPolicyTestsIncluded": 8,
+    "sourceCheckGroupsPassed": 6,
+    "actualFullProducerRestoreCyclesPassed": 2,
+    "firstCycleRestoredMissingExactAuthorJarFromCache": true,
+    "secondCycleIdempotent": true,
+    "all1806RuntimeFilesByteExactAfterBothCycles": true,
+    "all1805PreviousRuntimeFilesUnchanged": true,
+    "all432JarBytesUnchanged": true,
+    "controls": "488 names,159 enabled,329 unbound,83 independent world inputs unchanged",
+    "immutableAuthorImporterAndLockPreserved": true,
+    "loggingQuestsMemoryJvmAndPresetPreserved": true,
+    "modernfixVersion": "5.24.4+mc1.20.1",
+    "unpublishedModernfix525CandidateUsed": false,
+    "legacyExactHashRows": 1799
+  },
+  "futureAuthorUpdate": "Source producer and every manifest CLI mode verify. Changed/fixed author recipe or new author-owned resource at the same path requires explicit review and retirement/rebase, preserving author improvements. Exact override legacy ownership enables future no-state retirement.",
+  "safetyReview": "One input-tag correction in an existing BASE machine recipe. No new mod/JAR, ability, terrain-destruction or permission path. No Safety component is added or changed; no protection claim is introduced.",
+  "acceptance": {
+    "newClientOrForgeBootstrapRun": false,
+    "newActualPeerJoinPassed": false,
+    "historicalNativeReceiptsRelabeled": false,
+    "sourceJarBoundNativeInventoryAndKeyStockUnchanged": true,
+    "personalInstancesWorldsOrRunningAppsChanged": false
+  }
+}

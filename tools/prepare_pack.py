@@ -45,6 +45,8 @@ def prepare(pack, cache, workers=8, restore_locked_files=False):
     overlay("apply")
     final = profile_tools.preflight(pack, profile_tools.load(pack), require_all=True, localized_only=True)
     overlay("verify")
+    if profile.get("document", {}).get("recipeDataFixPolicy") is not None:
+        profile_tools.carpets_recipe_policy.verify(pack)
     return {"status": "PASS", "authorVersion": profile["document"]["sourceVersion"] if dynamic else "1.1.1", "before": before, "effective": final}
 
 

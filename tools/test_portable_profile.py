@@ -109,6 +109,7 @@ class FixedReviewIdentityTests(unittest.TestCase):
                  document["unmodifiedImporter"]["path"],
                  document["localization"]["patchTool"]["path"],
                  document["localization"]["manifest"]["path"],
+                 document["recipeDataFixPolicy"]["path"],
                  *(p["path"] for p in document["supportFiles"]),
                  *(p["path"] for p in document["sourceNotices"])]
         for name in names:
@@ -145,6 +146,37 @@ class FixedReviewIdentityTests(unittest.TestCase):
     def test_missing_native_payload_notice_is_rejected(self):
         (self.pack / "kubejs/atm9_ru_quests_license.txt").unlink()
         with self.assertRaisesRegex(ValueError, "Profile resource size/SHA256 mismatch"):
+            profile_tools.load(self.pack)
+
+    def test_cold_recipe_receipt_cannot_rebind_the_original_jar_by_editing_its_profile_pin(self):
+        document = json.loads((self.pack / profile_tools.PROFILE).read_bytes())
+        relative = document["recipeDataFixPolicy"]["path"]
+        receipt = json.loads((self.pack / relative).read_bytes())
+        receipt["sourceJar"]["sha256"] = "0" * 64
+        raw = (json.dumps(receipt) + "\n").encode()
+        (self.pack / relative).write_bytes(raw)
+        document["recipeDataFixPolicy"] = pin(relative, raw)
+        (self.pack / profile_tools.PROFILE).write_text(json.dumps(document), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "exact author/support"):
+            profile_tools.load(self.pack)
+
+    def test_cold_recipe_payload_cannot_be_reapproved_by_changing_both_metadata_pins(self):
+        document = json.loads((self.pack / profile_tools.PROFILE).read_bytes())
+        relative = document["recipeDataFixPolicy"]["path"]
+        receipt = json.loads((self.pack / relative).read_bytes())
+        payload_path = receipt["override"]["path"]
+        changed = (self.pack / payload_path).read_bytes().replace(b'"count": 2', b'"count": 3')
+        (self.pack / payload_path).write_bytes(changed)
+        replacement_pin = pin(payload_path, changed)
+        receipt["override"] = replacement_pin
+        for row in document["supportFiles"]:
+            if row["path"] == payload_path:
+                row.update(replacement_pin)
+        raw = (json.dumps(receipt) + "\n").encode()
+        (self.pack / relative).write_bytes(raw)
+        document["recipeDataFixPolicy"] = pin(relative, raw)
+        (self.pack / profile_tools.PROFILE).write_text(json.dumps(document), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "exact author/support"):
             profile_tools.load(self.pack)
 
 
