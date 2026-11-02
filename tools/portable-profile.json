@@ -74,6 +74,11 @@
       "path": "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
       "sizeBytes": 644,
       "sha256": "05a82fcfb14da81ad397e342192b4f7dec0528156b0f4116cfc1f4aa68f009d4"
+    },
+    {
+      "path": "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
+      "sizeBytes": 21839,
+      "sha256": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3"
     }
   ],
   "sourceNotices": [
@@ -97,5 +102,10 @@
     "path": "tools/carpets-recipe-policy.json",
     "sizeBytes": 962,
     "sha256": "c494792030f06d3a1ccd4154ce081662af9e20ba55a26e354b92102ba425f35c"
+  },
+  "waypointGenerationPolicy": {
+    "path": "tools/journeymap-waypoints-policy.json",
+    "sizeBytes": 2610,
+    "sha256": "822a23343a9f39e334135157d68081e263996f26a52f47bb43478c12a8f2fb55"
   }
 }

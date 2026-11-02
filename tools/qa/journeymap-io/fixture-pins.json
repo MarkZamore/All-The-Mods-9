@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "scope": "Actual Rhino/JDK17 + native Windows File/Path/CommonsIO + exact KubeJS ClassFilter semantics. UtilsJS platform-root lookup uses guarded facade; combined Forge/Platform/MC/JM path APIs are explicit models. Not live Forge/JM, fsync/power-loss or global-writer-race proof.",
+  "sources": {
+    "waypoint_io_adapter.js": "abed9753a7037e2be4eebf525b881fedf69724b237a85a8663b0ef777780bc35",
+    "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
+    "lanmc_journeymap_waypoint_policy.js": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3",
+    "WaypointIoNativeAudit.java": "08de1bc3a3bbcb8ed11eb0ca0a0241dae333d600bd11c06a8daada3a23fd4c82",
+    "native_io_cases.js": "d12f94a06e78165287f628963751f973d3806b9af72e687423815929c35f4cb2",
+    "CombinedWaypointNativeAudit.java": "bcc6e1142841acbf3015a9e468747d70a59949318a06003fff5553c172a20c6f",
+    "combined_models.js": "a39c1a80fd041653deaa034be5e4b7cb33ef238f38658b97a75f323475d252db",
+    "combined_cases.js": "3ce68400741fcc5615992fb9e1f2b7a9d4a51494c849ab3cba77ccee3c23fa82",
+    "run_public_fixture.py": "2d3078e943583c1f403e0dfa1b35b4cf5cf8851847c6ba8ec482a5f5827afae9"
+  },
+  "jars": [
+    {
+      "root": "mods",
+      "path": "rhino-forge-2001.2.3-build.10.jar",
+      "sha256": "fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6"
+    },
+    {
+      "root": "mods",
+      "path": "kubejs-forge-2001.6.5-build.16.jar",
+      "sha256": "3de6b7267d3aab981848ed54d3afe7edf20532fa4060631fd6fffcd99ac5f3d5"
+    },
+    {
+      "root": "libraries",
+      "path": "it/unimi/dsi/fastutil/8.5.9/fastutil-8.5.9.jar",
+      "sha256": "9578bf2a1700cf20d21746a2ee89e57ba1abbd37fa9feda68ff5e9a28473a7f9"
+    },
+    {
+      "root": "libraries",
+      "path": "commons-io/commons-io/2.11.0/commons-io-2.11.0.jar",
+      "sha256": "961b2f6d87dbacc5d54abf45ab7a6e2495f89b75598962d8c723cea9bc210908"
+    },
+    {
+      "root": "libraries",
+      "path": "com/google/code/gson/gson/2.10.1/gson-2.10.1.jar",
+      "sha256": "4241c14a7727c34feea6507ec801318a3d4a90f070e4525681079fb94ee4c593"
+    },
+    {
+      "root": "libraries",
+      "path": "org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar",
+      "sha256": "d919d904486c037f8d193412da0c92e22a9fa24230b9d67a57855c5c31c7e94e"
+    }
+  ]
+}

@@ -252,3 +252,21 @@ No raw account logs, local paths, user identifiers or personal worlds are
 published. Static checks, one-host success and overlay controls do not represent
 two-client connection PASS for that older run. The current Original on launcher 422 result is
 recorded separately above.
+
+## JourneyMap waypoint association source change (2 November 2026)
+
+The [bounded source/native receipt](tools/qa/journeymap-waypoint-generation-source.json)
+describes this separate source-only change. Its runtime delta from the published
+parent is one KubeJS startup script; all 432 JARs, author configs, quests, controls
+and the carpet recipe correction retain their prior bytes. Pinned native public
+API/remapper checks, modelled lifecycle ordering and actual Rhino/native Windows
+filesystem fixtures support the implementation. They do not constitute a new
+Minecraft client/world-switch acceptance run.
+
+The policy preserves and archives waypoint directories by a pack-owned world UUID.
+It does not move map images or change multiplayer transport. A native JourneyMap
+deathpoint task can still run after its minimum three-second sleep and executor
+queue wait in a later world; no late-callback filter is claimed. One client per
+game directory is required, and power loss or external concurrent writes were
+not modelled. Exact native/source pins prevent an unreviewed author update from
+silently publishing this compatibility policy against different APIs.

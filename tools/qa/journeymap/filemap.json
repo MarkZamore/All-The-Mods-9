@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "candidate/test_waypoint_lifecycle.js",
+      "sizeBytes": 4836,
+      "sha256": "e646ec13964f3f77d072caf626093cc7b33272d08fd83085fe2c7294199aaefc"
+    },
+    {
+      "path": "candidate/waypoint_forge1201_lifecycle.js",
+      "sizeBytes": 3520,
+      "sha256": "03be67e2b52e1a50f31689e0994cf751149f0c7d571c338e1b84acbb474eabe5"
+    },
+    {
+      "path": "native-lifecycle-alias-proof.json",
+      "sizeBytes": 3317,
+      "sha256": "7aa286480706ddbfeaf4840ed1b0724dda57ad3ca9d21493a22af41d1faae2e7"
+    },
+    {
+      "path": "native-public-api-fixture.json",
+      "sizeBytes": 4768,
+      "sha256": "cdae81a5e5b1d9f236f73e7bbefd6633255b698492ff845f6363523c9cb617d1"
+    },
+    {
+      "path": "native-waypoint-probe.js",
+      "sizeBytes": 3641,
+      "sha256": "dc2e4c31595d73fde7297f54c22f710f0a8233d4ffd29a4b7659592f1dcf3558"
+    },
+    {
+      "path": "NativeLifecycleAliasProbe.java",
+      "sizeBytes": 4901,
+      "sha256": "2ed43ae2d724b286490bb840dbed627641ab0460312588d569fe4ff051c927a1"
+    },
+    {
+      "path": "NativeLifecycleModelProbe.java",
+      "sizeBytes": 1001,
+      "sha256": "8d0dda4a2a4d5896672c6b9545026a2c193ae5067ece4eced8fde06e641bbefb"
+    },
+    {
+      "path": "NativeWaypointProbe.java",
+      "sizeBytes": 1423,
+      "sha256": "9e6ab001300e896bd87d93834947e016177bbf73f8b834f4ebce9859dd80ae97"
+    },
+    {
+      "path": "README.md",
+      "sizeBytes": 2114,
+      "sha256": "ea6af045e5de1ae52be2fc40dc93b6c1b83a7d468bb68567b3f98f94c712f74a"
+    },
+    {
+      "path": "run_native_public_probe.py",
+      "sizeBytes": 4275,
+      "sha256": "0d7218f0bd961c47cdb21255cbf6f4c0c97808192051da9ff989f4efb09fe6bd"
+    }
+  ]
+}

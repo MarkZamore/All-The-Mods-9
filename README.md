@@ -297,3 +297,33 @@ native language getter or a Russian UI pass. Mod IDs, the read-only Memory flag,
 488 measured Options names and normal exit remain valid independently of locale.
 No player language, runtime preset, quest or game file is changed by this evidence
 correction.
+
+## Singleplayer JourneyMap waypoint generations
+
+The pack-owned startup script records a random world UUID in
+`saves/<folder>/lanmc-waypoints-world.json` and associates only the JourneyMap
+waypoint directory with that generation. Reusing a world folder preserves its
+previous points under `local/lanmc-waypoint-archives/v1/<slot>/<UUID>/waypoints`.
+Reopening the same UUID keeps its points; restoring a known UUID restores its
+archived points. Existing worlds adopt their points on the first startup.
+Map images, game data, JourneyMap settings and remote-server points are unchanged.
+
+The [source/native fixture receipt](tools/qa/journeymap-waypoint-generation-source.json)
+separates pinned native API checks and actual Rhino/filesystem fixtures from
+Minecraft runtime acceptance. No new full-game launch, real Forge event execution
+or real world switch is claimed. Native JourneyMap still queues deathpoint writes
+after a minimum three-second sleep plus executor waiting, without rechecking the
+world generation. A callback from a previous world can still write a point after
+a transition; this policy has no late-deathpoint filter or global writer barrier.
+Use one client per game directory; external concurrent edits and power-loss
+durability are outside the tested scope. Path/bootstrap failures preserve existing
+waypoints and report a warning.
+
+Future author imports must retain `tools/journeymap-policy`, the source helper
+`tools/waypoint_source_policy.py`, its receipt `tools/journeymap-waypoints-policy.json`,
+the startup script/template, and their client-policy/support pins. Run
+`python tools/client-policy/prepare.py --pack . --templates-only --apply` before
+cold JAR restoration; after restoration run normal client-policy verification and
+`python tools/waypoint_source_policy.py --pack .`. Generation verifies these pins
+without rebasing them. Unknown JourneyMap/KubeJS/Rhino or platform bytes stop
+publication pending explicit API review; personal waypoint state is never shipped.

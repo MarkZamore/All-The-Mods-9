@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_AND_PINNED_NATIVE_API_IO_COMBINED_FIXTURES_PASS_NO_GAME_ACCEPTANCE",
+  "parentSourceRevision": "589b43d580cb5aeba748d85985e9c2c4e1a428b1",
+  "immutableAuthorLockSha256": "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18",
+  "portableProfileSha256": "aacf846abd38c0b91bcaf14ed008ac8db4eea98e18602aa3484d5ae0496c4a23",
+  "runtimeMapSha256": "221a566246fc7848916f1cd212c479f9b5ebd3fec33166da2923e37f25aee142",
+  "runtimeFiles": 1807,
+  "onlyAddedRuntimeFile": {
+    "path": "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
+    "sizeBytes": 21839,
+    "sha256": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3"
+  },
+  "all1806ParentRuntimeRowsUnchanged": true,
+  "all432ContentJarsUnchanged": true,
+  "sourceProjectedPackModIds": 453,
+  "nativeModules": [
+    {
+      "modId": "journeymap",
+      "path": "mods/journeymap-1.20.1-5.10.3-forge.jar",
+      "sizeBytes": 7160405,
+      "sha256": "8b2679b7b4881e0aa430fd24345ea446de919faf8a45bd2a71d37c7e8ff6ae1e"
+    },
+    {
+      "modId": "kubejs",
+      "path": "mods/kubejs-forge-2001.6.5-build.16.jar",
+      "sizeBytes": 1654660,
+      "sha256": "3de6b7267d3aab981848ed54d3afe7edf20532fa4060631fd6fffcd99ac5f3d5"
+    },
+    {
+      "modId": "rhino",
+      "path": "mods/rhino-forge-2001.2.3-build.10.jar",
+      "sizeBytes": 1798244,
+      "sha256": "fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6"
+    }
+  ],
+  "parts": [
+    {
+      "path": "waypoint_forge1201_lifecycle.js",
+      "sha256": "03be67e2b52e1a50f31689e0994cf751149f0c7d571c338e1b84acbb474eabe5"
+    },
+    {
+      "path": "waypoint_generation_core.js",
+      "sha256": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade"
+    },
+    {
+      "path": "waypoint_io_adapter.js",
+      "sha256": "abed9753a7037e2be4eebf525b881fedf69724b237a85a8663b0ef777780bc35"
+    }
+  ],
+  "coreSyntheticFaultChecks": 25,
+  "nativeIoChecks": 15,
+  "combinedActualRhinoIoFlows": 7,
+  "lifecycleModelChecks": 10,
+  "nativeRemapperAliasesVerified": true,
+  "pureNativePathResolverUsedBeforeOwnedDirectoryWrites": true,
+  "missingMapTargetValidatedBeforeCreation": true,
+  "fullMinecraftRuntimeOrWorldSwitchClaimed": false,
+  "defaultUtilsPlatformRootLookupExecutedInGame": false,
+  "nativeLateDeathWriterStillPresent": true,
+  "lateDeathGuardIncluded": false,
+  "sourceSafetyReview": "No content JAR, registry, world mechanic or permission path changes. Client waypoint directories and owned metadata sidecars only; no additional Safety behavior or protection claim.",
+  "publicProofs": [
+    {
+      "path": "tools/qa/journeymap/native-lifecycle-alias-proof.json",
+      "sha256": "7aa286480706ddbfeaf4840ed1b0724dda57ad3ca9d21493a22af41d1faae2e7"
+    },
+    {
+      "path": "tools/qa/journeymap/native-public-api-fixture.json",
+      "sha256": "cdae81a5e5b1d9f236f73e7bbefd6633255b698492ff845f6363523c9cb617d1"
+    },
+    {
+      "path": "tools/qa/journeymap-io/native-proof.json",
+      "sha256": "d2470c0a7049045a2091cbc82980e4e6359696ee7a43009bf32adc645092b347"
+    }
+  ],
+  "producerCycle": {
+    "removedOnlyExactHashPinnedOwnedScript": true,
+    "actualTemplateStageRestoredMissingScript": true,
+    "actualNativeJarRestoredFromLockedCache": true,
+    "actualNormalRestoreCompletedTwice": true,
+    "actualNativeApiSourceCheckCompleted": true,
+    "actualFinalSourcePolicyCheckCompleted": true,
+    "all1807RuntimeRowsMatchBeforeAndAfterBothCycles": true,
+    "runtimeOrPersonalFilesOutsideSourceTouched": false
+  },
+  "pythonUnitTestsPassed": 162,
+  "sourceControlsPresetUnchanged": true,
+  "limits": [
+    "One active client per game directory; no external concurrent file edits.",
+    "Native delayed deathpoint callback remains after minimum three-second sleep plus unbounded executor queue wait; no late-generation filter or global writer barrier.",
+    "Process rollback/recovery fixtures do not establish hardware power-loss/fsync guarantees.",
+    "Forge events, Minecraft path providers and JourneyMap path selection are models in the combined filesystem fixture; separate exact native API/bytecode proofs bind their signatures/order."
+  ]
+}

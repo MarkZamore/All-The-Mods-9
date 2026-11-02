@@ -105,7 +105,8 @@ class OriginalDynamicTests(unittest.TestCase):
             self.prepare()
         self.assertIn(relative, str(missing.exception))
         source = HERE / "client-policy"
-        for name in ("prepare.py", "policy.json", "scripts/lanmc_memory_warning_policy.js"):
+        policy = json.loads((source / "policy.json").read_text(encoding="utf-8-sig"))
+        for name in ("prepare.py", "policy.json", *(row["template"] for row in policy["scripts"])):
             destination = self.root / "tools/client-policy" / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes((source / name).read_bytes())

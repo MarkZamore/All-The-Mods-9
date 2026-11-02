@@ -110,6 +110,9 @@ class FixedReviewIdentityTests(unittest.TestCase):
                  document["localization"]["patchTool"]["path"],
                  document["localization"]["manifest"]["path"],
                  document["recipeDataFixPolicy"]["path"],
+                 document["waypointGenerationPolicy"]["path"],
+                 "tools/client-policy/policy.json",
+                 "tools/client-policy/scripts/lanmc_journeymap_waypoint_policy.js",
                  *(p["path"] for p in document["supportFiles"]),
                  *(p["path"] for p in document["sourceNotices"])]
         for name in names:
@@ -178,6 +181,25 @@ class FixedReviewIdentityTests(unittest.TestCase):
         (self.pack / profile_tools.PROFILE).write_text(json.dumps(document), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "exact author/support"):
             profile_tools.load(self.pack)
+
+    def test_cold_waypoint_native_pin_cannot_be_rebased_away_from_author_rows(self):
+        document = json.loads((self.pack / profile_tools.PROFILE).read_bytes())
+        relative = document["waypointGenerationPolicy"]["path"]
+        receipt = json.loads((self.pack / relative).read_bytes())
+        receipt["nativeModules"][0]["sha256"] = "0" * 64
+        raw = (json.dumps(receipt) + "\n").encode()
+        (self.pack / relative).write_bytes(raw)
+        document["waypointGenerationPolicy"] = pin(relative, raw)
+        (self.pack / profile_tools.PROFILE).write_text(json.dumps(document), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "exact author rows"):
+            profile_tools.load(self.pack)
+
+    def test_author_supplied_same_script_requires_review_before_prepare_writes(self):
+        document = json.loads((self.pack / profile_tools.PROFILE).read_bytes())
+        profile = profile_tools.load(self.pack)
+        rows = [*profile["records"], pin("kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js", b"new author data")]
+        with self.assertRaisesRegex(ValueError, "exact author/support"):
+            profile_tools.verify_waypoint_policy(self.pack, document, rows, profile["support"])
 
 
 if __name__ == "__main__":

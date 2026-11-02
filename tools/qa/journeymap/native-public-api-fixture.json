@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "native-journeymap-5103-public-api-fixture-proof",
+  "status": "PASS_LIMITED_NATIVE_FIXTURE_ONLY",
+  "checks": [
+    "actual-native-gson-point-isDeath",
+    "actual-native-name-public-getter",
+    "older-than-birth-full-second",
+    "current-same-second-conservative",
+    "new-current-death-preserved",
+    "non-death-preserved",
+    "renamed-unknown-preserved",
+    "custom-format-preserved",
+    "invalid-date-preserved",
+    "trailing-input-preserved",
+    "whitelisted-legacy-preserved",
+    "untrusted-clock-preserved",
+    "other-language-preserved",
+    "actual-native-store-add-get",
+    "actual-native-store-collection",
+    "actual-native-store-remove-nonpersistent"
+  ],
+  "checkCount": 16,
+  "methodScope": "Actual Rhino evaluator + native JM Waypoint public parser/getters, isolated native WaypointStore enum/cache add/getAll/remove(nonpersistent,false), Java SimpleDateFormat. No game bootstrap, no file archive/delete/persistent-store path or lifecycle/runtime PASS.",
+  "javaRuntime": "Existing exact Minecraft1.20.1 java-runtime-gamma Java17 process, -Xms16m -Xmx128m, headless, artifact-only cwd. No Minecraft.main/Forge bootstrap or target attach.",
+  "nativeDependencies": [
+    {
+      "file": "journeymap-1.20.1-5.10.3-forge.jar",
+      "sha256": "8b2679b7b4881e0aa430fd24345ea446de919faf8a45bd2a71d37c7e8ff6ae1e",
+      "sizeBytes": 7160405
+    },
+    {
+      "file": "rhino-forge-2001.2.3-build.10.jar",
+      "sha256": "fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6",
+      "sizeBytes": 1798244
+    }
+  ],
+  "nativeSemantics": {
+    "name": "localized jm.waypoint.deathpoint + space + new SimpleDateFormat(timeFormat + space + dateFormat).format(new Date())",
+    "defaultConfig": "HH:mm:ss MM-dd-yyyy; native user formats are configurable and may change",
+    "id": "CommonConstants.getCSSSafeString(String.format(\"%s_%s,%s,%s\", name,x,y,z), \"-\")",
+    "timestampField": null,
+    "getAll": "WaypointStore.INSTANCE.getAll() -> cache.asMap().values() concurrent live view",
+    "remove": "remove(Waypoint,boolean fireEvent) invalidates cache; ifpersistent and current fileexists, optionalDeletedEvent then File.delete; filedelete returnvalue ignored by native method",
+    "createdEvent": "WaypointCreatedEvent fires only after cache.put and writeToFile, cannot cancel prewrite",
+    "tickRegistration": "ClientEvents.tick(...) supported client_script event; native per-tick consumer wiring owned separately, not exercised by this fixture"
+  },
+  "conservativeGuard": {
+    "acceptedName": "Exact currently approved native default full name prefix and HH:mm:ss MM-dd-yyyy; strict regex plus Java SimpleDateFormat.setLenient(false), fullParsePosition, formattingroundtrip",
+    "olderThanBirth": "parsedDate.getTime()+999 < birthMillis (second is fully older), and currentclock trusted, point.isDeathPoint and notlegacywhitelisted",
+    "preserve": "Same-second/afterbirth, nondeath, unknown/renamed/nondefaultformat/invaliddate/trailingtext/differentlanguage/untrustedclock/legacyID allpreserved",
+    "timezone": "Fixture explicitlyUTC; production mustuseactualnative defaulttimezone consistently and suspenddate-basedfilter ifclock/timezone/format cannotbeverified",
+    "archiveThenRemove": "Copy/persist+verify archive before native remove(point,true), never removeonarchivefailure; movingoriginal firstmeans nativeDeletedEvent doesnotfire",
+    "limits": [
+      "Name is presentation data, not authoritative creationtime. A manually renamed Death point exactlymimickingnative oldtimestamp cannotbeidentifiedasrenamed.",
+      "Arbitraryclockrollback or timezonechange betweencreationandvalidation cannotbeproved away byname. Guard mustpreservewhenclocktrust lost.",
+      "Postwrite clienttick quarantine canremove a lateoldpoint but doesnotprove neveranybriefinter-framevisibility.",
+      "Nativepersistentfile delete/event behavior verified bytecode only; actualfixture intentionallyremoved onlynonpersistentpoint and didnotinitializeFileHandler/Minecraft."
+    ]
+  },
+  "sourceArtifacts": [
+    {
+      "name": "NativeWaypointProbe.java",
+      "sha256": "9e6ab001300e896bd87d93834947e016177bbf73f8b834f4ebce9859dd80ae97"
+    },
+    {
+      "name": "native-waypoint-probe.js",
+      "sha256": "dc2e4c31595d73fde7297f54c22f710f0a8233d4ffd29a4b7659592f1dcf3558"
+    }
+  ],
+  "nativeBytecodeProfile": {
+    "waypointClassSha256": "2dfd604660f6cd5602b919bad45bbd119ef6cfa3529d8ae005d58846094f16e0",
+    "waypointStoreClassSha256": "ade5a6c43079af1586ccc15efccc3026e0a292d2f2f3dec719cd14e568be2a4b",
+    "deathHandlerClassSha256": "770fc7f2efbf1bcc4caa70f2d39a6c7ea567f2d864c1a72f67cbb6d8979de588"
+  }
+}

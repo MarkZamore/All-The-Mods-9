@@ -47,6 +47,8 @@ def prepare(pack, cache, workers=8, restore_locked_files=False):
     overlay("verify")
     if profile.get("document", {}).get("recipeDataFixPolicy") is not None:
         profile_tools.carpets_recipe_policy.verify(pack)
+    if profile.get("document", {}).get("waypointGenerationPolicy") is not None:
+        profile_tools.waypoint_source_policy.verify(pack)
     return {"status": "PASS", "authorVersion": profile["document"]["sourceVersion"] if dynamic else "1.1.1", "before": before, "effective": final}
 
 

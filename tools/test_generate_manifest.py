@@ -8,6 +8,7 @@ import tempfile
 import unittest
 import network_logging_policy
 import carpets_recipe_policy
+import waypoint_source_policy
 import shutil
 
 
@@ -21,7 +22,7 @@ class ReleaseVerificationTests(unittest.TestCase):
             source = Path(__file__).resolve().parents[1]
             (pack / 'config/log4j2.xml').write_bytes((source / 'config/log4j2.xml').read_bytes())
             version = json.loads((source / 'portable-pack.json').read_text(encoding='utf-8-sig'))['minecraftVersion']
-            (pack / 'portable-pack.json').write_text(json.dumps({'minecraftVersion': version}), encoding='utf-8')
+            (pack / 'portable-pack.json').write_text(json.dumps(waypoint_source_policy.PLATFORM), encoding='utf-8')
             network_logging_policy.prepare(pack)
             # The publication CLI also requires the source-owned recipe policy.
             jar = 'mods/alchemistry-1.20.1-2.3.4.jar'
@@ -29,6 +30,14 @@ class ReleaseVerificationTests(unittest.TestCase):
             shutil.copyfile(source / jar, pack / jar)
             shutil.copyfile(source / 'launcher/pack-owned.txt', pack / 'launcher/pack-owned.txt')
             carpets_recipe_policy.prepare(pack)
+            for relative in [waypoint_source_policy.SCRIPT, waypoint_source_policy.TEMPLATE,
+                             waypoint_source_policy.RECEIPT, 'tools/client-policy/policy.json']:
+                target = pack / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source / relative, target)
+            native = json.loads((source / waypoint_source_policy.RECEIPT).read_bytes())['nativeModules']
+            for row in native:
+                shutil.copyfile(source / row['path'], pack / row['path'])
             dist = root / 'dist'
             assets = dist / 'assets'
             assets.mkdir(parents=True)
@@ -64,6 +73,14 @@ class ReleaseVerificationTests(unittest.TestCase):
             self.assertIn('carpets recipe policy invalid', no_recipe_policy.stderr)
             self.assertEqual(original_manifest, manifest.read_bytes())
             recipe_receipt.write_bytes(recipe_pinned)
+            waypoint_receipt = pack / waypoint_source_policy.RECEIPT
+            waypoint_pinned = waypoint_receipt.read_bytes()
+            waypoint_receipt.unlink()
+            no_waypoint_policy = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            self.assertNotEqual(0, no_waypoint_policy.returncode)
+            self.assertIn('waypoint generation policy invalid', no_waypoint_policy.stderr)
+            self.assertEqual(original_manifest, manifest.read_bytes())
+            waypoint_receipt.write_bytes(waypoint_pinned)
             for row in rows:
                 asset = assets / row['name']
                 original = asset.read_bytes()

@@ -57,6 +57,9 @@ jobs:
       - name: Verify native client policy APIs
         run: python tools/client-policy/prepare.py --pack . --apply
 
+      - name: Verify reviewed JourneyMap source and native pins
+        run: python tools/waypoint_source_policy.py --pack .
+
       - name: Verify reviewed keyboard preset
         run: python tools/keybinds/check_preset.py
 

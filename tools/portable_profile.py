@@ -15,6 +15,7 @@ from pathlib import Path
 import atm9_ru_quests
 import atm9_quest_profile
 import carpets_recipe_policy
+import waypoint_source_policy
 
 PROFILE = "tools/portable-profile.json"
 LOCK_SHA = "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18"
@@ -29,6 +30,7 @@ SUPPORT = {
     "kubejs/client_scripts/lanmc_memory_warning_policy.js",
     "mods/derenderpatcher-1.20.1-1.3.0-forge.jar",
     "kubejs/data/alchemistry/recipes/dissolver/carpets.json",
+    "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
 }
 NOTICES = {
     "library/licenses/Scriptora-ATM9-MIT.txt", "library/ru-quests-provenance.md",
@@ -109,6 +111,39 @@ def verify_recipe_policy(pack: Path, document: dict, records: list, support: dic
         carpets_recipe_policy.verify(pack)
 
 
+def verify_waypoint_policy(pack: Path, document: dict, records: list, support: dict):
+    """Bind the reviewed source script and native APIs before author restoration."""
+    descriptor = document.get("waypointGenerationPolicy")
+    if descriptor is None:
+        return
+    verify_pin(pack, descriptor, waypoint_source_policy.RECEIPT)
+    receipt = json.loads(resource(pack, descriptor["path"]).read_text(encoding="utf-8-sig"))
+    script = receipt.get("script", {})
+    expected = {"path": waypoint_source_policy.SCRIPT,
+                "sizeBytes": script.get("sizeBytes"), "sha256": script.get("sha256")}
+    native = receipt.get("nativeModules")
+    indexed = {row["path"]: row for row in records}
+    if (receipt.get("kind") != "pack-owned-waypoint-generation-association"
+            or receipt.get("platform") != waypoint_source_policy.PLATFORM
+            or script.get("path") != waypoint_source_policy.SCRIPT
+            or script.get("template") != waypoint_source_policy.TEMPLATE
+            or support.get(waypoint_source_policy.SCRIPT) != expected
+            or waypoint_source_policy.SCRIPT in indexed
+            or not isinstance(native, list) or len(native) != 3
+            or {row.get("modId") for row in native} != waypoint_source_policy.NATIVE_IDS):
+        raise ValueError("Waypoint policy differs from exact author/support rows")
+    verify_pin(pack, {**expected, "path": waypoint_source_policy.TEMPLATE})
+    for row in native:
+        original = indexed.get(row.get("path"))
+        if original is None or any(original.get(key) != row.get(key) for key in ("path", "sizeBytes", "sha256")):
+            raise ValueError("Waypoint native policy differs from exact author rows")
+    client = json.loads(resource(pack, "tools/client-policy/policy.json").read_text(encoding="utf-8-sig"))
+    if {**expected, "template": "scripts/lanmc_journeymap_waypoint_policy.js"} not in client.get("scripts", []):
+        raise ValueError("Waypoint template is absent from the actual source restore stage")
+    if all(resource(pack, row["path"]).is_file() for row in native):
+        waypoint_source_policy.verify(pack)
+
+
 def load(pack: Path):
     if not (pack / PROFILE).is_file():
         return None
@@ -152,6 +187,7 @@ def load(pack: Path):
                 base64.b64decode(edit["originalBase64"], validate=True) for edit in row["edits"]):
             raise ValueError("Original English fallback changes must be insert-only")
     verify_recipe_policy(pack, doc, records, support)
+    verify_waypoint_policy(pack, doc, records, support)
     return {"document": doc, "records": records, "overlays": {r["path"]: r for r in overlays},
             "overrides": {r["path"] for r in lock["overrides"]}, "support": support}
 
@@ -159,7 +195,7 @@ def load(pack: Path):
 def load_dynamic(pack: Path, doc: dict):
     fields = {"schemaVersion", "kind", "sourceVersion", "upstreamLock", "unmodifiedImporter",
               "questLocalization", "baseReplacements", "supportFiles", "sourceNotices"}
-    if (set(doc) - {"recipeDataFixPolicy"} != fields or doc.get("kind") != "atm9-original-russian-quests-and-logging" or
+    if (set(doc) - {"recipeDataFixPolicy", "waypointGenerationPolicy"} != fields or doc.get("kind") != "atm9-original-russian-quests-and-logging" or
             type(doc.get("schemaVersion")) is not int or doc["schemaVersion"] != 2):
         raise ValueError("Unsupported explicit original ATM9 profile")
     verify_pin(pack, doc["upstreamLock"], "tools/upstream-lock.json")
@@ -190,6 +226,7 @@ def load_dynamic(pack: Path, doc: dict):
     reviewed = atm9_quest_profile.validate(pack, doc["questLocalization"], raw, records,
                                            doc["baseReplacements"], doc["supportFiles"])
     verify_recipe_policy(pack, doc, records, supports)
+    verify_waypoint_policy(pack, doc, records, supports)
     return {"document": doc, "records": records, "overlays": reviewed["overlays"],
             "overrides": {r["path"] for r in lock["overrides"]}, "support": supports,
             "dynamic": reviewed, "upstreamBytes": raw}

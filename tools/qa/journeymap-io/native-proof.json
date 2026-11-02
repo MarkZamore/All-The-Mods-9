@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "testedBytes": {
+    "waypoint_io_adapter.js": "abed9753a7037e2be4eebf525b881fedf69724b237a85a8663b0ef777780bc35",
+    "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
+    "lanmc_journeymap_waypoint_policy.js": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3"
+  },
+  "nativeIo": {
+    "checks": 15.0,
+    "passed": 15.0,
+    "cases": [
+      {
+        "name": "native atomic JSON create/update readback",
+        "status": "PASS"
+      },
+      {
+        "name": "failed staged rename rolls original metadata back",
+        "status": "PASS"
+      },
+      {
+        "name": "failed backup cleanup rolls original back without deleting replacement bytes",
+        "status": "PASS"
+      },
+      {
+        "name": "process interruption after old rename recovers previous metadata and retains partial staged file",
+        "status": "PASS"
+      },
+      {
+        "name": "completed commit with old backup preserves current and retains old metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "orphan partial first stage is retained before a new committed write",
+        "status": "PASS"
+      },
+      {
+        "name": "read-only and write paths refuse external and internal junctions",
+        "status": "PASS"
+      },
+      {
+        "name": "dangling junction entry is refused even though File.exists is false",
+        "status": "PASS"
+      },
+      {
+        "name": "pure missing map paths are checked before creation and server roots remain existing-only",
+        "status": "PASS"
+      },
+      {
+        "name": "unlistable existing parent refuses a new child before writes",
+        "status": "PASS"
+      },
+      {
+        "name": "unsafe lexical paths refuse before writes",
+        "status": "PASS"
+      },
+      {
+        "name": "rename refuses a collision and never copies or deletes source",
+        "status": "PASS"
+      },
+      {
+        "name": "remove and atomic-write APIs refuse legitimate waypoint payloads",
+        "status": "PASS"
+      },
+      {
+        "name": "native core same-name same-seed recreation/reopen/restoration preserves both waypoint sets and images",
+        "status": "PASS"
+      },
+      {
+        "name": "native committed-owner journal retry preserves legitimate new points",
+        "status": "PASS"
+      }
+    ]
+  },
+  "combinedScript": {
+    "positive": {
+      "mode": "positive",
+      "checks": [
+        {
+          "name": "combined startup bootstrap adopts existing legitimate waypoints",
+          "status": "PASS"
+        },
+        {
+          "name": "combined LoggingIn associates existing world before next mapping tick model",
+          "status": "PASS"
+        },
+        {
+          "name": "combined same-name same-seed recreation archives old points",
+          "status": "PASS"
+        },
+        {
+          "name": "combined same-UUID reopen keeps new legitimate points",
+          "status": "PASS"
+        },
+        {
+          "name": "combined restored old-UUID world recovers old points and archives new set",
+          "status": "PASS"
+        },
+        {
+          "name": "combined pure resolver accepts a missing map only after guarded validation",
+          "status": "PASS"
+        }
+      ],
+      "scope": "Actual combined IIFE/core/IO executes on native Rhino/File/Path/CommonsIO. Platform, Forge callbacks, Minecraft server and JourneyMap path selection are explicit models.",
+      "passed": 6.0
+    },
+    "bootstrapFailure": {
+      "mode": "bootstrap-failure",
+      "checks": [
+        {
+          "name": "existing saves enumeration failure leaves policy unready",
+          "status": "PASS"
+        }
+      ],
+      "scope": "Actual combined IIFE/core/IO executes on native Rhino/File/Path/CommonsIO. Platform, Forge callbacks, Minecraft server and JourneyMap path selection are explicit models.",
+      "passed": 1.0
+    }
+  },
+  "scope": "Actual Rhino/JDK17 + native Windows File/Path/CommonsIO + exact KubeJS ClassFilter semantics. UtilsJS platform-root lookup uses guarded facade; combined Forge/Platform/MC/JM path APIs are explicit models. Not live Forge/JM, fsync/power-loss or global-writer-race proof.",
+  "fixtureSourceHashes": {
+    "waypoint_io_adapter.js": "abed9753a7037e2be4eebf525b881fedf69724b237a85a8663b0ef777780bc35",
+    "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
+    "lanmc_journeymap_waypoint_policy.js": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3",
+    "WaypointIoNativeAudit.java": "08de1bc3a3bbcb8ed11eb0ca0a0241dae333d600bd11c06a8daada3a23fd4c82",
+    "native_io_cases.js": "d12f94a06e78165287f628963751f973d3806b9af72e687423815929c35f4cb2",
+    "CombinedWaypointNativeAudit.java": "bcc6e1142841acbf3015a9e468747d70a59949318a06003fff5553c172a20c6f",
+    "combined_models.js": "a39c1a80fd041653deaa034be5e4b7cb33ef238f38658b97a75f323475d252db",
+    "combined_cases.js": "3ce68400741fcc5615992fb9e1f2b7a9d4a51494c849ab3cba77ccee3c23fa82",
+    "run_public_fixture.py": "2d3078e943583c1f403e0dfa1b35b4cf5cf8851847c6ba8ec482a5f5827afae9"
+  },
+  "danglingRegression": {
+    "oldGuardAcceptedUnresolvableEntry": true,
+    "oldNativeMkdirSucceeded": false,
+    "observedOutsideWrite": false,
+    "patchedGuardAndMkdirBothReject": true,
+    "caseAliasAndParentNullEnumerationCovered": true
+  },
+  "danglingOutsideTargetCreated": false,
+  "externalTargetOnlySentinel": true,
+  "singleClientPerGameDirectoryRequired": true,
+  "activeGameOrUserDataTouched": false,
+  "purePathResolverRegression": {
+    "directoryCreatingNativeWrapperAvoided": true,
+    "missingMapTargetValidatedBeforeCreation": true,
+    "serverWorldRootStillExistingOnlyByDefault": true,
+    "missingExternalInternalAndDanglingJunctionDescendantsRejected": true,
+    "combinedNativeFilesystemMissingMapLoginPassed": true,
+    "actualForgeEventExecutionClaimed": false
+  }
+}

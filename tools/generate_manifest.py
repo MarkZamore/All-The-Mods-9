@@ -31,6 +31,7 @@ from __future__ import annotations
 from pack_library import stage_library, verify_library
 import network_logging_policy
 import carpets_recipe_policy
+import waypoint_source_policy
 
 import argparse
 import fnmatch
@@ -383,6 +384,10 @@ def main() -> None:
         carpets_recipe_policy.verify(pack)
     except (ValueError, OSError, KeyError, zipfile.BadZipFile) as error:
         fail("pack-owned carpets recipe policy invalid: " + str(error))
+    try:
+        waypoint_source_policy.verify(pack)
+    except (ValueError, OSError, KeyError, TypeError) as error:
+        fail("pack-owned waypoint generation policy invalid: " + str(error))
 
     if args.verify_only or args.verify_all:
         verify_only(out, args.verify_all)
