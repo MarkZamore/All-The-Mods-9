@@ -81,9 +81,21 @@ def main():
     require(not dangling.exists(), 'The dangling outside target was created.')
     require(sorted(p.name for p in outside.iterdir()) == ['sentinel.txt'], 'The external fixture target was changed.')
     combined_results = []
-    for mode, expected_checks in [('positive', 6), ('bootstrap-failure', 1)]:
+    for mode, expected_checks in [('positive', 6), ('bootstrap-failure', 1), ('trusted-junction', 9)]:
         target = output / ('combined-' + mode)
         combined_result = output / ('combined-' + mode + '.json')
+        if mode == 'trusted-junction':
+            target.mkdir()
+            native_saves = output / 'trusted-native-saves'; native_saves.mkdir()
+            (native_saves / 'Combined').mkdir()
+            replacement_saves = output / 'replacement-native-saves'; replacement_saves.mkdir()
+            setup = '\n'.join([
+                "$ErrorActionPreference = 'Stop'",
+                'New-Item -ItemType Junction -Path ' + ps_quote(target / 'saves') + ' -Target ' + ps_quote(native_saves) + ' | Out-Null',
+                'New-Item -ItemType Junction -Path ' + ps_quote(target / 'replacement-saves') + ' -Target ' + ps_quote(replacement_saves) + ' | Out-Null',
+                'New-Item -ItemType Junction -Path ' + ps_quote(native_saves / 'Combined/nested-alias') + ' -Target ' + ps_quote(outside) + ' | Out-Null',
+            ])
+            subprocess.run([powershell, '-NoProfile', '-NonInteractive', '-Command', setup], check=True, capture_output=True, text=True, **flags)
         subprocess.run([str(java), '-Xmx128m', '-cp', classpath, 'CombinedWaypointNativeAudit', str(target),
                         str(source / 'combined_models.js'), str(source / 'lanmc_journeymap_waypoint_policy.js'),
                         str(source / 'combined_cases.js'), str(combined_result), mode],
@@ -92,7 +104,9 @@ def main():
         require(len(combined['checks']) == expected_checks and combined['passed'] == expected_checks,
                 'Combined-script fixture assertions failed: ' + mode)
         combined_results.append({'mode': mode, 'checks': expected_checks, 'resultSha256': sha(combined_result)})
-    print(json.dumps({'status': 'PASS', 'nativeIoChecks': 15, 'combinedChecks': 7, 'resultSha256': sha(result),
+    require(sorted(p.name for p in outside.iterdir()) == ['sentinel.txt'], 'Nested junction target was changed.')
+    require(not any(replacement_saves.iterdir()), 'Retargeted saves root was changed.')
+    print(json.dumps({'status': 'PASS', 'nativeIoChecks': 15, 'combinedChecks': 16, 'resultSha256': sha(result),
                       'combinedResults': combined_results,
                       'scope': pins['scope'], 'gameStarted': False}))
 

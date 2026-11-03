@@ -1,6 +1,12 @@
 var checks = [];
 function assertOk(ok, message) { if (!ok) throw new Error(message); }
-function expectFailure(f, label) { var failed=false; try { f(); } catch(e) { failed=true; } assertOk(failed,label); }
+function expectFailure(f, label) {
+  var error = null; try { f(); } catch(e) { error = String(e); }
+  assertOk(error !== null, label);
+  assertOk(error.indexOf('ambiguous') < 0, 'Overload ambiguity cannot count as an expected guard failure: ' + label);
+  assertOk(error.indexOf('Waypoint IO:') >= 0 || error.indexOf('Waypoint association:') >= 0 ||
+    error.indexOf('Fixture path escaped root') >= 0, 'Unexpected failure type for ' + label + ': ' + error);
+}
 function run(name, f) { try { f(); checks.push({name:name,status:'PASS'}); } catch(e) { checks.push({name:name,status:'FAIL',error:String(e)}); } }
 var io = createWaypointIo();
 var marker = 'saves/IO/lanmc-waypoints-world.json';

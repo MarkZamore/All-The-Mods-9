@@ -10,8 +10,8 @@
   },
   "script": {
     "path": "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
-    "sizeBytes": 21839,
-    "sha256": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3",
+    "sizeBytes": 24074,
+    "sha256": "760e9a63ac9621027a5e3c0c8f6150ef3cc9c032908bef4f764e4af4862de21b",
     "template": "tools/client-policy/scripts/lanmc_journeymap_waypoint_policy.js"
   },
   "nativeModules": [
@@ -52,5 +52,10 @@
     "Bootstrap or login path failures warn and skip association; existing data is not purged.",
     "No full Minecraft startup, real Forge login event, world-switch visibility or live user data proof is claimed here."
   ],
-  "nativeMapResolver": "FileHandler.getJMWorldDirForWorldId(Minecraft,String), without the directory-creating wrapper; IO validates missing/existing ancestors before its own mkdir."
+  "nativeMapResolver": "FileHandler.getJMWorldDirForWorldId(Minecraft,String), without the directory-creating wrapper; IO validates missing/existing ancestors before its own mkdir.",
+  "revision": 2,
+  "trustedSavesRoot": "Minecraft.getInstance().getLevelSource().getBaseDir().toFile() must name gameDirectory/saves; its real target is pinned once. Only that root alias is permitted; nested links and later retargets are refused.",
+  "overloadContract": "Explicit resolve(String), startsWith(String), and CommonsIO File/String overloads; native subpath for relative paths. Actual KubeJS Builtin String/Path/File wrapper registration is present in the fixture.",
+  "verificationReceipt": "tools/qa/journeymap-world-isolation-v2.json",
+  "existingAmbiguousData": "Unmarked pre-existing worlds retain/adopt their existing waypoints; there is no generic birth-time/title-based quarantine. A user-confirmed contaminated world may be repaired separately by an exact-hash preserved archive while Minecraft is stopped."
 }

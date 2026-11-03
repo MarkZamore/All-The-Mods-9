@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "kind": "journeymap-world-isolation-v2-source-and-native-rhino-io-proof",
+  "status": "PASS_REAL_RHINO_WINDOWS_IO_AND_MODELED_LIFECYCLE_NO_FULL_GAME_CLAIM",
+  "parentSourceRevision": "c445491aed34b1a77ab08881ce44edb29acaa122",
+  "previousScript": {
+    "sizeBytes": 21839,
+    "sha256": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3"
+  },
+  "script": {
+    "path": "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
+    "sizeBytes": 24074,
+    "sha256": "760e9a63ac9621027a5e3c0c8f6150ef3cc9c032908bef4f764e4af4862de21b"
+  },
+  "componentPins": {
+    "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
+    "waypoint_io_adapter.js": "3c550fbc74294da043d8f66f0126607d9529a2af7d3b46fb8b4d2f57939d4a94",
+    "waypoint_forge1201_lifecycle.js": "ba6e95434c065aa1a75219f9fb63de12fcd41ecc475e1c53844fb6229d65e083"
+  },
+  "nativeModules": [
+    {
+      "modId": "journeymap",
+      "path": "mods/journeymap-1.20.1-5.10.3-forge.jar",
+      "sizeBytes": 7160405,
+      "sha256": "8b2679b7b4881e0aa430fd24345ea446de919faf8a45bd2a71d37c7e8ff6ae1e"
+    },
+    {
+      "modId": "kubejs",
+      "path": "mods/kubejs-forge-2001.6.5-build.16.jar",
+      "sizeBytes": 1654660,
+      "sha256": "3de6b7267d3aab981848ed54d3afe7edf20532fa4060631fd6fffcd99ac5f3d5"
+    },
+    {
+      "modId": "rhino",
+      "path": "mods/rhino-forge-2001.2.3-build.10.jar",
+      "sizeBytes": 1798244,
+      "sha256": "fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6"
+    }
+  ],
+  "actualRuntimeDefect": "KubeJS Builtin type wrappers make ordinary Java Path overload resolution ambiguous. Old fixture omitted these registrations; adding them gives 11 failed old IO checks out of15, including the exact runtime resolve ambiguity.",
+  "sourceChange": "Explicit Java overload calls plus one authoritative native saves-root alias; core generation/transaction semantics unchanged.",
+  "nativeIoChecks": 15,
+  "combinedLifecycleIoChecks": 16,
+  "combinedModes": [
+    {
+      "mode": "positive",
+      "checks": 6
+    },
+    {
+      "mode": "bootstrap-failure",
+      "checks": 1
+    },
+    {
+      "mode": "trusted-junction",
+      "checks": 9
+    }
+  ],
+  "regressionCoverage": [
+    "native String/Path/File wrapper registrations",
+    "atomic metadata rollback and recovery",
+    "same-name same-seed recreation",
+    "reopen and restored generation",
+    "ordinary and authoritative saves junction layout",
+    "lexical and canonical native world paths",
+    "nested junction refusal",
+    "pinned root retarget refusal",
+    "unchanged outside targets",
+    "no expected guard test may pass due to overload ambiguity"
+  ],
+  "runtimeFactoryBoundary": "Real Rhino, native File/Path/CommonsIO and exact wrapper registrations; UtilsJS factories use faithful guarded fixture bodies because loading Minecraft platform classes is outside this standalone IO fixture.",
+  "nativeAddedMethods": {
+    "Minecraft.getLevelSource": "m_91392_()Lnet/minecraft/world/level/storage/LevelStorageSource;",
+    "LevelStorageSource.getBaseDir": "m_78257_()Ljava/nio/file/Path;",
+    "clientSrgSha256": "e2e940fe7ca0a9fba5a5c11ad2cf3e2f7df91bbf51d12af22cdde7af18adc344"
+  },
+  "coreUnchanged": true,
+  "contentJarsChanged": false,
+  "worldNbtOrMechanicsChanged": false,
+  "personalFilesTouchedByVerification": false,
+  "safetyReview": "Client waypoint metadata and owned sidecars only; no content JAR, registry ID, ability or world mutation. Existing Safety state is unchanged and no new protection claim is introduced.",
+  "limitations": [
+    "Full Forge startup, event ordering and visibility need a game acceptance run.",
+    "Legacy unowned waypoints are not classified by filesystem birth or parsed title.",
+    "The native delayed deathpoint writer remains present; no generic title/date filter is added.",
+    "No fsync or external-concurrent-writer guarantee."
+  ],
+  "fixtureSourcePins": {
+    "waypoint_io_adapter.js": "3c550fbc74294da043d8f66f0126607d9529a2af7d3b46fb8b4d2f57939d4a94",
+    "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
+    "lanmc_journeymap_waypoint_policy.js": "760e9a63ac9621027a5e3c0c8f6150ef3cc9c032908bef4f764e4af4862de21b",
+    "WaypointIoNativeAudit.java": "8ad599cfc085a496d956515189d2682076e1ea84a24dbbdb72c3bbadf84f854d",
+    "native_io_cases.js": "c37fc9b7e1d58a57b4a37861e150f7828df4347ce01e8476a658fb749dc6a860",
+    "CombinedWaypointNativeAudit.java": "8dd9c46809e621ef0ddd1178776f85b707d57bb17d92c2ad510f95a1b8cf61a9",
+    "combined_models.js": "641868ac297b7ced18673bef1bbb750dc1c1632131f8617666bcdaf8eea1ce3f",
+    "combined_cases.js": "e149770ae2258ba95acce7aa58f2901db2318cba282a7a27da1dca290a91c6f9",
+    "run_public_fixture.py": "cf0b910c5bfa1c0989ea9201ec9ef4cff6f27785dfd8af13ee174421c0540141"
+  },
+  "additionalNativeClientObservation": {
+    "schemaVersion": 1,
+    "kind": "native-journeymap-fresh-world-smoke-observation",
+    "status": "OBSERVED_NATIVE_WORLD_ASSOCIATION_AND_CLEAN_EXIT",
+    "sourceScript": {
+      "path": "kubejs/startup_scripts/lanmc_journeymap_waypoint_policy.js",
+      "sizeBytes": 24074,
+      "sha256": "760e9a63ac9621027a5e3c0c8f6150ef3cc9c032908bef4f764e4af4862de21b"
+    },
+    "platform": {
+      "minecraft": "1.20.1",
+      "forge": "47.4.0",
+      "java": "17.0.20.1",
+      "heapMiB": 8192
+    },
+    "composition": {
+      "sourceAndInstancePackJarsExactHashVerified": 515,
+      "additionalManagedE4Jars": 1,
+      "nativeModIdsIncludingMinecraftForgeE4": 543,
+      "nativePackModIds": 540
+    },
+    "startup": {
+      "scriptsLoaded": 27,
+      "scriptsExpected": 27,
+      "errors": 0,
+      "warnings": 0,
+      "nativePostInitJavaClassResolutionObserved": true,
+      "journeyMapBootstrapOrLoggingInWarnings": []
+    },
+    "healthyNativeWorldObservations": 12,
+    "nativeFreshWorldCreated": true,
+    "productionSavesJunctionUsed": true,
+    "newWorldLegacyEligible": false,
+    "validMatchingWorldAndOwnerUuidFilesObserved": true,
+    "normalSaveAllDimensionsAndExit0": true,
+    "rawHarnessStatus": "FAIL",
+    "rawHarnessAssertionError": "Auxiliary QA helper expected a global bootstrap marker that the reviewed bootstrap does not produce; raw status is retained. The actual world/owner metadata match and native lifecycle observations are recorded separately.",
+    "privateEvidenceSha256": "eb5894b1301643e7419699949d47300922d36423dca5156e59be7b6608c76cab",
+    "personalWorldsCopied": false,
+    "authorJarOrScriptMutationByHarness": false,
+    "noNewGameAfterCleanupPublicationClaimed": true,
+    "limits": [
+      "One newly created synthetic world; no actual multi-world-switch, visual delayed-waypoint or two-player test.",
+      "No new Steam acceptance claim. No fixed render/simulation limits were applied."
+    ]
+  }
+}

@@ -61,7 +61,7 @@ f.deny("jdk.nashorn");
 f.allow("mezz.jei");
   
   
-  Context cx=Context.enter();cx.setClassShutter((name,kind)->kind!=2||f.isAllowed(name));ScriptableObject scope=cx.initStandardObjects();
+  Context cx=Context.enter();WaypointIoNativeAudit.registerBuiltinPathWrappers(cx);cx.setClassShutter((name,kind)->kind!=2||f.isAllowed(name));ScriptableObject scope=cx.initStandardObjects();
   ScriptableObject.putProperty(scope,"NativeBridge",new NativeJavaClass(cx,scope,WaypointIoNativeAudit.NativeBridge.class),cx);
   ScriptableObject.putProperty(scope,"FileUtilsType",new NativeJavaClass(cx,scope,org.apache.commons.io.FileUtils.class),cx);
   ScriptableObject.putProperty(scope,"UuidType",new NativeJavaClass(cx,scope,java.util.UUID.class),cx);

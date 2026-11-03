@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "scope": "Actual Rhino/JDK17 + native Windows File/Path/CommonsIO + exact KubeJS ClassFilter semantics. UtilsJS platform-root lookup uses guarded facade; combined Forge/Platform/MC/JM path APIs are explicit models. Not live Forge/JM, fsync/power-loss or global-writer-race proof.",
+  "scope": "Actual Rhino/JDK17 and KubeJS ClassFilter plus Builtin String/Path/File type-wrapper registration semantics; native Windows junctions and pinned saves anchor. UtilsJS factories use faithful guarded fixture bodies. Forge/Platform/MC/JM lifecycle APIs are explicit models; not a full game/visibility or fsync proof.",
   "sources": {
-    "waypoint_io_adapter.js": "abed9753a7037e2be4eebf525b881fedf69724b237a85a8663b0ef777780bc35",
+    "waypoint_io_adapter.js": "3c550fbc74294da043d8f66f0126607d9529a2af7d3b46fb8b4d2f57939d4a94",
     "waypoint_generation_core.js": "ddc413aebe9aadb59342e153740b0e9984456290af7871da7aa5448f6aa45ade",
-    "lanmc_journeymap_waypoint_policy.js": "1e55c42ee3d06fff262fdb2e94819d66751c2a253c1115e8d291e8ac6659eef3",
-    "WaypointIoNativeAudit.java": "08de1bc3a3bbcb8ed11eb0ca0a0241dae333d600bd11c06a8daada3a23fd4c82",
-    "native_io_cases.js": "d12f94a06e78165287f628963751f973d3806b9af72e687423815929c35f4cb2",
-    "CombinedWaypointNativeAudit.java": "bcc6e1142841acbf3015a9e468747d70a59949318a06003fff5553c172a20c6f",
-    "combined_models.js": "a39c1a80fd041653deaa034be5e4b7cb33ef238f38658b97a75f323475d252db",
-    "combined_cases.js": "3ce68400741fcc5615992fb9e1f2b7a9d4a51494c849ab3cba77ccee3c23fa82",
-    "run_public_fixture.py": "2d3078e943583c1f403e0dfa1b35b4cf5cf8851847c6ba8ec482a5f5827afae9"
+    "lanmc_journeymap_waypoint_policy.js": "760e9a63ac9621027a5e3c0c8f6150ef3cc9c032908bef4f764e4af4862de21b",
+    "WaypointIoNativeAudit.java": "8ad599cfc085a496d956515189d2682076e1ea84a24dbbdb72c3bbadf84f854d",
+    "native_io_cases.js": "c37fc9b7e1d58a57b4a37861e150f7828df4347ce01e8476a658fb749dc6a860",
+    "CombinedWaypointNativeAudit.java": "8dd9c46809e621ef0ddd1178776f85b707d57bb17d92c2ad510f95a1b8cf61a9",
+    "combined_models.js": "641868ac297b7ced18673bef1bbb750dc1c1632131f8617666bcdaf8eea1ce3f",
+    "combined_cases.js": "e149770ae2258ba95acce7aa58f2901db2318cba282a7a27da1dca290a91c6f9",
+    "run_public_fixture.py": "cf0b910c5bfa1c0989ea9201ec9ef4cff6f27785dfd8af13ee174421c0540141"
   },
   "jars": [
     {

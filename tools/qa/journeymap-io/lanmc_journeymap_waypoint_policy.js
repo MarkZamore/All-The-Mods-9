@@ -1,5 +1,5 @@
 // Pack-owned JourneyMap waypoint generation association; images and game mechanics are unchanged.
-(function () {
+
 // Pack-owned JourneyMap 5.10 singleplayer waypoint association.
 // IO is supplied by the checked KubeJS adapter. No map images are moved.
 // Required IO: exists, readJson, writeJsonAtomic, mkdirs, rename, removeFile,
@@ -179,6 +179,18 @@ function createWaypointIo(bridge) {
   if (!root || !root.isDirectory()) throw new Error('Waypoint IO: game directory is unavailable');
   var rootReal = root.toPath().toRealPath();
   var rootLexical = root.toPath().toAbsolutePath().normalize();
+  // The native level storage directory is the sole permitted root alias.
+  // Launchers legitimately place saves behind a junction. Pin that target
+  // once, while retaining exact-path checks for every child and all other IO.
+  var savesLexical = null;
+  var savesReal = null;
+  if (bridge.nativeSavesRootFile) {
+    savesLexical = child(rootLexical, 'saves');
+    var nativeSaves = bridge.nativeSavesRootFile;
+    need(nativeSaves.isDirectory(), 'native saves root is unavailable');
+    need(nativeSaves.toPath().toAbsolutePath().normalize().equals(savesLexical), 'unexpected native saves root');
+    savesReal = nativeSaves.toPath().toRealPath();
+  }
   var ignoreCase = String(root.toPath().getFileSystem().getSeparator()) === '\\';
   var busy = {};
   var NEW = '.lanmc-waypoint-new';
@@ -186,6 +198,21 @@ function createWaypointIo(bridge) {
 
   function need(ok, message) {
     if (!ok) throw new Error('Waypoint IO: ' + message);
+  }
+  function child(parent, name) {
+    // KubeJS registers accept-all String and Path wrappers. Select the Java
+    // overload explicitly; even a typed Path is otherwise ambiguous.
+    return parent['resolve(java.lang.String)'](name);
+  }
+  function within(candidate, anchor) {
+    // The native String overload still compares Path components. Passing an
+    // external canonical Path as an argument would invoke KubeJS's Path
+    // wrapper and incorrectly reject the authoritative saves junction target.
+    return candidate['startsWith(java.lang.String)'](String(anchor.toString()));
+  }
+  function relativeTo(candidate, anchor) {
+    need(within(candidate, anchor) && !candidate.equals(anchor), 'missing child path');
+    return String(candidate.subpath(anchor.getNameCount(), candidate.getNameCount()).toString()).replace(/\\/g, '/');
   }
   function parts(relative) {
     need(typeof relative === 'string' && relative.length > 0, 'missing relative path');
@@ -200,14 +227,16 @@ function createWaypointIo(bridge) {
     var components = parts(relative), prefix = '', expected = rootReal, result = null, parent = root;
     for (var i = 0; i < components.length; i++) {
       prefix += (prefix ? '/' : '') + components[i];
-      expected = expected.resolve(components[i]);
+      expected = i === 0 && components[i] === 'saves' && savesReal !== null
+        ? savesReal : child(expected, components[i]);
       result = utils.getFileFromPath(prefix);
       need(result !== null, 'KubeJS refused the path');
       if (result.exists()) {
         // File.getCanonicalPath and FileUtils.isSymlink do NOT detect Windows
         // junctions reliably. Native returned Path.toRealPath resolves them.
         var actual = result.toPath().toRealPath();
-        need(actual.startsWith(rootReal) && actual.equals(expected), 'linked or aliased path refused');
+        var anchor = components[0] === 'saves' && savesReal !== null ? savesReal : rootReal;
+        need(within(actual, anchor) && actual.equals(expected), 'linked or aliased path refused');
         if (i + 1 < components.length) need(result.isDirectory(), 'parent is not a directory');
       } else if (parent.exists()) {
         // File.exists() is false for a dangling junction. Its directory entry
@@ -249,7 +278,7 @@ function createWaypointIo(bridge) {
   function text(relative) {
     var target = checked(relative);
     need(target.isFile(), 'JSON metadata is not a regular file');
-    return String(files.readFileToString(target, 'UTF-8'));
+    return String(files['readFileToString(java.io.File,java.lang.String)'](target, 'UTF-8'));
   }
   function object(relative) {
     var value = JSON.parse(text(relative));
@@ -306,7 +335,7 @@ function createWaypointIo(bridge) {
     var hadOld = target.exists();
     try {
       need(checked(staged).createNewFile() === true, 'staged metadata already exists');
-      files.writeStringToFile(checked(staged), encoded, 'UTF-8');
+      files['writeStringToFile(java.io.File,java.lang.String,java.lang.String)'](checked(staged), encoded, 'UTF-8');
       need(text(staged) === encoded, 'staged metadata readback mismatch');
       object(staged);
       if (hadOld) rawRename(relative, previous);
@@ -340,8 +369,15 @@ function createWaypointIo(bridge) {
   function relativeFile(file, allowMissing) {
     need(file !== null, 'source directory is unavailable');
     var lexical = file.toPath().toAbsolutePath().normalize();
-    need(lexical.startsWith(rootLexical) && !lexical.equals(rootLexical), 'source path escaped game directory');
-    var relative = String(rootLexical.relativize(lexical).toString()).replace(/\\/g, '/');
+    var relative;
+    if (within(lexical, rootLexical) && !lexical.equals(rootLexical)) {
+      relative = relativeTo(lexical, rootLexical);
+    } else {
+      // Some native storage implementations return a canonical world path.
+      // It may use only the previously pinned authoritative saves anchor.
+      need(savesReal !== null && within(lexical, savesReal) && !lexical.equals(savesReal), 'source path escaped owned roots');
+      relative = 'saves/' + relativeTo(lexical, savesReal);
+    }
     // The pure JourneyMap resolver may name a map directory that has not
     // been created yet. Validate its lexical path and every existing
     // ancestor before the policy creates anything. Server world roots
@@ -349,7 +385,8 @@ function createWaypointIo(bridge) {
     var guarded = checked(relative);
     if (file.exists()) {
       var actual = file.toPath().toRealPath();
-      need(actual.startsWith(rootReal) && !actual.equals(rootReal), 'source path escaped game directory');
+      var anchor = parts(relative)[0] === 'saves' && savesReal !== null ? savesReal : rootReal;
+      need(within(actual, anchor) && !actual.equals(anchor), 'source path escaped owned roots');
       need(guarded.exists() && guarded.toPath().toRealPath().equals(actual), 'source alias changed');
     } else need(allowMissing === true && !guarded.exists(), 'source directory does not exist');
     return relative;
@@ -379,9 +416,10 @@ if (Platform.isClientEnvironment() && Platform.isLoaded('journeymap')) {
     StartupEvents.postInit(function () {
       ready = false;
       try {
-        io = createWaypointIo();
-        policy = createWaypointGenerationPolicy(io);
         Minecraft = Java.loadClass('net.minecraft.client.Minecraft');
+        var nativeSaves = Minecraft.getInstance().getLevelSource().getBaseDir().toFile();
+        io = createWaypointIo({nativeSavesRootFile: nativeSaves});
+        policy = createWaypointGenerationPolicy(io);
         LevelResource = Java.loadClass('net.minecraft.world.level.storage.LevelResource');
         FileHandler = Java.loadClass('journeymap.client.io.FileHandler');
         JourneyMapClient = Java.loadClass('journeymap.client.JourneymapClient');
@@ -437,5 +475,3 @@ if (Platform.isClientEnvironment() && Platform.isLoaded('journeymap')) {
     });
   })();
 }
-
-})();

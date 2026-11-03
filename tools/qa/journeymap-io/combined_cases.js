@@ -1,7 +1,7 @@
 function check(ok,message){if(!ok)throw new Error(message);}
 var result={mode:String(MODE),checks:[],scope:'Actual combined IIFE/core/IO executes on native Rhino/File/Path/CommonsIO. Platform, Forge callbacks, Minecraft server and JourneyMap path selection are explicit models.'};
 function run(name,f){try{f();result.checks.push({name:name,status:'PASS'});}catch(e){result.checks.push({name:name,status:'FAIL',error:String(e)});}}
-if(String(MODE)==='positive'){
+if(String(MODE)==='positive'||String(MODE)==='trusted-junction'){
  run('combined startup bootstrap adopts existing legitimate waypoints',function(){
   check(startupCallbacks.length===1&&loginCallbacks.length===1,'event registration');startupCallbacks[0]();
   var marker=JSON.parse(NativeBridge.readTest(model.saveRoot+'/lanmc-waypoints-world.json'));
@@ -45,6 +45,27 @@ if(String(MODE)==='positive'){
   check(!NativeBridge.getFileFromPath(model.mapRoot+'/waypoints').exists(),'unexpected waypoint payload created');
   check(warnings.length===0,'unexpected missing-map warning '+warnings.join(';'));
  });
+ if(String(MODE)==='trusted-junction'){
+  var secure=createWaypointIo({nativeSavesRootFile:NativeBridge.getFileFromPath('saves')});
+  var refused=function(f){var error=null;try{f();}catch(e){error=String(e);}check(error!==null&&error.indexOf('Waypoint IO:')>=0&&error.indexOf('ambiguous')<0,'expected an exact path guard refusal, got '+error);};
+  run('authoritative saves junction accepts lexical and canonical world paths',function(){
+   var f=NativeBridge.getFileFromPath(model.saveRoot);
+   check(secure.relativeFile(f)===model.saveRoot,'lexical world path refused');
+   check(secure.relativeFile(f.toPath().toRealPath().toFile())===model.saveRoot,'canonical native world path refused');
+   check(secure.readJson(model.saveRoot+'/lanmc-waypoints-world.json').schemaVersion===1,'owned metadata unavailable through saves junction');
+  });
+  run('nested junction remains refused under the trusted saves root',function(){
+   refused(function(){secure.assertPath('saves/Combined/nested-alias/no-write');});
+   refused(function(){secure.mkdirs('saves/Combined/nested-alias/no-write');});
+   check(!NativeBridge.getFileFromPath('saves/Combined/nested-alias/no-write').exists(),'nested target was written');
+  });
+  run('a trusted saves junction retarget is refused before IO',function(){
+   NativeBridge.swapSavesJunction();
+   refused(function(){secure.assertPath('saves/no-write');});
+   refused(function(){secure.mkdirs('saves/no-write');});
+   check(!NativeBridge.getFileFromPath('saves/no-write').exists(),'retargeted root was written');
+  });
+ }
 }else if(String(MODE)==='bootstrap-failure'){
  run('existing saves enumeration failure leaves policy unready',function(){
   NativeBridge.failNextList('saves');startupCallbacks[0]();loginCallbacks[0]();

@@ -2,6 +2,7 @@ var startupCallbacks=[],loginCallbacks=[],warnings=[];
 var model={saveRoot:'saves/Combined',mapRoot:'journeymap/data/sp/Combined',singleplayer:true};
 var rootResource={};
 var mcModel={
+  getLevelSource:function(){return {getBaseDir:function(){return NativeBridge.getFileFromPath('saves').toPath();}};},
   hasSingleplayerServer:function(){return model.singleplayer;},
   getSingleplayerServer:function(){return {getWorldPath:function(resource){
     if(resource!==rootResource)throw new Error('Wrong world resource');

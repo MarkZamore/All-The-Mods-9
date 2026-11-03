@@ -327,3 +327,8 @@ cold JAR restoration; after restoration run normal client-policy verification an
 `python tools/waypoint_source_policy.py --pack .`. Generation verifies these pins
 without rebasing them. Unknown JourneyMap/KubeJS/Rhino or platform bytes stop
 publication pending explicit API review; personal waypoint state is never shipped.
+
+
+## Исправление изоляции меток JourneyMap
+
+Обновлён принадлежащий сборке скрипт: явный выбор Java-перегрузок устраняет неоднозначность настоящих KubeJS/Rhino type wrappers, а корневая ссылка saves принимается только от нативного Minecraft level storage. Дочерние ссылки и подмена корня по-прежнему отклоняются. Метки прежней генерации сохраняются в локальном архиве; обычные старые миры не очищаются по эвристике даты. [Версии и ограничения](tools/journeymap-waypoints-policy.json), [проверки](tools/qa/journeymap-world-isolation-v2.json). Авторские JAR и игровые параметры не изменены.

@@ -14,9 +14,10 @@ if (Platform.isClientEnvironment() && Platform.isLoaded('journeymap')) {
     StartupEvents.postInit(function () {
       ready = false;
       try {
-        io = createWaypointIo();
-        policy = createWaypointGenerationPolicy(io);
         Minecraft = Java.loadClass('net.minecraft.client.Minecraft');
+        var nativeSaves = Minecraft.getInstance().getLevelSource().getBaseDir().toFile();
+        io = createWaypointIo({nativeSavesRootFile: nativeSaves});
+        policy = createWaypointGenerationPolicy(io);
         LevelResource = Java.loadClass('net.minecraft.world.level.storage.LevelResource');
         FileHandler = Java.loadClass('journeymap.client.io.FileHandler');
         JourneyMapClient = Java.loadClass('journeymap.client.JourneymapClient');
