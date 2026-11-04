@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "pack": {
+    "id": "all-the-mods-9",
+    "relativePath": "All The Mods 9",
+    "source": {
+      "owner": "MarkZamore",
+      "repo": "All-The-Mods-9",
+      "tag": "pack-latest"
+    }
+  },
+  "runtime": {
+    "minecraftVersion": "1.20.1",
+    "loader": {
+      "type": "forge",
+      "version": "47.4.0"
+    }
+  },
+  "qa": {
+    "heapMiB": 10240,
+    "playerName": "ATM9Qa",
+    "worldPrefix": "ATM9Qa"
+  },
+  "retiredHelpers": [
+    {
+      "filePrefix": "mods/atm9-modified-alchemy-wire-",
+      "expectedCount": 1
+    },
+    {
+      "filePrefix": "mods/lanminecraft-memory-warnings-",
+      "expectedCount": 1
+    },
+    {
+      "filePrefix": "mods/lanmc-steam-flow-",
+      "expectedCount": 1
+    }
+  ]
+}

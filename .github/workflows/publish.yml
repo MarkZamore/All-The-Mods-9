@@ -1,8 +1,14 @@
 name: Publish ATM9 pack
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
+    paths-ignore:
+      - 'tools/qa/launcher-runtime-contract.json'
+      - 'tools/qa/launcher-runtime.ps1'
+      - 'tools/qa/runtime-acceptance.md'
+      - '.github/workflows/publish.yml'
 
 concurrency:
   group: atm9-pack-latest
