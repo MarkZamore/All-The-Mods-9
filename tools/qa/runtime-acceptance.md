@@ -17,3 +17,16 @@ tools/qa/launcher-runtime.ps1 -LauncherRoot <launcher-checkout> -Tool Migration 
 The native runner is scoped to Minecraft 1.20.1 Forge, shared by all packs on that platform. It waits for explicit `ready` after the actual menu; `audit` and `stop` retain the same native lifecycle guards. Runtime acceptance and comparison follow the latest agreed scope for this pack, including actual client/world readiness and explicit analysis of changed ERROR signatures. A prepared manifest or server Done is not a full-client result. Unperformed visual, two-account, Steam or model-conversation checks remain unverified.
 
 Existing evidence under `tools/qa` keeps its original revision and limitations. This QA-only separation does not claim a fresh gameplay PASS or rerun a test. Use one current independent stand, retain its `RUN.json`, check the shared 50 GiB budget, and remove owned bulky runtime copies after producing the compact reports. Personal worlds and active installations are never the stand.
+
+## Preservation during author updates
+
+These four files are repository-owned QA and publication controls, separate from the author's game payload:
+
+- `tools/qa/launcher-runtime-contract.json`
+- `tools/qa/launcher-runtime.ps1`
+- `tools/qa/runtime-acceptance.md`
+- `.github/workflows/publish.yml`
+
+The current author importer and restore tools operate on named, pinned game files rather than replacing the repository. The publication generator clears only its staged output assets; it excludes `tools` from the distributed payload. These routes leave the four source-owned files intact. Owner snapshots made by `update_atm9_quests.py` include all `tools/**`, so `source_controls` and the snapshot validation/rehearsal route also preserve and check the three QA files. The workflow is outside that snapshot; the current import, restore and publication routes do not modify or remove it.
+
+A manual integration that replaces the whole checkout with a fresh author tree must explicitly carry forward all four files from the reviewed repository before publication. Keep them as source-owned controls, never as author game content. Review the QA contract, fixture defaults and expected JAR/helper scenarios against the new Minecraft version, loader/platform and actual content; update expectations only after that review. Preserved QA files and historical evidence do not establish a new gameplay PASS for the updated author release.
