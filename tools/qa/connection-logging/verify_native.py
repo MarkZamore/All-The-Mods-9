@@ -30,9 +30,7 @@ def main():
     pack = HERE.parents[2]
     before = HERE / 'before-log4j2.xml'
     historical = HERE / 'temporary-debug-log4j2.xml'
-    candidate = HERE / 'before-log4j2.xml'
     assert sha(before) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
-    assert sha(candidate) == '6752b55f7a2ede24cef57d8bab70cfeec8f471f7adb72b6fb13b46853151c65d'
     assert sha(historical) == '0ffbfcfc73ca1695b6a068c453c67a00dcc6fb774219bef3b6fcbdef863856d5'
     old = ET.parse(before).getroot()
     new = ET.parse(historical).getroot()
@@ -41,7 +39,6 @@ def main():
     assert len(added) == 1 and added[0].attrib == {'level': 'DEBUG', 'name': 'net.minecraft.network.Connection'}
     loggers.remove(added[0])
     assert xml(old) == xml(new), 'Unrelated semantic logging policy changed'
-    assert xml(old) == xml(ET.parse(candidate).getroot()), 'Current policy is not the restored default INFO policy'
     jars = []
     document = json.loads((HERE / 'native-libraries.json').read_text(encoding='utf-8'))
     assert len(document['libraries']) == 95
@@ -61,8 +58,7 @@ def main():
     assert compile_result.returncode == 0, compile_result.stderr
     runs = []
     for mode, config, expected in [('reference-default-info', before, False),
-                                   ('historical-temporary-debug', historical, True),
-                                   ('historical-restored-info', candidate, False)]:
+                                   ('historical-temporary-debug', historical, True)]:
         folder = work / mode
         (folder / 'config').mkdir(parents=True)
         shutil.copyfile(config, folder / 'config/log4j2.xml')
@@ -78,7 +74,7 @@ def main():
               'sameProductionRelativeJvmArgument': True, 'historicalNormalInfoFixture': True,
               'currentPackPolicyTested': False, 'historicalDebugFixtureSeparateFromCurrentPolicy': True,
               'rootAndUnrelatedLevelsUnchanged': True,
-              'historicalInfoConfigurationSha256': sha(candidate), 'historicalTemporaryConfigurationSha256': sha(historical), 'runs': runs}
+              'historicalInfoConfigurationSha256': sha(before), 'historicalTemporaryConfigurationSha256': sha(historical), 'runs': runs}
     (work / 'result.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report))
 

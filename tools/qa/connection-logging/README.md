@@ -21,12 +21,18 @@ under `tools`, outside the runtime payload. `native-routing-proof.json` and
 `reproduced-native-routing.json` remain unchanged historical evidence of that
 temporary capture. They are not the current pack policy.
 
-`native-default-info-proof.json` checks the reference INFO policy, historical
+`native-default-info-proof.json` records the reference INFO policy, historical
 bounded DEBUG capture and then-restored INFO policy in three standalone
 Java 17 JVMs with 95 exact Minecraft 1.20.1/Forge 47.4.0/Log4j 2.19.0 libraries and
 native layout plugins. The labelled synthetic Connection throwable reaches the
 file only in the historical DEBUG fixture; current INFO retains ERROR while
 unrelated DEBUG, Connection TRACE and Console DEBUG remain absent.
+
+The reproduction helper now declares two distinct cases: reference INFO and
+historical DEBUG. The extra restored-INFO run used the same reference file,
+expectation and Java arguments, so it is no longer repeated. The stored
+three-run proof remains unchanged historical evidence; this source-only
+deduplication was not executed and does not establish a new PASS.
 
 Reproduce with Python 3.12+, Java 17, a JDK 17+ compiler and the exact native Maven
 libraries named by `native-libraries.json`:

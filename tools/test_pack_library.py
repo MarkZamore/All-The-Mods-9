@@ -14,7 +14,8 @@ class LibraryPublisherTests(unittest.TestCase):
         self.pack = pathlib.Path(self.temp.name) / "Example Pack"
         (self.pack / "mods").mkdir(parents=True)
         (self.pack / "library").mkdir()
-        (self.pack / "portable-pack.json").write_text(json.dumps({"minecraftVersion": "1.21.1", "loader": {"type": "NeoForge"}}))
+        (self.pack / "portable-pack.json").write_text(json.dumps({"minecraftVersion": "1.20.1",
+            "loader": {"type": "forge", "version": "47.4.0"}}))
         self.content = {"id": "example", "name": "Example", "relativePath": "Stable Folder", "summary": "A short story", "description": "A longer story",
                         "parents": {"addon": "base"}, "libraryIds": ["helper"]}
         self.pages = {mid: "https://www.curseforge.com/minecraft/mc-mods/" + mid
@@ -24,7 +25,7 @@ class LibraryPublisherTests(unittest.TestCase):
         (self.pack / "library/preview.jpg").write_bytes(b"test preview bytes")
         for mod_id, name in (("base", "Base Mod"), ("addon", "An Addon"), ("helper", "A Helper Library"), ("integration", "Independent integration")):
             with zipfile.ZipFile(self.pack / "mods" / (mod_id + ".jar"), "w") as archive:
-                archive.writestr("META-INF/neoforge.mods.toml", f'[[mods]]\nmodId="{mod_id}"\ndisplayName="{name}"\nversion="1.2.3"\n[[dependencies.{mod_id}]]\nmodId="base"\ntype="required"\n')
+                archive.writestr("META-INF/mods.toml", f'[[mods]]\nmodId="{mod_id}"\ndisplayName="{name}"\nversion="1.2.3"\n[[dependencies.{mod_id}]]\nmodId="base"\nmandatory=true\n')
 
     def tearDown(self):
         self.temp.cleanup()
@@ -49,7 +50,8 @@ class LibraryPublisherTests(unittest.TestCase):
         self.assertEqual("base", mods["addon"]["parentId"])
         self.assertIsNone(mods["integration"]["parentId"])
         self.assertTrue(mods["helper"]["isLibrary"])
-        self.assertEqual("1.21.1", data["minecraftVersion"])
+        self.assertEqual("1.20.1", data["minecraftVersion"])
+        self.assertEqual("forge", data["loader"])
         self.assertEqual("revision-one", data["revision"])
         self.assertEqual("Stable Folder", data["relativePath"])
 
@@ -100,7 +102,7 @@ class LibraryPublisherTests(unittest.TestCase):
         self.write_pages()
         nested = io.BytesIO()
         with zipfile.ZipFile(nested, "w") as archive:
-            archive.writestr("META-INF/neoforge.mods.toml", '[[mods]]\nmodId="nested_helper"\ndisplayName="Nested Helper"\nversion="1.0"\n')
+            archive.writestr("META-INF/mods.toml", '[[mods]]\nmodId="nested_helper"\ndisplayName="Nested Helper"\nversion="1.0"\n')
         for carrier in ("base", "addon"):
             with zipfile.ZipFile(self.pack / "mods" / (carrier + ".jar"), "a") as archive:
                 archive.writestr("META-INF/jarjar/metadata.json", json.dumps({"jars": [{"path": "META-INF/jarjar/helper.jar"}]}))
@@ -140,7 +142,7 @@ class LibraryPublisherTests(unittest.TestCase):
 
     def test_actual_loader_inventory_resolves_selected_ids_and_versions_and_rejects_stale_jars(self):
         inventory = {"schemaVersion": 1,
-                     "minecraftVersion": "1.21.1", "loader": {"type": "NeoForge"},
+                     "minecraftVersion": "1.20.1", "loader": {"type": "forge", "version": "47.4.0"},
                      "sourceJars": {jar.relative_to(self.pack).as_posix(): hashlib.sha256(jar.read_bytes()).hexdigest()
                                     for jar in (self.pack / "mods").glob("*.jar")},
                      "mods": [{"id": mid, "name": mid.title(), "version": "selected-2.0"}
