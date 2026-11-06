@@ -105,7 +105,7 @@ class FixedReviewIdentityTests(unittest.TestCase):
         self.pack = profile_tools.working_root(Path(self.temporary.name))
         source = profile_tools.working_root(Path(__file__).resolve().parents[1])
         document = json.loads((source / profile_tools.PROFILE).read_text(encoding="utf-8"))
-        names = [profile_tools.PROFILE, document["upstreamLock"]["path"],
+        names = ["portable-pack.json", profile_tools.PROFILE, document["upstreamLock"]["path"],
                  document["unmodifiedImporter"]["path"],
                  document["localization"]["patchTool"]["path"],
                  document["localization"]["manifest"]["path"],
@@ -122,7 +122,8 @@ class FixedReviewIdentityTests(unittest.TestCase):
 
     def test_real_profile_binds_exactly_107_frozen_author_resources(self):
         profile = profile_tools.load(self.pack)
-        self.assertEqual(len(profile["records"]), 1794)
+        self.assertEqual(len(profile["records"]), 1793)
+        self.assertFalse(profile["bundledClient"])
         self.assertEqual(len(profile["overlays"]), 107)
         self.assertEqual(set(profile["support"]), profile_tools.SUPPORT)
 

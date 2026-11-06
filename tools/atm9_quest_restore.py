@@ -74,7 +74,7 @@ def validate_author_downloads(upstreamBytes, originalRows):
             "urls": urls, "overridePaths": {row["path"] for row in overrides}}
 
 
-def restore_profiled_author(pack, cache, descriptor, upstreamBytes, originalRows):
+def restore_profiled_author(pack, cache, descriptor, upstreamBytes, originalRows, *, launcher_client=False):
     """Return a restoration report after complete preflight and exact checks."""
     pack, cache = Path(pack), Path(cache)
     if (not isinstance(descriptor, dict) or set(descriptor) != profile.FIELDS or
@@ -100,6 +100,9 @@ def restore_profiled_author(pack, cache, descriptor, upstreamBytes, originalRows
             manifest.get("kind") != profile.PROFILE_KIND or manifest.get("sourceVersion") != identity["version"]):
         raise ValueError("Author restore profile/version differs")
     native, urls, override_paths = checked["rows"], checked["urls"], checked["overridePaths"]
+    if launcher_client:
+        client = profile.parse(upstreamBytes)["client"]
+        native = {path: row for path, row in native.items() if path != client["path"]}
     missing = []
     # Global preflight before even a cache directory or first download exists.
     for row in native.values():

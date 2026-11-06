@@ -34,7 +34,8 @@ def prepare(pack, cache, workers=8, restore_locked_files=False):
     if dynamic:
         import atm9_quest_restore
         atm9_quest_restore.restore_profiled_author(pack, cache, current["document"]["questLocalization"],
-                                                   current["upstreamBytes"], current["records"])
+                                                   current["upstreamBytes"], current["sourceRecords"],
+                                                   launcher_client=not current["bundledClient"])
     else:
         command = [sys.executable, "-B", str(pack / "tools/import_upstream.py"),
                    "--pack", str(pack), "--cache", str(cache), "--workers", str(workers)]

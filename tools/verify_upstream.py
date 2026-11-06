@@ -40,7 +40,9 @@ def verify(pack: Path) -> dict:
     author_ids = {(row["projectID"], row["fileID"]) for row in manifest["files"]}
     locked_ids = {(row["projectId"], row["fileId"]) for row in [*active, *history]}
     assert author_ids == locked_ids, "Author manifest differs from active/history source IDs"
-    records = [*active, *lock["overrides"], lock["client"]]
+    records = [*active, *lock["overrides"]]
+    if portable_profile.client_is_bundled(pack, lock):
+        records.append(lock["client"])
     seen = set()
     for row in records:
         rel = row["path"]
@@ -78,7 +80,6 @@ def verify(pack: Path) -> dict:
     portable = json.loads((pack / "portable-pack.json").read_text(encoding="utf-8-sig"))
     assert portable["minecraftVersion"] == (lock["pack"]["minecraftVersion"] if dynamic else "1.20.1")
     assert portable["loader"] == (lock["pack"]["loader"] if dynamic else {"type": "forge", "version": "47.4.0"})
-    assert portable["clientJar"] == lock["client"]["path"]
     top_ids = defaultdict(list)
     for relative in sorted(actual_jars):
         with zipfile.ZipFile(pack / relative) as jar:

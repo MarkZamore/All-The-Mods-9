@@ -85,8 +85,36 @@ class AuthorCompositionTests(unittest.TestCase):
         (self.pack / "portable-pack.json").write_text(json.dumps({"minecraftVersion": "1.20.1",
             "loader": {"type": "forge", "version": "47.4.0"}, "clientJar": client.name}), encoding="utf-8")
 
+    def test_locked_restore_respects_an_omitted_client_without_cli_flags(self):
+        descriptor = self.pack / "portable-pack.json"
+        portable = json.loads(descriptor.read_bytes())
+        client = self.pack / portable.pop("clientJar")
+        descriptor.write_text(json.dumps(portable), encoding="utf-8")
+        client.unlink()
+        lock_path = self.pack / "tools/upstream-lock.json"
+        lock = json.loads(lock_path.read_bytes())
+        lock["schemaVersion"] = 1
+        lock["pack"].update(projectId=importer.PROJECT_ID, clientFileId=importer.CLIENT_FILE_ID,
+                            clientArchiveSha256=importer.CLIENT_SHA256)
+        lock["files"] = []
+        lock_path.write_text(json.dumps(lock), encoding="utf-8")
+        with patch.object(importer, "download") as download:
+            importer.restore_locked_files(self.pack, self.pack / "cache")
+        download.assert_not_called()
+        self.assertFalse(client.exists())
+
     def test_locked_composition_is_accepted(self):
         self.assertEqual(verifier.verify(self.pack)["duplicateTopLevelIds"], {})
+
+    def test_launcher_managed_client_is_omitted_and_stale_copy_rejected(self):
+        descriptor = self.pack / "portable-pack.json"
+        portable = json.loads(descriptor.read_bytes())
+        client = self.pack / portable.pop("clientJar")
+        descriptor.write_text(json.dumps(portable), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "present in the distribution source"):
+            verifier.verify(self.pack)
+        client.unlink()
+        self.assertEqual(verifier.verify(self.pack)["verifiedPayloadFiles"], 4)
 
     def test_stale_script_or_config_is_rejected(self):
         for relative in ["kubejs/server_scripts/stale.js", "config/stale.toml"]:

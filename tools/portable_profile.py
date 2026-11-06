@@ -19,7 +19,7 @@ import waypoint_source_policy
 
 PROFILE = "tools/portable-profile.json"
 LOCK_SHA = "bb55c188102bd637b927dadbaa815d8e14e162761bda2abb52dd2cbcd9b2df18"
-IMPORTER_SHA = "5c417dd8eb19cabeb7d4062b18428f5d762fbac48c897ea9e6a4b1e84c11accf"
+IMPORTER_SHA = "ca81b66ad934324020f63ec9b2b86d44baa01b434874639afd553d0580b3cfcf"
 TOOL_SHA = "8be48f103b2f20aebb53c986ff9c1f2dd458c34f8673e9f25c851e3b00bf2cc7"
 MANIFEST_SHA = "9ebb5aca30cc15ecdd231e534fc1a77d8af6377943ef9b76b6143e848725fde6"
 SUPPORT = {
@@ -144,6 +144,16 @@ def verify_waypoint_policy(pack: Path, document: dict, records: list, support: d
         waypoint_source_policy.verify(pack)
 
 
+def client_is_bundled(pack: Path, lock: dict) -> bool:
+    descriptor = json.loads(resource(pack, "portable-pack.json").read_bytes())
+    declared = descriptor.get("clientJar", "")
+    if declared not in ("", lock["client"]["path"]):
+        raise ValueError("Portable descriptor differs from the official Minecraft client pin")
+    if not declared and resource(pack, lock["client"]["path"]).exists():
+        raise ValueError("Launcher-managed Minecraft client is present in the distribution source")
+    return bool(declared)
+
+
 def load(pack: Path):
     if not (pack / PROFILE).is_file():
         return None
@@ -188,7 +198,10 @@ def load(pack: Path):
             raise ValueError("Original English fallback changes must be insert-only")
     verify_recipe_policy(pack, doc, records, support)
     verify_waypoint_policy(pack, doc, records, support)
-    return {"document": doc, "records": records, "overlays": {r["path"]: r for r in overlays},
+    bundled_client = client_is_bundled(pack, lock)
+    payload_records = records if bundled_client else records[:-1]
+    return {"document": doc, "records": payload_records, "bundledClient": bundled_client,
+            "overlays": {r["path"]: r for r in overlays},
             "overrides": {r["path"] for r in lock["overrides"]}, "support": support}
 
 
@@ -227,7 +240,10 @@ def load_dynamic(pack: Path, doc: dict):
                                            doc["baseReplacements"], doc["supportFiles"])
     verify_recipe_policy(pack, doc, records, supports)
     verify_waypoint_policy(pack, doc, records, supports)
-    return {"document": doc, "records": records, "overlays": reviewed["overlays"],
+    bundled_client = client_is_bundled(pack, lock)
+    payload_records = records if bundled_client else records[:-1]
+    return {"document": doc, "records": payload_records, "sourceRecords": records,
+            "bundledClient": bundled_client, "overlays": reviewed["overlays"],
             "overrides": {r["path"] for r in lock["overrides"]}, "support": supports,
             "dynamic": reviewed, "upstreamBytes": raw}
 

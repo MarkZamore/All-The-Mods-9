@@ -25,7 +25,8 @@ The 51,433,990-byte client archive has SHA256
 The source was downloaded again from the official CDN during this rebuild
 and matched that complete hash. `tools/upstream-manifest.json` preserves its
 435 exact project/file IDs. `tools/upstream-lock.json` pins every installed
-download, all 1,360 author overrides and the Mojang client by size and SHA256.
+download and all 1,360 author overrides by size and SHA256. It also retains
+size and hashes for the official Minecraft client.
 All 431 author JARs and every author file outside the 107 explicitly pinned
 quest-display resources remain byte-identical to those sources. The display
 localization, eight added data/document files and the one explicitly requested
@@ -154,8 +155,9 @@ restored from Git; they are never guessed from the partial display spans.
 A full archive import uses `python tools/prepare_pack.py --pack . --cache
 artifacts/upstream --workers 6` with the same reviewed normalization boundary.
 
-Downloaded JARs, shaders and the Mojang client are omitted from Git and restored
-from exact source IDs and committed hashes. The author-embedded CC:Tweaked JAR
+Downloaded mod JARs and shaders are omitted from Git and restored from exact
+source IDs and committed hashes. LANMinecraft 459 or newer downloads the official
+Minecraft client into its shared cache. The author-embedded CC:Tweaked JAR
 and withdrawn Lionfish API are included, together with the explicit requested
 Render Patcher compatibility JAR. Existing files with different bytes
 cause import verification to fail instead of being overwritten.

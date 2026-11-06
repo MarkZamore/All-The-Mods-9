@@ -185,6 +185,11 @@ def extract_overrides(archive: zipfile.ZipFile, prefix: str, pack: Path, cache: 
     return records
 
 
+def launcher_manages_client(pack: Path) -> bool:
+    descriptor = pack / "portable-pack.json"
+    return descriptor.is_file() and not json.loads(descriptor.read_bytes()).get("clientJar")
+
+
 def restore_locked_files(pack: Path, cache: Path):
     """Restore omitted downloads without contacting mutable file metadata APIs."""
     lock_path = pack / "tools/upstream-lock.json"
@@ -207,7 +212,8 @@ def restore_locked_files(pack: Path, cache: Path):
             downloads.append(record)
         elif target.exists():
             raise ValueError("Excluded upstream file is present: " + record["path"])
-    downloads.append(lock["client"])
+    if not launcher_manages_client(pack):
+        downloads.append(lock["client"])
     # Validate the complete existing tree before downloading or writing any file.
     for record in [*downloads, *lock["overrides"]]:
         relative = record["path"]
@@ -401,7 +407,8 @@ def main():
     client_name = "minecraft-1.20.1-client.jar"
     client_payload = cache / client_name
     download(client_download["url"], client_payload, client_download["size"], {"sha1": client_download["sha1"]})
-    install(client_payload, target_path(pack, client_name))
+    if not launcher_manages_client(pack):
+        install(client_payload, target_path(pack, client_name))
     lock = {"schemaVersion": 1,
             "pack": {"projectId": PROJECT_ID, "clientFileId": CLIENT_FILE_ID, "serverFileId": SERVER_FILE_ID,
                      "version": "1.1.1", "minecraftVersion": "1.20.1", "loader": {"type": "forge", "version": "47.4.0"},
